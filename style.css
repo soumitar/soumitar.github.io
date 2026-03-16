@@ -232,7 +232,7 @@ section + section { border-top: 1px solid var(--color-border-light); }
     padding-top: 80px;
 }
 
-.hero-photo-wrapper { position: relative; border-radius: var(--radius); overflow: hidden; width: 250px; height: 300px; }
+.hero-photo-wrapper { position: relative; }
 
 .hero-photo-wrapper::before {
     content: '';
@@ -248,10 +248,11 @@ section + section { border-top: 1px solid var(--color-border-light); }
     height: 300px;
     border-radius: var(--radius);
     object-fit: cover;
-    object-position: center 15%;
+    object-position: center 20%;
     position: relative;
     z-index: 1;
     box-shadow: 0 12px 40px var(--color-card-shadow);
+    clip-path: inset(0 round 12px);
 }
 
 .hero-text h1 {
