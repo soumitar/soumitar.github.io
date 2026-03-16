@@ -25,3 +25,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+// Close email dropdown when clicking outside
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.email-dropdown') && !e.target.closest('button[title="Email"]')) {
+        document.querySelectorAll('.email-dropdown').forEach(d => d.classList.remove('open'));
+    }
+});
