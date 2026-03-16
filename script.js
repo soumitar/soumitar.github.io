@@ -27,10 +27,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Close email dropdown when clicking outside
     document.addEventListener('click', function(e) {
-        document.querySelectorAll('.email-dropdown.open').forEach(function(dd) {
-            if (!dd.contains(e.target) && !dd.previousElementSibling.contains(e.target)) {
-                dd.classList.remove('open');
-            }
-        });
+        var btn = document.querySelector('button[title="Email"]');
+        var dd = document.querySelector('.email-dropdown');
+        if (dd && btn && !dd.contains(e.target) && !btn.contains(e.target)) {
+            dd.classList.remove('open');
+        }
     });
-});
