@@ -16,7 +16,7 @@ function toggleTheme() {
     }
 })();
 
-// Close mobile menu on link click
+// Close mobile menu on link click + close email dropdown on outside click
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.nav-links a').forEach(function (link) {
         link.addEventListener('click', function () {
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-// Close email dropdown when clicking outside
+    // Close email dropdown when clicking outside
     document.addEventListener('click', function(e) {
         var btn = document.querySelector('button[title="Email"]');
         var dd = document.querySelector('.email-dropdown');
@@ -33,3 +33,4 @@ document.addEventListener('DOMContentLoaded', function () {
             dd.classList.remove('open');
         }
     });
+});
