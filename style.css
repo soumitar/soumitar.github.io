@@ -763,6 +763,34 @@ footer a:hover { color: var(--color-accent); }
 .hero { animation: fadeInUp 0.7s ease-out; }
 .subpage-header { animation: fadeInUp 0.6s ease-out; }
 
+.email-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 8px 24px var(--color-card-shadow);
+    min-width: 260px;
+    z-index: 200;
+    overflow: hidden;
+}
+
+.email-dropdown.open { display: block; }
+
+.email-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    color: var(--color-text);
+    transition: background 0.15s;
+}
+
+.email-dropdown a:hover { background: var(--color-accent-light); color: var(--color-accent); }
+
 /* ═══════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════ */
