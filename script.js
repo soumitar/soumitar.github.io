@@ -24,11 +24,13 @@ document.addEventListener('DOMContentLoaded', function () {
             if (menu) menu.classList.remove('active');
         });
     });
-});
 
 // Close email dropdown when clicking outside
-document.addEventListener('click', function(e) {
-    if (!e.target.closest('.email-dropdown') && !e.target.closest('button[title="Email"]')) {
-        document.querySelectorAll('.email-dropdown').forEach(d => d.classList.remove('open'));
-    }
+    document.addEventListener('click', function(e) {
+        document.querySelectorAll('.email-dropdown.open').forEach(function(dd) {
+            if (!dd.contains(e.target) && !dd.previousElementSibling.contains(e.target)) {
+                dd.classList.remove('open');
+            }
+        });
+    });
 });
