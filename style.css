@@ -234,15 +234,6 @@ section + section { border-top: 1px solid var(--color-border-light); }
 
 .hero-photo-wrapper { position: relative; }
 
-.hero-photo-wrapper::before {
-    content: '';
-    position: absolute;
-    top: -8px; left: -8px; right: 8px; bottom: 8px;
-    border: 2px solid var(--color-accent);
-    border-radius: 14px;
-    opacity: 0.3;
-}
-
 .hero-photo {
     width: 250px;
     height: 300px;
