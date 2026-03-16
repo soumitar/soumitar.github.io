@@ -232,7 +232,7 @@ section + section { border-top: 1px solid var(--color-border-light); }
     padding-top: 80px;
 }
 
-.hero-photo-wrapper { position: relative; }
+.hero-photo-wrapper { position: relative; border-radius: var(--radius); overflow: hidden; width: 250px; height: 300px; }
 
 .hero-photo-wrapper::before {
     content: '';
