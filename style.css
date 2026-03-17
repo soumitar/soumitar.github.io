@@ -431,6 +431,22 @@ section + section { border-top: 1px solid var(--color-border-light); }
     margin-top: 12px;
 }
 
+.projects-see-all {
+    margin-top: 32px;
+    text-align: center;
+}
+
+.projects-see-all-link {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-accent);
+    transition: color 0.2s;
+}
+
+.projects-see-all-link:hover {
+    color: var(--color-accent-hover);
+}
+
 /* ═══════════════════════════════════════
    CV — Timeline style
 ═══════════════════════════════════════ */
