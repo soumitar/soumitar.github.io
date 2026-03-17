@@ -43,16 +43,22 @@
             padding-bottom: 8px;
             border-bottom: 1px solid var(--color-border-light);
         }
-        .project-figure {
+.project-figure {
             margin: 28px 0;
             border-radius: var(--radius);
             overflow: hidden;
             border: 1px solid var(--color-border);
-            background: #fff;
+            background: #FFFFFF;
         }
         [data-theme="dark"] .project-figure {
-            background: var(--color-surface);
+            background: #FAFAF7;
+            border-color: var(--color-border);
         }
+
+[data-theme="dark"] .project-figure-caption {
+            color: #6A6060;
+        }
+        
         .project-figure img {
             width: 100%;
             display: block;
