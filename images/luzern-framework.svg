@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#2A2028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text x="400" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#2A2028">Three-phase analytical approach</text>
+
+  <rect x="40" y="56" width="220" height="54" rx="8" fill="#0D9B8A" fill-opacity="0.15" stroke="#0D9B8A" stroke-width="1.2"/>
+  <text x="150" y="77" text-anchor="middle" font-size="14" font-weight="700" fill="#0A7A6C">Phase 1</text>
+  <text x="150" y="96" text-anchor="middle" font-size="11" font-weight="500" fill="#0D9B8A">Stocktaking</text>
+
+  <line x1="260" y1="83" x2="288" y2="83" stroke="#2A2028" stroke-width="1.2" marker-end="url(#a)"/>
+
+  <rect x="290" y="56" width="220" height="54" rx="8" fill="#C0284A" fill-opacity="0.12" stroke="#C0284A" stroke-width="1.2"/>
+  <text x="400" y="77" text-anchor="middle" font-size="14" font-weight="700" fill="#9A1E3A">Phase 2</text>
+  <text x="400" y="96" text-anchor="middle" font-size="11" font-weight="500" fill="#C0284A">Identify potentials</text>
+
+  <line x1="510" y1="83" x2="538" y2="83" stroke="#2A2028" stroke-width="1.2" marker-end="url(#a)"/>
+
+  <rect x="540" y="56" width="220" height="54" rx="8" fill="#D48A20" fill-opacity="0.12" stroke="#D48A20" stroke-width="1.2"/>
+  <text x="650" y="77" text-anchor="middle" font-size="14" font-weight="700" fill="#A86A12">Phase 3</text>
+  <text x="650" y="96" text-anchor="middle" font-size="11" font-weight="500" fill="#D48A20">Fields of action</text>
+
+  <line x1="150" y1="110" x2="150" y2="140" stroke="#0D9B8A" stroke-width="1" marker-end="url(#a)"/>
+  <line x1="400" y1="110" x2="400" y2="140" stroke="#C0284A" stroke-width="1" marker-end="url(#a)"/>
+  <line x1="650" y1="110" x2="650" y2="140" stroke="#D48A20" stroke-width="1" marker-end="url(#a)"/>
+
+  <rect x="40" y="142" width="105" height="36" rx="5" fill="#0D9B8A" fill-opacity="0.08" stroke="#0D9B8A" stroke-width="0.6"/>
+  <text x="92" y="165" text-anchor="middle" font-size="11" font-weight="500" fill="#0A7A6C">Industries</text>
+  <rect x="155" y="142" width="105" height="36" rx="5" fill="#0D9B8A" fill-opacity="0.08" stroke="#0D9B8A" stroke-width="0.6"/>
+  <text x="207" y="165" text-anchor="middle" font-size="11" font-weight="500" fill="#0A7A6C">Products</text>
+  <rect x="40" y="186" width="105" height="36" rx="5" fill="#0D9B8A" fill-opacity="0.08" stroke="#0D9B8A" stroke-width="0.6"/>
+  <text x="92" y="209" text-anchor="middle" font-size="11" font-weight="500" fill="#0A7A6C">Patents</text>
+  <rect x="155" y="186" width="105" height="36" rx="5" fill="#0D9B8A" fill-opacity="0.08" stroke="#0D9B8A" stroke-width="0.6"/>
+  <text x="207" y="209" text-anchor="middle" font-size="11" font-weight="500" fill="#0A7A6C">Publications</text>
+  <rect x="40" y="230" width="105" height="36" rx="5" fill="#0D9B8A" fill-opacity="0.08" stroke="#0D9B8A" stroke-width="0.6"/>
+  <text x="92" y="253" text-anchor="middle" font-size="11" font-weight="500" fill="#0A7A6C">HR / skills</text>
+  <rect x="155" y="230" width="105" height="36" rx="5" fill="#0D9B8A" fill-opacity="0.08" stroke="#0D9B8A" stroke-width="0.6"/>
+  <text x="207" y="253" text-anchor="middle" font-size="11" font-weight="500" fill="#0A7A6C">Innosuisse</text>
+  <rect x="40" y="274" width="105" height="36" rx="5" fill="#0D9B8A" fill-opacity="0.08" stroke="#0D9B8A" stroke-width="0.6"/>
+  <text x="92" y="297" text-anchor="middle" font-size="11" font-weight="500" fill="#0A7A6C">KOF data</text>
+  <rect x="155" y="274" width="105" height="36" rx="5" fill="#0D9B8A" fill-opacity="0.08" stroke="#0D9B8A" stroke-width="0.6"/>
+  <text x="207" y="297" text-anchor="middle" font-size="11" font-weight="500" fill="#0A7A6C">ASPI tech</text>
+
+  <rect x="300" y="142" width="200" height="36" rx="5" fill="#C0284A" fill-opacity="0.08" stroke="#C0284A" stroke-width="0.6"/>
+  <text x="400" y="165" text-anchor="middle" font-size="11" font-weight="500" fill="#9A1E3A">RCA / RTA analysis</text>
+  <rect x="300" y="186" width="200" height="36" rx="5" fill="#C0284A" fill-opacity="0.08" stroke="#C0284A" stroke-width="0.6"/>
+  <text x="400" y="209" text-anchor="middle" font-size="11" font-weight="500" fill="#9A1E3A">Relatedness analysis</text>
+  <rect x="300" y="230" width="200" height="36" rx="5" fill="#C0284A" fill-opacity="0.08" stroke="#C0284A" stroke-width="0.6"/>
+  <text x="400" y="253" text-anchor="middle" font-size="11" font-weight="500" fill="#9A1E3A">Future technologies</text>
+  <rect x="300" y="274" width="200" height="36" rx="5" fill="#C0284A" fill-opacity="0.08" stroke="#C0284A" stroke-width="0.6"/>
+  <text x="400" y="297" text-anchor="middle" font-size="11" font-weight="500" fill="#9A1E3A">Expert interviews</text>
+
+  <rect x="550" y="142" width="200" height="36" rx="5" fill="#D48A20" fill-opacity="0.1" stroke="#D48A20" stroke-width="0.6"/>
+  <text x="650" y="165" text-anchor="middle" font-size="11" font-weight="500" fill="#A86A12">Cluster identification</text>
+  <rect x="550" y="186" width="200" height="36" rx="5" fill="#D48A20" fill-opacity="0.1" stroke="#D48A20" stroke-width="0.6"/>
+  <text x="650" y="209" text-anchor="middle" font-size="11" font-weight="500" fill="#A86A12">Benchmarking</text>
+  <rect x="550" y="230" width="200" height="36" rx="5" fill="#D48A20" fill-opacity="0.1" stroke="#D48A20" stroke-width="0.6"/>
+  <text x="650" y="253" text-anchor="middle" font-size="11" font-weight="500" fill="#A86A12">Policy priorities</text>
+  <rect x="550" y="274" width="200" height="36" rx="5" fill="#D48A20" fill-opacity="0.1" stroke="#D48A20" stroke-width="0.6"/>
+  <text x="650" y="297" text-anchor="middle" font-size="11" font-weight="500" fill="#A86A12">Support design</text>
+
+  <text x="400" y="350" text-anchor="middle" font-size="10.5" fill="#7A8A9A">All analyses conducted at the firm level, combining multiple complementary datasets.</text>
+  <text x="400" y="366" text-anchor="middle" font-size="10.5" fill="#7A8A9A">No single data source is decisive — clusters emerge from recurring cross-source patterns.</text>
+</svg>
