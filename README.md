@@ -45,7 +45,7 @@ yourusername.github.io/
 ```
 
 ### How the interests section works
-The main page shows **5 clickable image tiles** (like Kriti Nigam's site).
+The main page shows **5 clickable image tiles**.
 Each tile links to a dedicated sub-page where you can elaborate with text,
 photos, Spotify embeds, and clickable book covers.
 
