@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luzern Innovation Study — Soumita Roy</title>
+    <meta name="description" content="Regional innovation mapping for the City of Lucerne — a multi-source data analysis conducted at KOF Swiss Economic Institute, ETH Zürich.">
+    <link rel="icon" href="favicon2.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 32px;
+            padding: 20px 24px;
+            background: var(--color-warm-glow);
+            border-left: 3px solid var(--color-accent);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        }
+        .project-meta-item {
+            font-size: 0.88rem;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+        .project-meta-label {
+            font-size: 0.73rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: 2px;
+        }
+        .project-section-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 48px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+        .project-figure {
+            margin: 28px 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            background: #fff;
+        }
+        [data-theme="dark"] .project-figure {
+            background: var(--color-surface);
+        }
+        .project-figure img {
+            width: 100%;
+            display: block;
+        }
+        .project-figure-caption {
+            font-size: 0.82rem;
+            color: var(--color-text-light);
+            padding: 10px 16px;
+            border-top: 1px solid var(--color-border-light);
+            line-height: 1.5;
+        }
+        .data-layers {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin: 20px 0 28px;
+        }
+        .data-layer {
+            padding: 16px 18px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+        }
+        .data-layer-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+        .data-layer-desc {
+            font-size: 0.83rem;
+            color: var(--color-text-light);
+            line-height: 1.55;
+        }
+        .method-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 20px 0;
+        }
+        .method-tag {
+            font-size: 0.78rem;
+            padding: 5px 14px;
+            border-radius: 20px;
+            background: var(--color-accent-light);
+            color: var(--color-accent);
+            font-weight: 500;
+        }
+        .project-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--color-border-light);
+        }
+        .project-nav a {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        @media (max-width: 768px) {
+            .data-layers { grid-template-columns: 1fr; }
+            .project-meta { gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-name">SR</a>
+            <div class="nav-right">
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#research">Research</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#cv">CV</a></li>
+                    <li><a href="index.html#interests">Interests</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                    <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="subpage-header">
+            <div class="breadcrumb">
+                <a href="index.html">home</a> → <a href="projects.html">projects</a> → luzern
+            </div>
+            <h1>Innovation Landscape of the Luzern Region</h1>
+            <p class="subpage-quote">Mapping a regional innovation ecosystem through multi-source data analysis.</p>
+        </div>
+
+        <div class="subpage-body">
+
+            <!-- Meta -->
+            <div class="project-meta">
+                <div class="project-meta-item">
+                    <div class="project-meta-label">Institution</div>
+                    KOF Swiss Economic Institute, ETH Zürich
+                </div>
+                <div class="project-meta-item">
+                    <div class="project-meta-label">Date</div>
+                    January 2026
+                </div>
+                <div class="project-meta-item">
+                    <div class="project-meta-label">Status</div>
+                    Completed
+                </div>
+                <div class="project-meta-item">
+                    <div class="project-meta-label">Co-authors</div>
+                    T. Hütner Reisch, M. König, M. Salvetti, M. Wörter
+                </div>
+            </div>
+
+            <!-- Overview -->
+            <h2 class="project-section-title">Overview</h2>
+
+            <p>
+                This study was commissioned to analyse the economic, technological, and scientific
+                strengths of a Swiss regional economy and to identify forward-looking thematic priorities
+                for innovation policy. The goal was to move beyond anecdotal or sector-specific assessments
+                and instead build a comprehensive, data-driven portrait of the regional innovation ecosystem —
+                one that could inform targeted support for emerging clusters.
+            </p>
+            <p>
+                The central question was: given the region's existing industrial base, technological
+                capabilities, scientific activity, and workforce skills, where do the most promising
+                opportunities for future innovation lie? And how can policy support be designed to
+                strengthen these areas while reducing barriers to growth?
+            </p>
+
+            <!-- Approach -->
+            <h2 class="project-section-title">Approach</h2>
+
+            <p>
+                The study follows a three-phase structure: (1) a comprehensive stocktaking of the existing
+                economic and innovation structure, (2) identification of thematic clusters with future potential,
+                and (3) policy-oriented fields of action. All analyses were conducted at the firm level wherever
+                possible, combining multiple complementary datasets to build a picture that no single source could
+                provide alone.
+            </p>
+            <p>
+                The guiding analytical insight is that regional diversification rarely happens into completely
+                unrelated activities. Instead, new strengths tend to emerge where there is cognitive, technological,
+                or organisational proximity to existing capabilities — an idea rooted in the economic complexity
+                and relatedness literature. We used this framework to distinguish realistic growth opportunities
+                from isolated observations.
+            </p>
+
+            <div class="project-figure">
+                <img src="images/luzern-framework.svg" alt="Project framework showing three phases: stocktaking, identifying potentials, and policy recommendations with all data sources mapped">
+                <div class="project-figure-caption">
+                    Figure 1 — Overview of the project structure and data sources. The left column covers
+                    the stocktaking phase (industries, products, technologies), the centre column maps ecosystem
+                    identification and future technologies, and the right column synthesises cluster identification
+                    and policy fields of action.
+                </div>
+            </div>
+
+            <!-- Data -->
+            <h2 class="project-section-title">Data Sources</h2>
+
+            <p>
+                A key design choice was the integration of eight distinct data layers, each capturing a different
+                facet of the innovation ecosystem. No single dataset is decisive — the clusters emerge from
+                patterns that recur across multiple sources.
+            </p>
+
+            <div class="data-layers">
+                <div class="data-layer">
+                    <div class="data-layer-name">Patent Data</div>
+                    <div class="data-layer-desc">PATSTAT + Bureau van Dijk Orbis IP. Firm-patent linkages, IPC classification, time-series analysis (2010–2022).</div>
+                </div>
+                <div class="data-layer">
+                    <div class="data-layer-name">Scientific Publications</div>
+                    <div class="data-layer-desc">OpenAlex bibliometric database. Topic, field, and domain classification. Growth analysis (2010–2024).</div>
+                </div>
+                <div class="data-layer">
+                    <div class="data-layer-name">Product Portfolios</div>
+                    <div class="data-layer-desc">AI-extracted from firm websites using KOF's web scraping pipeline. Employment-weighted product mapping.</div>
+                </div>
+                <div class="data-layer">
+                    <div class="data-layer-name">Industrial Structure</div>
+                    <div class="data-layer-desc">NOGA classification via Orbis. Sectoral employment, value creation, and RCA calculation.</div>
+                </div>
+                <div class="data-layer">
+                    <div class="data-layer-name">Innosuisse Projects</div>
+                    <div class="data-layer-desc">Science–industry cooperation data. Project applications (2016–2025) mapped to thematic clusters.</div>
+                </div>
+                <div class="data-layer">
+                    <div class="data-layer-name">Human Resources</div>
+                    <div class="data-layer-desc">Revelio Labs person-level data. Workforce composition, role profiles, and skill matching to clusters.</div>
+                </div>
+                <div class="data-layer">
+                    <div class="data-layer-name">KOF Innovation Indicators</div>
+                    <div class="data-layer-desc">Firm size, productivity (value added/employee), and the KOF innovation web indicator for innovation propensity.</div>
+                </div>
+                <div class="data-layer">
+                    <div class="data-layer-name">Future Technologies (ASPI)</div>
+                    <div class="data-layer-desc">Keyword-based classification inspired by ASPI's Critical Technology Tracker. Multilingual keywords applied to firm websites.</div>
+                </div>
+            </div>
+
+            <div class="project-figure">
+                <img src="images/luzern-data-architecture.svg" alt="Diagram showing eight data sources converging through analytical methods into innovation theme clusters">
+                <div class="project-figure-caption">
+                    Data integration pipeline — eight complementary sources feed into RCA, RTA, and
+                    relatedness analysis to identify innovation theme clusters, validated by expert interviews.
+                </div>
+            </div>
+
+            <div class="project-figure">
+                <img src="images/luzern-product-treemap.svg" alt="Treemap showing AI-extracted product structure by HS category, with employment-weighted proportions">
+                <div class="project-figure-caption">
+                    Figure 6 — Regional output structure by product category, as extracted from firm websites using
+                    KOF's AI pipeline. Each product mention is weighted by the firm's employment and inversely by
+                    the number of products listed. Colours correspond to HS chapters.
+                </div>
+            </div>
+
+            <div class="project-figure">
+                <img src="images/luzern-product-space.svg" alt="Product space network with nodes representing HS product classes, coloured by product cluster">
+                <div class="project-figure-caption">
+                    Figure 8 — The product space. Each node represents an HS product class (4-digit). Related
+                    products appear closer together; colours correspond to broad product clusters. Nodes with black
+                    outlines indicate regional overrepresentation (RCA > 1). Layout follows the Atlas of Economic
+                    Complexity methodology (Hidalgo et al., 2007).
+                </div>
+            </div>
+            <h2 class="project-section-title">Methodology</h2>
+
+            <p>
+                The analytical backbone combines established methods from innovation economics with
+                computational approaches:
+            </p>
+            <p>
+                <strong>Revealed Comparative Advantage (RCA)</strong> measures whether a sector, product, or
+                skill is overrepresented in the region relative to the national average. This identifies
+                existing strengths across industries and products.
+            </p>
+            <p>
+                <strong>Revealed Technological Advantage (RTA)</strong> applies the same logic to patent data,
+                comparing the region's technological profile against the national patent portfolio to detect
+                areas of above-average technological specialisation.
+            </p>
+
+            <div class="project-figure">
+                <img src="images/luzern-patent-treemap.svg" alt="Treemap showing patent structure by IPC sections and subclasses">
+                <div class="project-figure-caption">
+                    Figure 10 — Patent structure by IPC section and subclass. The treemap shows the relative
+                    composition of patent filings (2010–2022), with colours corresponding to IPC sections
+                    (e.g. G – Physics, H – Electricity, B – Performing Operations/Transport). This view
+                    reveals the technological profile underlying the region's innovation activity.
+                </div>
+            </div>
+
+            <p>
+                <strong>Relatedness analysis</strong> maps how close different industries, products, and
+                technologies are to each other based on their statistical co-occurrence across regions and
+                firms. This makes it possible to identify realistic paths for diversification — fields that
+                are technologically adjacent to existing strengths and therefore plausible targets for growth.
+            </p>
+
+            <div class="project-figure">
+                <img src="images/luzern-industry-space.svg" alt="Industry space network visualisation showing clusters of related sectors">
+                <div class="project-figure-caption">
+                    Figure 4 — The industry space. Each node represents a 4-digit NOGA industry class.
+                    Classes are positioned closer together when they require similar qualification profiles. Nodes with
+                    black outlines indicate overrepresentation (RCA > 1). Colours correspond to NOGA sections.
+                    This visualisation reveals ecosystems of related industries rather than isolated sectors.
+                </div>
+            </div>
+
+            <div class="project-figure">
+                <img src="images/luzern-technology-space.svg" alt="Technology space network with IPC patent classes as nodes, showing clusters of related technologies">
+                <div class="project-figure-caption">
+                    Figure 12 — The technology (patent) space. Each node represents an IPC subclass (4-digit).
+                    Related patent classes appear closer together based on co-classification patterns. Nodes with
+                    black outlines indicate overrepresentation (RTA > 1). Colours correspond to IPC chapters.
+                    This map complements the industry space by revealing the technological dimension of regional capabilities.
+                </div>
+            </div>
+
+            <p>
+                <strong>Product space analysis</strong>, inspired by the Atlas of Economic Complexity, maps the
+                region's product portfolio and identifies adjacent product classes that represent plausible
+                diversification opportunities.
+            </p>
+            <p>
+                <strong>ASPI-inspired keyword classification</strong> connects the local firm base with
+                strategically relevant future technologies. Because ASPI does not publish its keyword
+                dictionaries, we constructed our own — generating detailed keyword lists covering technologies,
+                tools, processes, materials, standards, and technical variants, then translating them into
+                German, French, and Italian for application to firm website content.
+            </p>
+
+            <div class="project-figure">
+                <img src="images/luzern-swot.svg" alt="SWOT-style scatter plot showing RCA versus technological proximity">
+                <div class="project-figure-caption">
+                    Figure 5 — Growth opportunities. The x-axis shows relative presence (RCA)
+                    compared to the Swiss average; the y-axis shows technological proximity to the region's existing
+                    strengths. The four quadrants map Strengths, Opportunities, Weaknesses, and Threats — providing
+                    a strategic lens for identifying both established advantages and realistic growth paths.
+                </div>
+            </div>
+
+            <p>
+                Finally, the quantitative analysis was complemented by <strong>qualitative expert interviews</strong>
+                with practitioners from the identified innovation fields, grounding the data in real-world
+                constraints around scaling, integration challenges, regulation, and talent.
+            </p>
+
+            <!-- Policy relevance -->
+            <h2 class="project-section-title">Policy Relevance</h2>
+
+            <p>
+                The study synthesised these data layers to identify thematic innovation clusters — areas where
+                industrial activity, technological capability, scientific output, workforce skills, and
+                future-oriented technologies converge. The resulting clusters are not arbitrary groupings but
+                structured combinations of adjacent capabilities already present in the region, supported by
+                evidence of innovation activity and growth potential.
+            </p>
+            <p>
+                A key insight is that innovation support should often be less focused on individual technologies
+                and more focused on <em>problems, interfaces, and integration</em>. The greatest innovation potential
+                frequently lies not in developing entirely new components but in intelligently combining existing
+                ones. Clusters need visibility, talent, test environments, institutional bridges, practical
+                experimentation, and demand-side signals — not just research funding.
+            </p>
+            <p>
+                The report proposes cluster-specific fields of action, taking into account differences in firm-size
+                structure, integration challenges, regulatory environments, and links to higher education.
+                Concrete instruments are intended to be developed jointly with local support bodies, firms,
+                associations, and universities.
+            </p>
+
+            <!-- Tools -->
+            <h2 class="project-section-title">Tools &amp; Technologies</h2>
+            <div class="method-tags">
+                <span class="method-tag">Python</span>
+                <span class="method-tag">Stata</span>
+                <span class="method-tag">PATSTAT</span>
+                <span class="method-tag">OpenAlex</span>
+                <span class="method-tag">Bureau van Dijk Orbis</span>
+                <span class="method-tag">Revelio Labs</span>
+                <span class="method-tag">Web Scraping</span>
+                <span class="method-tag">NLP / Keyword Classification</span>
+                <span class="method-tag">RCA / RTA Analysis</span>
+                <span class="method-tag">Relatedness Analysis</span>
+                <span class="method-tag">Econometrics</span>
+                <span class="method-tag">Product Space Analysis</span>
+            </div>
+
+            <!-- Navigation -->
+            <div class="project-nav">
+                <a href="projects.html">← All projects</a>
+                <a href="index.html#projects">Back to home</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Soumita Roy · PhD Researcher · <a href="https://ethz.ch" target="_blank">ETH Zürich</a></p>
+        <p style="margin-top: 4px;">All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
