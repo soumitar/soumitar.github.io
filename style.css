@@ -319,7 +319,7 @@ section + section { border-top: 1px solid var(--color-border-light); }
    RESEARCH
 ═══════════════════════════════════════ */
 .research-note {
-    background: var(--color-accent-light);
+    background: var(--color-warm-glow);
     border-left: 3px solid var(--color-accent);
     padding: 18px 22px;
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
