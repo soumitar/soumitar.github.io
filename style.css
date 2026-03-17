@@ -135,7 +135,7 @@ nav {
     font-weight: 500;
     color: var(--color-text-secondary);
     letter-spacing: 0.03em;
-    text-transform: uppercase;
+    text-transform: none;
     position: relative;
     transition: color 0.2s;
 }
