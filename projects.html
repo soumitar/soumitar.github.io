@@ -3,135 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects — Your Name</title>
+    <title>Projects — Soumita Roy</title>
+    <meta name="description" content="Research and applied projects by Soumita Roy — Innovation Economics, Digitalisation, Policy Analysis, and Data Science.">
+    <link rel="icon" href="favicon2.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* ── Project detail cards ── */
-        .project-detail {
-            background: var(--color-surface);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius);
-            padding: 36px;
-            margin-bottom: 32px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-detail::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-secondary));
-        }
-
-        .project-detail-label {
-            font-size: 0.73rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            font-weight: 600;
-            color: var(--color-accent);
-            margin-bottom: 8px;
-        }
-
-        .project-detail h2 {
-            font-family: var(--font-display);
-            font-size: 1.35rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-            line-height: 1.35;
-        }
-
-        .project-detail-meta {
-            font-size: 0.85rem;
-            color: var(--color-text-light);
-            margin-bottom: 18px;
-        }
-
-        .project-detail p {
-            font-size: 0.95rem;
-            color: var(--color-text-secondary);
-            line-height: 1.75;
-            margin-bottom: 14px;
-            max-width: 720px;
-        }
-
-        .project-detail h3 {
-            font-family: var(--font-display);
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin: 24px 0 10px;
-        }
-
-        .project-detail ul {
-            padding-left: 20px;
-            margin-bottom: 14px;
-        }
-
-        .project-detail li {
-            font-size: 0.92rem;
-            color: var(--color-text-secondary);
-            line-height: 1.65;
-            margin-bottom: 6px;
-        }
-
-        .project-detail-tools {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 20px;
-        }
-
-        .project-detail-tools span {
-            font-size: 0.78rem;
-            padding: 5px 14px;
-            border-radius: 20px;
-            background: var(--color-accent-light);
-            color: var(--color-accent);
-            font-weight: 500;
-        }
-
-        .project-detail-links {
-            display: flex;
-            gap: 12px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .project-detail-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            padding: 8px 18px;
-            border: 1px solid var(--color-border);
-            border-radius: 24px;
-            transition: all 0.2s;
-        }
-
-        .project-detail-links a:hover {
-            border-color: var(--color-accent);
-            background: var(--color-accent-light);
-        }
-
-        .project-image {
-            width: 100%;
-            border-radius: var(--radius-sm);
-            margin: 18px 0;
-            border: 1px solid var(--color-border-light);
-        }
-    </style>
 </head>
 <body>
+
     <nav>
         <div class="nav-inner">
-            <a href="index.html" class="nav-name">Your Name</a>
+            <a href="index.html" class="nav-name">SR</a>
             <div class="nav-right">
-                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
                 <ul class="nav-links">
                     <li><a href="index.html#about">About</a></li>
                     <li><a href="index.html#research">Research</a></li>
@@ -153,162 +42,112 @@
             <div class="breadcrumb">
                 <a href="index.html">home</a> → projects
             </div>
-            <h1>Projects</h1>
-            <p class="subpage-quote">A collection of research projects, tools, and applied work.</p>
+            <h1>All Projects</h1>
+            <p class="subpage-quote">Research, applied work, and everything in between — from PhD to policy to data.</p>
         </div>
 
         <div class="subpage-body">
+            <div class="projects-grid">
 
-            <!-- ══════ PROJECT 1 ══════ -->
-            <div class="project-detail" id="project-1">
-                <div class="project-detail-label">Data &amp; Policy</div>
-                <h2>Project Title One</h2>
-                <div class="project-detail-meta">Started: [Month Year] · Status: [Ongoing / Completed]</div>
-
-                <p>
-                    [Write a detailed description of this project. What is the research question or
-                    problem you're addressing? What motivated the project? This can be 2–4 paragraphs
-                    — much more detailed than the summary card on the homepage.]
-                </p>
-
-                <!-- OPTIONAL: Add a screenshot or figure -->
-                <!-- <img src="images/project1-fig.png" alt="Project figure" class="project-image"> -->
-
-                <h3>Approach</h3>
-                <p>
-                    [Describe your methodology. What data sources did you use? What econometric or
-                    ML methods? How did you handle the data pipeline?]
-                </p>
-
-                <h3>Key Findings</h3>
-                <ul>
-                    <li>[Finding 1 — keep each point to 1–2 sentences]</li>
-                    <li>[Finding 2]</li>
-                    <li>[Finding 3]</li>
-                </ul>
-
-                <div class="project-detail-tools">
-                    <span>Python</span>
-                    <span>Stata</span>
-                    <span>Web Scraping</span>
-                    <span>Pandas</span>
+                <!-- ══════ IATA ══════ -->
+                <div class="project-card" id="project-iata">
+                    <div class="project-label">IATA · Market Research</div>
+                    <h3>Global Airline Passenger Survey &amp; Market Intelligence</h3>
+                    <p>Worked on survey design, data analysis, and market research at IATA's Survey Solutions unit, contributing to global aviation industry insights.</p>
+                    <div class="project-tools"><span>Python</span><span>Survey Design</span><span>Data Analysis</span><span>Market Research</span></div>
+                    <a href="project-iata.html" class="project-link">View project →</a>
                 </div>
 
-                <div class="project-detail-links">
-                    <!-- REPLACE # with actual links. Remove any that don't apply. -->
-                    <a href="#" target="_blank">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                        GitHub Repo
-                    </a>
-                    <a href="#" target="_blank">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                        Paper / Report
-                    </a>
+                <!-- ══════ KOF SCRAPER ══════ -->
+                <div class="project-card" id="project-kof-scraper">
+                    <div class="project-label">KOF · Ongoing</div>
+                    <h3>KOF Scraper</h3>
+                    <p>Building a large-scale web scraping and NLP pipeline to collect and analyse firm-level data for innovation research at KOF.</p>
+                    <div class="project-tools"><span>Python</span><span>Web Scraping</span><span>NLP</span></div>
+                    <a href="project-kof-scraper.html" class="project-link">View project →</a>
                 </div>
+
+                <!-- ══════ HORIZON 2020 ══════ -->
+                <div class="project-card" id="project-horizon2020">
+                    <div class="project-label">KOF · Horizon 2020</div>
+                    <h3>Horizon 2020 Project</h3>
+                    <p>Research project linked to the EU's Horizon 2020 framework, conducted at KOF Swiss Economic Institute. Details coming soon.</p>
+                    <div class="project-tools"><span>TBD</span></div>
+                    <a href="project-horizon2020.html" class="project-link">View project →</a>
+                </div>
+
+                <!-- ══════ LUZERN ══════ -->
+                <div class="project-card" id="project-luzern">
+                    <div class="project-label">KOF · Regional Innovation</div>
+                    <h3>Innovation Landscape of the Luzern Region</h3>
+                    <p>Mapped the innovation ecosystem of the K5 region using patent data, bibliometric analysis, RCA/RTA indicators, and firm-level datasets to identify sectoral strengths and policy levers.</p>
+                    <div class="project-tools"><span>Python</span><span>PATSTAT</span><span>OpenAlex</span><span>Orbis</span><span>Econometrics</span></div>
+                    <a href="project-luzern.html" class="project-link">View project →</a>
+                </div>
+
+                <!-- ══════ MASTER'S THESIS ══════ -->
+                <div class="project-card" id="project-thesis">
+                    <div class="project-label">Development Finance · Master's Thesis</div>
+                    <h3>Chinese Development Finance, FDI &amp; Forest Cover in Asia</h3>
+                    <p>Analysed the causal impact of Chinese development finance on investment and environment using IV, panel regression, and case studies across Asian economies.</p>
+                    <div class="project-tools"><span>Python</span><span>Stata</span><span>IV &amp; Panel Regression</span><span>Web Scraping</span></div>
+                    <a href="project-thesis.html" class="project-link">View project →</a>
+                </div>
+
+                <!-- ══════ UNCTAD ══════ -->
+                <div class="project-card" id="project-unctad">
+                    <div class="project-label">UN · UNCTAD</div>
+                    <h3>Global Cooperation in Science, Technology &amp; Innovation for Development</h3>
+                    <p>Contributed to an analytical policy paper for the UN Commission on Science and Technology for Development, Inter-sessional Panel 2023–2024.</p>
+                    <div class="project-tools"><span>Policy Analysis</span><span>Research</span><span>Economics</span></div>
+                    <a href="project-unctad.html" class="project-link">View project →</a>
+                </div>
+
+                <!-- ══════ UNIDO ══════ -->
+                <div class="project-card" id="project-unido">
+                    <div class="project-label">UN · UNIDO</div>
+                    <h3>Moving Fast with Frontier Technologies</h3>
+                    <p>Co-authored a report on frontier technologies and their adoption in developing economies, published on the UNIDO Industrial Analytics Platform.</p>
+                    <div class="project-tools"><span>Research</span><span>Policy Analysis</span><span>Innovation</span></div>
+                    <a href="project-unido.html" class="project-link">View project →</a>
+                </div>
+
+                <!-- ══════ WEST BENGAL TRADE ══════ -->
+                <div class="project-card" id="project-bcci">
+                    <div class="project-label">Trade &amp; Industry</div>
+                    <h3>Trade Opportunities in West Bengal</h3>
+                    <p>Prepared analytical reports identifying key export items, future export potential, and market entry strategies for West Bengal at BCC&amp;I.</p>
+                    <div class="project-tools"><span>Stata</span><span>Trade Data</span><span>Market Research</span></div>
+                    <a href="project-bcci.html" class="project-link">View project →</a>
+                </div>
+
+                <!-- ══════ WATER INFRASTRUCTURE ══════ -->
+                <div class="project-card" id="project-water">
+                    <div class="project-label">Sustainable Development</div>
+                    <h3>Financing Sustainable Water Infrastructure in Rural India</h3>
+                    <p>Proposed a PPP framework for enhancing water access in rural India, focused on achieving SDG 6.</p>
+                    <div class="project-tools"><span>Development Economics</span><span>Sustainable Finance</span><span>Policy</span></div>
+                    <a href="project-water.html" class="project-link">View project →</a>
+                </div>
+
+                <!-- ══════ KOLKATA ══════ -->
+                <div class="project-card" id="project-kolkata">
+                    <div class="project-label">Urban Economics · BA Project</div>
+                    <h3>Determinants of Ease of Living in Kolkata</h3>
+                    <p>Empirical econometric study with 350 respondents analysing socio-economic and cultural factors determining living standards.</p>
+                    <div class="project-tools"><span>Stata</span><span>Excel</span><span>Survey Design</span><span>Qualtrics</span></div>
+                    <a href="project-kolkata.html" class="project-link">View project →</a>
+                </div>
+
             </div>
-
-            <!-- ══════ PROJECT 2 ══════ -->
-            <div class="project-detail" id="project-2">
-                <div class="project-detail-label">Machine Learning</div>
-                <h2>Project Title Two</h2>
-                <div class="project-detail-meta">Started: [Month Year] · Status: [Ongoing / Completed]</div>
-
-                <p>
-                    [Detailed description of this project. What problem are you solving?
-                    What makes this interesting from an economics + ML perspective?]
-                </p>
-
-                <h3>Approach</h3>
-                <p>[Methodology, data, tools used.]</p>
-
-                <h3>Key Findings</h3>
-                <ul>
-                    <li>[Finding 1]</li>
-                    <li>[Finding 2]</li>
-                </ul>
-
-                <div class="project-detail-tools">
-                    <span>Python</span>
-                    <span>scikit-learn</span>
-                    <span>NLP</span>
-                    <span>Transformers</span>
-                </div>
-
-                <div class="project-detail-links">
-                    <a href="#" target="_blank">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                        GitHub Repo
-                    </a>
-                </div>
-            </div>
-
-            <!-- ══════ PROJECT 3 ══════ -->
-            <div class="project-detail" id="project-3">
-                <div class="project-detail-label">Econometrics</div>
-                <h2>Project Title Three</h2>
-                <div class="project-detail-meta">Started: [Month Year] · Status: [Ongoing / Completed]</div>
-
-                <p>[Detailed description.]</p>
-
-                <h3>Approach</h3>
-                <p>[Methodology details.]</p>
-
-                <div class="project-detail-tools">
-                    <span>R</span>
-                    <span>Stata</span>
-                    <span>Panel Data</span>
-                    <span>IV Estimation</span>
-                </div>
-
-                <div class="project-detail-links">
-                    <a href="#" target="_blank">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                        GitHub Repo
-                    </a>
-                </div>
-            </div>
-
-            <!-- ══════ PROJECT 4 ══════ -->
-            <div class="project-detail" id="project-4">
-                <div class="project-detail-label">LLM Applications</div>
-                <h2>Project Title Four</h2>
-                <div class="project-detail-meta">Started: [Month Year] · Status: [Ongoing / Completed]</div>
-
-                <p>[Detailed description.]</p>
-
-                <h3>Approach</h3>
-                <p>[Methodology details.]</p>
-
-                <div class="project-detail-tools">
-                    <span>Python</span>
-                    <span>LLMs</span>
-                    <span>APIs</span>
-                    <span>Prompt Engineering</span>
-                </div>
-
-                <div class="project-detail-links">
-                    <a href="#" target="_blank">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                        GitHub Repo
-                    </a>
-                </div>
-            </div>
-
-            <!-- 
-                ═══════════════════════════════════════
-                HOW TO ADD A NEW PROJECT:
-                ═══════════════════════════════════════
-                1. Copy one of the project-detail blocks above
-                2. Change the id to "project-5" (or next number)
-                3. Fill in your content
-                4. On index.html, update the card's link:
-                   <a href="projects.html#project-5" class="project-link">View project →</a>
-            -->
-
         </div>
     </main>
 
-    <footer><p>&copy; 2026 Your Name · <a href="index.html">Back to home</a></p></footer>
+    <footer>
+        <p>&copy; 2026 Soumita Roy · PhD Researcher · <a href="https://ethz.ch" target="_blank">ETH Zürich</a></p>
+        <p style="margin-top: 4px;">All rights reserved.</p>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
