@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#2A2028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text x="400" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="#2A2028">Multi-source data integration</text>
+  <text x="400" y="48" text-anchor="middle" font-size="12" fill="#7A8A9A">Eight complementary layers, no single source decisive</text>
+
+  <rect x="40" y="72" width="170" height="52" rx="6" fill="#0D9B8A" fill-opacity="0.12" stroke="#0D9B8A" stroke-width="1"/>
+  <text x="125" y="93" text-anchor="middle" font-size="12" font-weight="600" fill="#0A7A6C">PATSTAT</text>
+  <text x="125" y="110" text-anchor="middle" font-size="10" fill="#0D9B8A">Patents</text>
+
+  <rect x="220" y="72" width="170" height="52" rx="6" fill="#0D9B8A" fill-opacity="0.12" stroke="#0D9B8A" stroke-width="1"/>
+  <text x="305" y="93" text-anchor="middle" font-size="12" font-weight="600" fill="#0A7A6C">OpenAlex</text>
+  <text x="305" y="110" text-anchor="middle" font-size="10" fill="#0D9B8A">Publications</text>
+
+  <rect x="400" y="72" width="170" height="52" rx="6" fill="#0D9B8A" fill-opacity="0.12" stroke="#0D9B8A" stroke-width="1"/>
+  <text x="485" y="93" text-anchor="middle" font-size="12" font-weight="600" fill="#0A7A6C">Orbis</text>
+  <text x="485" y="110" text-anchor="middle" font-size="10" fill="#0D9B8A">Firms + industries</text>
+
+  <rect x="580" y="72" width="180" height="52" rx="6" fill="#0D9B8A" fill-opacity="0.12" stroke="#0D9B8A" stroke-width="1"/>
+  <text x="670" y="93" text-anchor="middle" font-size="12" font-weight="600" fill="#0A7A6C">KOF web scraper</text>
+  <text x="670" y="110" text-anchor="middle" font-size="10" fill="#0D9B8A">AI product extraction</text>
+
+  <rect x="40" y="140" width="170" height="52" rx="6" fill="#D48A20" fill-opacity="0.12" stroke="#D48A20" stroke-width="1"/>
+  <text x="125" y="161" text-anchor="middle" font-size="12" font-weight="600" fill="#A86A12">Innosuisse</text>
+  <text x="125" y="178" text-anchor="middle" font-size="10" fill="#D48A20">Science-industry links</text>
+
+  <rect x="220" y="140" width="170" height="52" rx="6" fill="#D48A20" fill-opacity="0.12" stroke="#D48A20" stroke-width="1"/>
+  <text x="305" y="161" text-anchor="middle" font-size="12" font-weight="600" fill="#A86A12">Revelio Labs</text>
+  <text x="305" y="178" text-anchor="middle" font-size="10" fill="#D48A20">Workforce skills</text>
+
+  <rect x="400" y="140" width="170" height="52" rx="6" fill="#D48A20" fill-opacity="0.12" stroke="#D48A20" stroke-width="1"/>
+  <text x="485" y="161" text-anchor="middle" font-size="12" font-weight="600" fill="#A86A12">KOF surveys</text>
+  <text x="485" y="178" text-anchor="middle" font-size="10" fill="#D48A20">Innovation indicators</text>
+
+  <rect x="580" y="140" width="180" height="52" rx="6" fill="#D48A20" fill-opacity="0.12" stroke="#D48A20" stroke-width="1"/>
+  <text x="670" y="161" text-anchor="middle" font-size="12" font-weight="600" fill="#A86A12">ASPI keywords</text>
+  <text x="670" y="178" text-anchor="middle" font-size="10" fill="#D48A20">Future technologies</text>
+
+  <!-- Single clean arrow down -->
+  <line x1="400" y1="192" x2="400" y2="222" stroke="#2A2028" stroke-width="1.2" marker-end="url(#a)"/>
+
+  <rect x="200" y="224" width="400" height="54" rx="8" fill="#C0284A" fill-opacity="0.1" stroke="#C0284A" stroke-width="1.2"/>
+  <text x="400" y="246" text-anchor="middle" font-size="14" font-weight="700" fill="#9A1E3A">Analytical methods</text>
+  <text x="400" y="264" text-anchor="middle" font-size="10.5" fill="#C0284A">RCA · RTA · relatedness · product space · ASPI classification</text>
+
+  <line x1="400" y1="278" x2="400" y2="308" stroke="#2A2028" stroke-width="1.2" marker-end="url(#a)"/>
+
+  <rect x="200" y="310" width="400" height="54" rx="8" fill="#C0284A" fill-opacity="0.18" stroke="#C0284A" stroke-width="1.2"/>
+  <text x="400" y="332" text-anchor="middle" font-size="14" font-weight="700" fill="#9A1E3A">Innovation theme clusters</text>
+  <text x="400" y="351" text-anchor="middle" font-size="10.5" fill="#C0284A">Validated by expert interviews + benchmarking</text>
+</svg>
