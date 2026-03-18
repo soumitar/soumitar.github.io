@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luzern Innovation Study — Soumita Roy</title>
+    <meta name="description" content="Regional innovation mapping for the City of Lucerne, conducted at KOF Swiss Economic Institute, ETH Zürich. Multi-source data analysis combining patents, publications, AI product extraction, and workforce data.">
+    <link rel="icon" href="favicon2.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .project-section-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 48px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+        .project-figure {
+            margin: 28px 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            background: #FFFFFF;
+        }
+        [data-theme="dark"] .project-figure {
+            background: #FAFAF7;
+            border-color: var(--color-border);
+        }
+        .project-figure img {
+            width: 100%;
+            display: block;
+        }
+        .project-figure-caption {
+            font-size: 0.82rem;
+            color: var(--color-text-light);
+            padding: 10px 16px;
+            border-top: 1px solid var(--color-border-light);
+            line-height: 1.5;
+        }
+        [data-theme="dark"] .project-figure-caption {
+            color: #6A6060;
+        }
+        .summary-box {
+            background: var(--color-accent-light);
+            border-left: 3px solid var(--color-accent);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            padding: 20px 24px;
+            margin-bottom: 36px;
+        }
+        .summary-box p {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            line-height: 1.75;
+            margin-bottom: 0;
+        }
+        .summary-box p + p {
+            margin-top: 10px;
+        }
+        .data-layers {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin: 20px 0 28px;
+        }
+        .data-layer {
+            padding: 16px 18px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+        }
+        .data-layer-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+        .data-layer-source {
+            font-size: 0.75rem;
+            color: var(--color-accent);
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        .data-layer-desc {
+            font-size: 0.83rem;
+            color: var(--color-text-light);
+            line-height: 1.55;
+        }
+        .method-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 20px 0;
+        }
+        .method-tag {
+            font-size: 0.78rem;
+            padding: 5px 14px;
+            border-radius: 20px;
+            background: var(--color-accent-light);
+            color: var(--color-accent);
+            font-weight: 500;
+        }
+        .project-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--color-border-light);
+        }
+        .project-nav a {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        @media (max-width: 768px) {
+            .data-layers { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-name">SR</a>
+            <div class="nav-right">
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#research">Research</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#cv">CV</a></li>
+                    <li><a href="index.html#interests">Interests</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                    <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="subpage-header">
+            <div class="breadcrumb">
+                <a href="index.html">home</a> → <a href="projects.html">projects</a> → luzern
+            </div>
+            <h1>Innovation Landscape of the Luzern Region</h1>
+            <p class="subpage-quote">Mapping a regional innovation ecosystem through multi-source data analysis.</p>
+            <p style="font-size: 0.92rem; color: var(--color-text-secondary); margin-top: 8px;">
+                KOF Swiss Economic Institute, ETH Zürich · January 2026<br>
+                With T. Hütner Reisch, M. König, M. Salvetti, and M. Wörter
+            </p>
+        </div>
+
+        <div class="subpage-body">
+
+            <!-- ══════ SUMMARY BOX ══════ -->
+            <div class="summary-box">
+                <p>
+                    <strong>In brief:</strong> This study, commissioned by the City of Lucerne, set out
+                    to identify the region's forward-looking innovation priorities. We combined eight
+                    distinct firm-level datasets, including patent filings (PATSTAT), scientific publications
+                    (OpenAlex), AI-extracted product portfolios from company websites, workforce skill
+                    profiles (Revelio Labs), and university-industry collaboration records (Innosuisse),
+                    to build a comprehensive picture of where the regional economy is strong, where it
+                    could realistically grow, and what kinds of policy support would be most effective.
+                    The analysis produced a set of thematic innovation clusters, each with tailored
+                    recommendations validated through expert interviews.
+                </p>
+            </div>
+
+            <!-- ══════ 1. THE QUESTION ══════ -->
+            <h2 class="project-section-title">The question</h2>
+
+            <p>
+                Regional innovation policy works best when it builds on what already exists. But figuring
+                out what a region is actually good at, and where it could plausibly move next, requires
+                more than intuition. The City of Lucerne and the surrounding K5 municipalities wanted a
+                rigorous, data-driven assessment of their innovation ecosystem: not just a list of large
+                employers, but a fine-grained picture of technological strengths, product specialisations,
+                research activity, workforce capabilities, and connections to future-oriented technologies.
+            </p>
+            <p>
+                The challenge is that no single dataset captures all of this. Patent data reveals
+                technological invention but misses service-sector innovation entirely. Industry
+                classifications show how many people work where, but not what firms actually produce.
+                Publication data tracks scientific output but says nothing about whether it translates
+                into commercial activity. You need to triangulate across multiple sources, and you
+                need to do it at the firm level to see the real structure.
+            </p>
+
+            <!-- ══════ 2. APPROACH ══════ -->
+            <h2 class="project-section-title">How we approached it</h2>
+
+            <p>
+                The study is structured in three phases. The first is a comprehensive stocktaking:
+                we mapped the regional economy across eight complementary dimensions, from industrial
+                structure and patent activity to workforce skills and firm-level product portfolios.
+                The second phase applies analytical methods, notably Revealed Comparative Advantage (RCA)
+                and Revealed Technological Advantage (RTA), to measure where the region is genuinely
+                specialised relative to the Swiss average, and relatedness analysis to identify which
+                new fields are closest to the region's existing capability base. The third phase
+                synthesises these findings into policy-relevant innovation clusters and concrete
+                recommendations.
+            </p>
+
+            <div class="project-figure">
+                <img src="images/luzern-framework.svg" alt="Three-phase project structure: map what exists, find opportunities, recommend actions">
+                <div class="project-figure-caption">
+                    The study's three-phase structure. Phase 1 maps the economy across eight
+                    data dimensions. Phase 2 uses specialisation and relatedness methods to
+                    identify promising clusters. Phase 3 develops policy recommendations.
+                </div>
+            </div>
+
+            <p>
+                The intellectual foundation draws on the economic complexity literature, particularly
+                the idea that diversification is path-dependent. Regions rarely develop strengths in
+                areas completely unrelated to what they already do. A region strong in mechanical
+                engineering and sensor technology is far more likely to develop capabilities in
+                smart water infrastructure than in, say, fashion or pharmaceuticals. Relatedness
+                analysis, which measures how frequently two activities co-occur across regions or
+                firms, is the primary tool we use to distinguish realistic growth opportunities
+                from aspirational ones.
+            </p>
+
+            <!-- ══════ 3. THE DATA ══════ -->
+            <h2 class="project-section-title">The data</h2>
+
+            <p>
+                The study integrates eight distinct data layers. Each captures a different facet of the
+                innovation ecosystem. The table below summarises each source, its provider, and what it
+                contributes to the analysis. All analyses are conducted at the firm level wherever the
+                data permit.
+            </p>
+
+            <div class="data-layers">
+                <div class="data-layer">
+                    <div class="data-layer-name">Patent filings</div>
+                    <div class="data-layer-source">PATSTAT + Bureau van Dijk Orbis IP</div>
+                    <div class="data-layer-desc">5,907 patents linked to 160 regional firms (2010 to 2022), classified by 4-digit IPC codes. Compared against 743,711 patents from the rest of Switzerland. Used to compute Revealed Technological Advantage.</div>
+                </div>
+                <div class="data-layer">
+                    <div class="data-layer-name">Scientific publications</div>
+                    <div class="data-layer-source">OpenAlex</div>
+                    <div class="data-layer-desc">All publications with a regional institutional affiliation, 2010 to 2024. Classified by topic, field, and domain. Growth rates compared between 2010-2013 and 2021-2024 to identify fast-moving research areas.</div>
+                </div>
+                <div class="data-layer">
+                    <div class="data-layer-name">Company product portfolios</div>
+                    <div class="data-layer-source">KOF AI pipeline (König et al., 2024)</div>
+                    <div class="data-layer-desc">Products and services extracted from every company website in the region using a custom AI pipeline. Each product mention is weighted by firm employment and inversely by the number of products listed, producing employment-weighted output shares by Harmonised System (HS) category.</div>
+                </div>
+                <div class="data-layer">
+                    <div class="data-layer-name">Industrial structure</div>
+                    <div class="data-layer-source">Swiss NOGA classification via Orbis</div>
+                    <div class="data-layer-desc">Sectoral employment at the 4-digit level, used to calculate Revealed Comparative Advantage and to map the "industry space," a network showing which industries require similar workforce skills.</div>
+                </div>
+                <div class="data-layer">
+                    <div class="data-layer-name">University-industry collaboration</div>
+                    <div class="data-layer-source">Innosuisse</div>
+                    <div class="data-layer-desc">All project applications submitted between 2016 and 2025 where the applying firm is based in the region. Shows which technology fields have the strongest institutional bridges between science and business.</div>
+                </div>
+                <div class="data-layer">
+                    <div class="data-layer-name">Workforce skills</div>
+                    <div class="data-layer-source">Revelio Labs</div>
+                    <div class="data-layer-desc">Person-level data on approximately 74,000 individuals and 31,000 firms in the K5 region, covering roles, skills, and occupational profiles. Used to assess whether the regional talent base matches the identified innovation clusters.</div>
+                </div>
+                <div class="data-layer">
+                    <div class="data-layer-name">Innovation indicators</div>
+                    <div class="data-layer-source">KOF Swiss Economic Institute</div>
+                    <div class="data-layer-desc">Survey-based indicators on firm size, productivity (value added per employee), and innovation activity. The KOF Innovation Explorer provides a low-aggregation view of innovation propensity across the identified clusters.</div>
+                </div>
+                <div class="data-layer">
+                    <div class="data-layer-name">Future technology trends</div>
+                    <div class="data-layer-source">ASPI-inspired classification (custom-built)</div>
+                    <div class="data-layer-desc">Keyword-based classification of firms against critical future technologies, inspired by the Australian Strategic Policy Institute's Critical Technology Tracker. We generated our own keyword dictionaries, translated them into German, French, and Italian, and applied them to company website content.</div>
+                </div>
+            </div>
+
+            <div class="project-figure">
+                <img src="images/luzern-data-architecture.svg" alt="Eight data sources feeding into analysis and then into innovation cluster identification">
+                <div class="project-figure-caption">
+                    The data pipeline. Eight sources capture different facets of regional innovation
+                    and feed into the analytical methods. No single dataset is decisive; clusters
+                    emerge from patterns that recur across multiple sources.
+                </div>
+            </div>
+
+            <!-- ══════ 4. PRODUCTS ══════ -->
+            <h2 class="project-section-title">What the region produces</h2>
+
+            <p>
+                One distinctive feature of this study is the product-level analysis. Traditional statistics
+                classify firms by industry code (NOGA), which tells you a firm is "in manufacturing" but
+                not whether it makes precision instruments or packaging materials. We used a custom AI
+                pipeline developed at KOF (König et al., 2024, 2025) to scan every company website in
+                the region, extract listed products and services, and map them to Harmonised System
+                categories. Each mention is weighted by the firm's employment and inversely by the
+                number of products it lists, producing an employment-weighted estimate of regional
+                output by product category.
+            </p>
+
+            <div class="project-figure">
+                <img src="images/luzern-product-treemap.svg" alt="Treemap showing what the region produces, sized by employment share">
+                <div class="project-figure-caption">
+                    The region's product structure, extracted from company websites using AI and
+                    weighted by firm employment. Larger boxes represent a bigger share of regional
+                    economic output.
+                </div>
+            </div>
+
+            <p>
+                We then mapped these products in a "product space," following the approach pioneered by
+                Hidalgo et al. (2007) in the Atlas of Economic Complexity. The idea is straightforward:
+                products that tend to be made in the same regions are "related," because they require
+                similar inputs, skills, or infrastructure. A region that already produces precision
+                machinery is more likely to diversify into sensor equipment than into textiles. The
+                product space makes these adjacencies visible, showing where realistic diversification
+                paths exist.
+            </p>
+
+            <div class="project-figure">
+                <img src="images/luzern-product-space.svg" alt="Network showing how products relate to each other by co-occurrence">
+                <div class="project-figure-caption">
+                    The product space. Each dot is a product category. Related products (those that
+                    tend to co-occur in the same regions) appear closer. Brighter dots indicate
+                    categories where the region has above-average specialisation.
+                </div>
+            </div>
+
+            <!-- ══════ 5. PATENTS & TECHNOLOGY ══════ -->
+            <h2 class="project-section-title">Where the region invents</h2>
+
+            <p>
+                Patent data offers a complementary perspective: not what firms produce, but what they
+                invent. Using PATSTAT and Bureau van Dijk Orbis IP, we linked 5,907 patent filings
+                to 160 firms in the K5 region and classified them by 4-digit IPC (International Patent
+                Classification) codes. For comparison, the rest of Switzerland accounts for 743,711
+                patents across 8,887 firms over the same period. This asymmetry is precisely the point:
+                by comparing the region's patent profile to the national average, we can identify fields
+                where the region punches above its weight, measured by the Revealed Technological
+                Advantage (RTA) index.
+            </p>
+
+            <div class="project-figure">
+                <img src="images/luzern-patent-treemap.svg" alt="Treemap showing patent filings by technology area">
+                <div class="project-figure-caption">
+                    Patent filings by technology field. Larger boxes represent a greater share of
+                    regional patenting activity. Based on 5,907 patents from 160 firms, 2010 to 2022.
+                </div>
+            </div>
+
+            <p>
+                We then constructed two network maps that reveal the deeper structure of the regional
+                economy. The first is the "industry space," where industries that require similar
+                workforce qualifications are positioned closer together (following Neffke &amp; Henning,
+                2013). The second is the "technology space," where patent classes that frequently
+                co-occur within the same patent families are positioned closer (following Kogler et al.,
+                2013). Both maps serve the same purpose: they show which new fields are closest to the
+                region's existing capabilities, and therefore represent the most plausible targets for
+                diversification.
+            </p>
+
+            <div class="project-figure">
+                <img src="images/luzern-industry-space.svg" alt="Network showing how industries cluster by shared workforce skills">
+                <div class="project-figure-caption">
+                    The industry space. Each dot is an industry. Industries positioned closer together
+                    share similar workforce skill profiles. Dashed ovals highlight ecosystems of related
+                    industries. Brighter dots indicate above-average regional specialisation (RCA &gt; 1).
+                </div>
+            </div>
+
+            <div class="project-figure">
+                <img src="images/luzern-technology-space.svg" alt="Network showing how technologies cluster by co-occurrence in patent filings">
+                <div class="project-figure-caption">
+                    The technology space. Each dot is a technology field from patent data. Technologies
+                    that frequently appear together in patent filings are positioned closer. Clusters
+                    reveal where inventive activity concentrates. Brighter dots = regional technological
+                    advantage (RTA &gt; 1).
+                </div>
+            </div>
+
+            <!-- ══════ 6. SYNTHESIS ══════ -->
+            <h2 class="project-section-title">Bringing it together</h2>
+
+            <p>
+                With all eight data layers in hand, we synthesised them into a strategic classification.
+                Every sector and product is mapped along two dimensions: its current presence in the region
+                (measured by RCA or RTA) and its technological proximity to the region's existing
+                capability base (measured by relatedness density). This produces four quadrants.
+            </p>
+            <p>
+                <strong>Strengths</strong> (top-right) are fields where the region already has above-average
+                presence and that connect well to its broader economic profile. These should be protected and
+                deepened. <strong>Opportunities</strong> (top-left) are fields where the region does not yet
+                have a strong presence, but the required capabilities are adjacent to what it already does.
+                These represent the most realistic growth paths. <strong>Weaknesses</strong> (bottom-left) are
+                distant and absent, unlikely targets for near-term development. <strong>Threats</strong>
+                (bottom-right) are fields where the region has some presence, but they are isolated from the
+                rest of the economy and therefore potentially vulnerable.
+            </p>
+
+            <div class="project-figure">
+                <img src="images/luzern-swot.svg" alt="Four-quadrant framework mapping sectors by current strength and proximity to existing capabilities">
+                <div class="project-figure-caption">
+                    Strategic classification. Each dot is a sector or product, sized by employment.
+                    Horizontal axis: current regional specialisation. Vertical axis: proximity to
+                    existing capabilities. The top-right quadrant identifies strengths; the top-left
+                    identifies realistic growth opportunities.
+                </div>
+            </div>
+
+            <p>
+                The quantitative analysis was complemented by in-depth interviews with practitioners
+                from the identified innovation fields. These conversations provided essential context that
+                data alone cannot capture: the practical challenges of scaling timber construction
+                businesses, the difficulty of integrating sensor systems into ageing water infrastructure,
+                and the regulatory bottlenecks that slow adoption of new environmental technologies. The
+                combination of rigorous data work and on-the-ground practitioner insight is what gives the
+                final cluster identification its credibility.
+            </p>
+
+            <!-- ══════ 7. POLICY ══════ -->
+            <h2 class="project-section-title">Implications for policy</h2>
+
+            <p>
+                One of the clearest findings of this study, echoed across both the data and the interviews,
+                is that innovation support should focus less on funding individual technologies and more on
+                solving integration problems. In several of the identified clusters, the biggest challenge
+                is not inventing something new but combining existing technologies in smarter ways. A modern
+                wastewater monitoring system, for example, requires expertise in drilling, hydraulics,
+                sensor design, data transmission, and regulatory compliance. No single firm covers all of
+                that. The innovation happens at the interfaces, and policy can play a role by creating
+                spaces where different actors come together to solve concrete integration challenges.
+            </p>
+            <p>
+                The report proposes cluster-specific fields of action that account for differences in
+                firm-size structure (some clusters are dominated by small, specialised firms; others by
+                larger players), regulatory complexity, and the strength of existing links to higher
+                education. Some clusters would benefit most from better visibility and matchmaking with
+                academic partners. Others need test environments, like Empa's NEST facility, where firms
+                can experiment under realistic conditions. Several would gain from public procurement that
+                signals demand for innovative solutions. The concrete instruments are designed to be
+                developed jointly with local support bodies, firms, industry associations, and universities.
+            </p>
+
+            <!-- ══════ 8. TOOLS ══════ -->
+            <h2 class="project-section-title">Tools and methods</h2>
+
+            <div class="method-tags">
+                <span class="method-tag">Python</span>
+                <span class="method-tag">Stata</span>
+                <span class="method-tag">PATSTAT</span>
+                <span class="method-tag">OpenAlex</span>
+                <span class="method-tag">Bureau van Dijk Orbis</span>
+                <span class="method-tag">Revelio Labs</span>
+                <span class="method-tag">Innosuisse</span>
+                <span class="method-tag">Web Scraping / NLP</span>
+                <span class="method-tag">RCA / RTA Analysis</span>
+                <span class="method-tag">Relatedness Analysis</span>
+                <span class="method-tag">Product Space (Hidalgo et al.)</span>
+                <span class="method-tag">Econometrics</span>
+                <span class="method-tag">ASPI Keyword Classification</span>
+            </div>
+
+            <!-- Navigation -->
+            <div class="project-nav">
+                <a href="projects.html">← All projects</a>
+                <a href="index.html#projects">Back to home</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Soumita Roy · PhD Researcher · <a href="https://ethz.ch" target="_blank">ETH Zürich</a></p>
+        <p style="margin-top: 4px;">All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
