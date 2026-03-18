@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 510" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif">
+  <text x="400" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="#2A2028">Technology space: patent classes by co-classification</text>
+  <text x="400" y="48" text-anchor="middle" font-size="11.5" fill="#7A8A9A">IPC 4-digit subclasses positioned by co-occurrence in patent families (Kogler et al., 2013). Bright = RTA &gt; 1.</text>
+
+  <!-- Physics/sensors - crimson -->
+  <ellipse cx="190" cy="138" rx="95" ry="55" fill="none" stroke="#C0284A" stroke-width="1" stroke-dasharray="5 4" opacity="0.5"/>
+  <text x="190" y="88" text-anchor="middle" font-size="11" font-weight="600" fill="#C0284A">G: Sensors &amp; data processing</text>
+  <line x1="152" y1="118" x2="188" y2="148" stroke="#C0284A" stroke-width="0.8" opacity="0.5"/><line x1="188" y1="148" x2="225" y2="120" stroke="#C0284A" stroke-width="0.8" opacity="0.5"/><line x1="152" y1="118" x2="225" y2="120" stroke="#C0284A" stroke-width="0.6" opacity="0.4"/><line x1="188" y1="148" x2="228" y2="170" stroke="#C0284A" stroke-width="0.5" opacity="0.3"/><line x1="120" y1="142" x2="152" y2="118" stroke="#C0284A" stroke-width="0.8" opacity="0.45"/><line x1="120" y1="142" x2="188" y2="148" stroke="#C0284A" stroke-width="0.6" opacity="0.35"/><line x1="225" y1="120" x2="260" y2="138" stroke="#C0284A" stroke-width="0.5" opacity="0.3"/><line x1="178" y1="100" x2="152" y2="118" stroke="#C0284A" stroke-width="0.6" opacity="0.35"/><line x1="178" y1="100" x2="225" y2="120" stroke="#C0284A" stroke-width="0.6" opacity="0.35"/>
+  <circle cx="152" cy="118" r="9" fill="#C0284A" opacity="0.85"/><circle cx="188" cy="148" r="8" fill="#C0284A" opacity="0.8"/><circle cx="225" cy="120" r="10" fill="#C0284A" opacity="0.9"/><circle cx="120" cy="142" r="7" fill="#C0284A" opacity="0.8"/><circle cx="228" cy="170" r="5" fill="#C0284A" opacity="0.35"/><circle cx="260" cy="138" r="4" fill="#C0284A" opacity="0.3"/><circle cx="178" cy="100" r="5" fill="#C0284A" opacity="0.35"/>
+
+  <!-- Electrical - pink -->
+  <ellipse cx="555" cy="132" rx="92" ry="50" fill="none" stroke="#B04878" stroke-width="1" stroke-dasharray="5 4" opacity="0.5"/>
+  <text x="555" y="86" text-anchor="middle" font-size="11" font-weight="600" fill="#B04878">H: Electrical &amp; communications</text>
+  <line x1="498" y1="115" x2="535" y2="142" stroke="#B04878" stroke-width="0.8" opacity="0.5"/><line x1="535" y1="142" x2="572" y2="118" stroke="#B04878" stroke-width="0.8" opacity="0.5"/><line x1="498" y1="115" x2="572" y2="118" stroke="#B04878" stroke-width="0.6" opacity="0.4"/><line x1="572" y1="118" x2="608" y2="135" stroke="#B04878" stroke-width="0.5" opacity="0.3"/><line x1="535" y1="142" x2="562" y2="165" stroke="#B04878" stroke-width="0.5" opacity="0.3"/><line x1="608" y1="135" x2="632" y2="115" stroke="#B04878" stroke-width="0.5" opacity="0.3"/>
+  <circle cx="498" cy="115" r="8" fill="#B04878" opacity="0.85"/><circle cx="535" cy="142" r="10" fill="#B04878" opacity="0.9"/><circle cx="572" cy="118" r="9" fill="#B04878" opacity="0.9"/><circle cx="608" cy="135" r="5" fill="#B04878" opacity="0.35"/><circle cx="562" cy="165" r="5" fill="#B04878" opacity="0.35"/><circle cx="632" cy="115" r="7" fill="#B04878" opacity="0.8"/>
+
+  <!-- Materials - amber -->
+  <ellipse cx="365" cy="298" rx="100" ry="52" fill="none" stroke="#D48A20" stroke-width="1" stroke-dasharray="5 4" opacity="0.5"/>
+  <text x="365" y="252" text-anchor="middle" font-size="11" font-weight="600" fill="#D48A20">B: Materials &amp; manufacturing</text>
+  <line x1="322" y1="278" x2="360" y2="308" stroke="#D48A20" stroke-width="0.8" opacity="0.5"/><line x1="360" y1="308" x2="400" y2="282" stroke="#D48A20" stroke-width="0.8" opacity="0.5"/><line x1="322" y1="278" x2="400" y2="282" stroke="#D48A20" stroke-width="0.6" opacity="0.4"/><line x1="285" y1="305" x2="322" y2="278" stroke="#D48A20" stroke-width="0.8" opacity="0.45"/><line x1="285" y1="305" x2="360" y2="308" stroke="#D48A20" stroke-width="0.6" opacity="0.35"/><line x1="360" y1="308" x2="395" y2="332" stroke="#D48A20" stroke-width="0.5" opacity="0.3"/><line x1="400" y1="282" x2="432" y2="302" stroke="#D48A20" stroke-width="0.5" opacity="0.3"/>
+  <circle cx="322" cy="278" r="9" fill="#D48A20" opacity="0.85"/><circle cx="360" cy="308" r="11" fill="#D48A20" opacity="0.9"/><circle cx="400" cy="282" r="8" fill="#D48A20" opacity="0.85"/><circle cx="285" cy="305" r="6" fill="#D48A20" opacity="0.35"/><circle cx="395" cy="332" r="5" fill="#D48A20" opacity="0.3"/><circle cx="432" cy="302" r="4" fill="#D48A20" opacity="0.3"/>
+
+  <!-- Construction/water - teal -->
+  <ellipse cx="148" cy="375" rx="80" ry="45" fill="none" stroke="#0D9B8A" stroke-width="1" stroke-dasharray="5 4" opacity="0.5"/>
+  <text x="148" y="335" text-anchor="middle" font-size="11" font-weight="600" fill="#0D9B8A">E: Construction &amp; water</text>
+  <line x1="118" y1="358" x2="152" y2="385" stroke="#0D9B8A" stroke-width="0.8" opacity="0.5"/><line x1="152" y1="385" x2="188" y2="360" stroke="#0D9B8A" stroke-width="0.8" opacity="0.5"/><line x1="118" y1="358" x2="188" y2="360" stroke="#0D9B8A" stroke-width="0.6" opacity="0.4"/><line x1="88" y1="382" x2="118" y2="358" stroke="#0D9B8A" stroke-width="0.8" opacity="0.45"/><line x1="152" y1="385" x2="178" y2="408" stroke="#0D9B8A" stroke-width="0.5" opacity="0.3"/>
+  <circle cx="118" cy="358" r="8" fill="#0D9B8A" opacity="0.85"/><circle cx="152" cy="385" r="9" fill="#0D9B8A" opacity="0.9"/><circle cx="188" cy="360" r="7" fill="#0D9B8A" opacity="0.8"/><circle cx="88" cy="382" r="6" fill="#0D9B8A" opacity="0.8"/><circle cx="178" cy="408" r="5" fill="#0D9B8A" opacity="0.35"/>
+
+  <!-- Chemistry - blue -->
+  <ellipse cx="575" cy="350" rx="70" ry="45" fill="none" stroke="#3A6EA5" stroke-width="1" stroke-dasharray="5 4" opacity="0.5"/>
+  <text x="575" y="310" text-anchor="middle" font-size="11" font-weight="600" fill="#3A6EA5">C: Chemistry &amp; environment</text>
+  <line x1="542" y1="335" x2="578" y2="362" stroke="#3A6EA5" stroke-width="0.8" opacity="0.5"/><line x1="578" y1="362" x2="612" y2="338" stroke="#3A6EA5" stroke-width="0.8" opacity="0.5"/><line x1="542" y1="335" x2="612" y2="338" stroke="#3A6EA5" stroke-width="0.6" opacity="0.4"/><line x1="578" y1="362" x2="602" y2="385" stroke="#3A6EA5" stroke-width="0.5" opacity="0.3"/>
+  <circle cx="542" cy="335" r="7" fill="#3A6EA5" opacity="0.85"/><circle cx="578" cy="362" r="9" fill="#3A6EA5" opacity="0.9"/><circle cx="612" cy="338" r="8" fill="#3A6EA5" opacity="0.85"/><circle cx="602" cy="385" r="5" fill="#3A6EA5" opacity="0.35"/>
+
+  <!-- Cross-cluster -->
+  <line x1="260" y1="138" x2="322" y2="278" stroke="#7A8A9A" stroke-width="0.5" stroke-dasharray="4 3" opacity="0.25"/><line x1="228" y1="170" x2="285" y2="305" stroke="#7A8A9A" stroke-width="0.5" stroke-dasharray="4 3" opacity="0.25"/><line x1="562" y1="165" x2="542" y2="335" stroke="#7A8A9A" stroke-width="0.5" stroke-dasharray="4 3" opacity="0.25"/><line x1="188" y1="360" x2="285" y2="305" stroke="#7A8A9A" stroke-width="0.5" stroke-dasharray="4 3" opacity="0.25"/><line x1="432" y1="302" x2="498" y2="115" stroke="#7A8A9A" stroke-width="0.5" stroke-dasharray="4 3" opacity="0.2"/><line x1="432" y1="302" x2="542" y2="335" stroke="#7A8A9A" stroke-width="0.5" stroke-dasharray="4 3" opacity="0.25"/>
+
+  <circle cx="370" cy="205" r="3" fill="#7A8A9A" opacity="0.25"/><circle cx="430" cy="218" r="3" fill="#7A8A9A" opacity="0.25"/><circle cx="310" cy="210" r="3" fill="#7A8A9A" opacity="0.25"/><circle cx="465" cy="252" r="3" fill="#7A8A9A" opacity="0.25"/><circle cx="215" cy="240" r="3" fill="#7A8A9A" opacity="0.25"/><circle cx="390" cy="400" r="3" fill="#7A8A9A" opacity="0.25"/>
+
+  <!-- Legend -->
+  <circle cx="80" cy="448" r="5" fill="#C0284A" opacity="0.9"/><text x="92" y="452" font-size="10" fill="#2A2028">G: Physics / sensors</text>
+  <circle cx="240" cy="448" r="5" fill="#B04878" opacity="0.9"/><text x="252" y="452" font-size="10" fill="#2A2028">H: Electrical</text>
+  <circle cx="350" cy="448" r="5" fill="#D48A20" opacity="0.9"/><text x="362" y="452" font-size="10" fill="#2A2028">B: Materials</text>
+  <circle cx="460" cy="448" r="5" fill="#0D9B8A" opacity="0.9"/><text x="472" y="452" font-size="10" fill="#2A2028">E: Construction</text>
+  <circle cx="590" cy="448" r="5" fill="#3A6EA5" opacity="0.9"/><text x="602" y="452" font-size="10" fill="#2A2028">C: Chemistry</text>
+
+  <text x="400" y="484" text-anchor="middle" font-size="10.5" fill="#7A8A9A">Node size proportional to patent volume. Technologies co-classified within the same patent families</text>
+  <text x="400" y="500" text-anchor="middle" font-size="10.5" fill="#7A8A9A">are positioned closer. Dashed ellipses indicate technology ecosystems. Data: USPTO via PATSTAT.</text>
+</svg>

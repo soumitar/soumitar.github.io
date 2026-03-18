@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif">
+  <text x="400" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="#2A2028">Regional product structure by employment share</text>
+  <text x="400" y="48" text-anchor="middle" font-size="11.5" fill="#7A8A9A">AI-extracted from company websites, classified by Harmonised System (HS) chapter, weighted by firm employment</text>
+
+  <rect x="40" y="72" width="240" height="140" rx="6" fill="#C0284A" fill-opacity="0.12" stroke="#C0284A" stroke-width="1"/>
+  <text x="160" y="126" text-anchor="middle" font-size="14" font-weight="700" fill="#9A1E3A">Machinery &amp;</text>
+  <text x="160" y="144" text-anchor="middle" font-size="14" font-weight="700" fill="#9A1E3A">mechanical equipment</text>
+  <text x="160" y="164" text-anchor="middle" font-size="10" font-weight="500" fill="#C0284A">HS Chapter 84</text>
+
+  <rect x="290" y="72" width="200" height="140" rx="6" fill="#0D9B8A" fill-opacity="0.12" stroke="#0D9B8A" stroke-width="1"/>
+  <text x="390" y="126" text-anchor="middle" font-size="14" font-weight="700" fill="#0A7A6C">Electrical</text>
+  <text x="390" y="144" text-anchor="middle" font-size="14" font-weight="700" fill="#0A7A6C">equipment</text>
+  <text x="390" y="164" text-anchor="middle" font-size="10" font-weight="500" fill="#0D9B8A">HS Chapter 85</text>
+
+  <rect x="500" y="72" width="130" height="66" rx="6" fill="#D48A20" fill-opacity="0.12" stroke="#D48A20" stroke-width="1"/>
+  <text x="565" y="102" text-anchor="middle" font-size="12" font-weight="700" fill="#A86A12">Optical &amp; measuring</text>
+  <text x="565" y="118" text-anchor="middle" font-size="9.5" font-weight="500" fill="#D48A20">HS 90</text>
+
+  <rect x="640" y="72" width="120" height="66" rx="6" fill="#C0284A" fill-opacity="0.08" stroke="#C0284A" stroke-width="0.8"/>
+  <text x="700" y="102" text-anchor="middle" font-size="12" font-weight="700" fill="#9A1E3A">Iron &amp; steel</text>
+  <text x="700" y="118" text-anchor="middle" font-size="9.5" font-weight="500" fill="#C0284A">HS 72-73</text>
+
+  <rect x="500" y="146" width="260" height="66" rx="6" fill="#D48A20" fill-opacity="0.08" stroke="#D48A20" stroke-width="0.8"/>
+  <text x="630" y="178" text-anchor="middle" font-size="12" font-weight="700" fill="#A86A12">Food preparations &amp; dairy</text>
+  <text x="630" y="194" text-anchor="middle" font-size="9.5" font-weight="500" fill="#D48A20">HS 04, 19, 21</text>
+
+  <rect x="40" y="222" width="155" height="90" rx="6" fill="#7A8A9A" fill-opacity="0.1" stroke="#7A8A9A" stroke-width="0.8"/>
+  <text x="117" y="260" text-anchor="middle" font-size="12" font-weight="700" fill="#556672">Ceramics &amp;</text>
+  <text x="117" y="276" text-anchor="middle" font-size="12" font-weight="700" fill="#556672">construction</text>
+  <text x="117" y="294" text-anchor="middle" font-size="9.5" font-weight="500" fill="#7A8A9A">HS 69</text>
+
+  <rect x="205" y="222" width="145" height="90" rx="6" fill="#0D9B8A" fill-opacity="0.08" stroke="#0D9B8A" stroke-width="0.8"/>
+  <text x="277" y="260" text-anchor="middle" font-size="12" font-weight="700" fill="#0A7A6C">Textiles &amp;</text>
+  <text x="277" y="276" text-anchor="middle" font-size="12" font-weight="700" fill="#0A7A6C">apparel</text>
+  <text x="277" y="294" text-anchor="middle" font-size="9.5" font-weight="500" fill="#0D9B8A">HS 60-63</text>
+
+  <rect x="360" y="222" width="125" height="90" rx="6" fill="#C0284A" fill-opacity="0.06" stroke="#C0284A" stroke-width="0.8"/>
+  <text x="422" y="268" text-anchor="middle" font-size="12" font-weight="700" fill="#9A1E3A">Wood</text>
+  <text x="422" y="286" text-anchor="middle" font-size="9.5" font-weight="500" fill="#C0284A">HS 44</text>
+
+  <rect x="495" y="222" width="120" height="90" rx="6" fill="#D48A20" fill-opacity="0.06" stroke="#D48A20" stroke-width="0.8"/>
+  <text x="555" y="268" text-anchor="middle" font-size="12" font-weight="700" fill="#A86A12">Paper</text>
+  <text x="555" y="286" text-anchor="middle" font-size="9.5" font-weight="500" fill="#D48A20">HS 47-48</text>
+
+  <rect x="625" y="222" width="135" height="90" rx="6" fill="#7A8A9A" fill-opacity="0.06" stroke="#7A8A9A" stroke-width="0.8"/>
+  <text x="692" y="268" text-anchor="middle" font-size="12" font-weight="700" fill="#556672">Other</text>
+
+  <rect x="40" y="326" width="720" height="36" rx="6" fill="none" stroke="#7A8A9A" stroke-width="0.8" stroke-dasharray="5 4"/>
+  <text x="400" y="349" text-anchor="middle" font-size="10.5" font-weight="500" fill="#7A8A9A">Services analysed separately using EBOPS (Extended Balance of Payments Services) classification</text>
+
+  <text x="400" y="390" text-anchor="middle" font-size="10.5" fill="#7A8A9A">Box area proportional to employment-weighted output share. Products extracted from firm websites via KOF AI</text>
+  <text x="400" y="406" text-anchor="middle" font-size="10.5" fill="#7A8A9A">pipeline (König et al., 2024); each mention weighted by firm employment, inversely by number of products listed.</text>
+</svg>

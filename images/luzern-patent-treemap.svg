@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif">
+  <text x="400" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="#2A2028">Patent filings by technology field, 2010-2022</text>
+  <text x="400" y="48" text-anchor="middle" font-size="11.5" fill="#7A8A9A">K5 region: 5,907 patents across 160 firms. Classified by 4-digit IPC codes. Reference: 743,711 (rest of CH).</text>
+
+  <rect x="40" y="70" width="270" height="130" rx="6" fill="#C0284A" fill-opacity="0.12" stroke="#C0284A" stroke-width="1"/>
+  <text x="175" y="118" text-anchor="middle" font-size="15" font-weight="700" fill="#9A1E3A">Sensors &amp; data processing</text>
+  <text x="175" y="136" text-anchor="middle" font-size="10" font-weight="500" fill="#C0284A">IPC Section G (Physics)</text>
+  <text x="175" y="152" text-anchor="middle" font-size="9.5" fill="#7A8A9A">Signal processing, measurement,</text>
+  <text x="175" y="164" text-anchor="middle" font-size="9.5" fill="#7A8A9A">computing, scientific instruments</text>
+
+  <rect x="320" y="70" width="220" height="130" rx="6" fill="#B04878" fill-opacity="0.12" stroke="#B04878" stroke-width="1"/>
+  <text x="430" y="118" text-anchor="middle" font-size="15" font-weight="700" fill="#8A3060">Electrical systems</text>
+  <text x="430" y="136" text-anchor="middle" font-size="10" font-weight="500" fill="#B04878">IPC Section H (Electricity)</text>
+  <text x="430" y="152" text-anchor="middle" font-size="9.5" fill="#7A8A9A">Connections, cables, switches,</text>
+  <text x="430" y="164" text-anchor="middle" font-size="9.5" fill="#7A8A9A">communications technology</text>
+
+  <rect x="550" y="70" width="210" height="130" rx="6" fill="#0D9B8A" fill-opacity="0.12" stroke="#0D9B8A" stroke-width="1"/>
+  <text x="655" y="112" text-anchor="middle" font-size="15" font-weight="700" fill="#0A7A6C">Health &amp;</text>
+  <text x="655" y="130" text-anchor="middle" font-size="15" font-weight="700" fill="#0A7A6C">medical</text>
+  <text x="655" y="148" text-anchor="middle" font-size="10" font-weight="500" fill="#0D9B8A">IPC Section A</text>
+  <text x="655" y="164" text-anchor="middle" font-size="9.5" fill="#7A8A9A">Pharma, medical devices</text>
+
+  <rect x="40" y="210" width="220" height="105" rx="6" fill="#D48A20" fill-opacity="0.12" stroke="#D48A20" stroke-width="1"/>
+  <text x="150" y="250" text-anchor="middle" font-size="14" font-weight="700" fill="#A86A12">Materials &amp;</text>
+  <text x="150" y="268" text-anchor="middle" font-size="14" font-weight="700" fill="#A86A12">manufacturing</text>
+  <text x="150" y="286" text-anchor="middle" font-size="10" font-weight="500" fill="#D48A20">IPC Section B</text>
+  <text x="150" y="300" text-anchor="middle" font-size="9.5" fill="#7A8A9A">Wood, coatings, pressing</text>
+
+  <rect x="270" y="210" width="180" height="105" rx="6" fill="#3A6EA5" fill-opacity="0.12" stroke="#3A6EA5" stroke-width="1"/>
+  <text x="360" y="250" text-anchor="middle" font-size="14" font-weight="700" fill="#2A5A88">Construction &amp;</text>
+  <text x="360" y="268" text-anchor="middle" font-size="14" font-weight="700" fill="#2A5A88">infrastructure</text>
+  <text x="360" y="286" text-anchor="middle" font-size="10" font-weight="500" fill="#3A6EA5">IPC Section E</text>
+  <text x="360" y="300" text-anchor="middle" font-size="9.5" fill="#7A8A9A">Buildings, water supply</text>
+
+  <rect x="460" y="210" width="150" height="105" rx="6" fill="#7A8A9A" fill-opacity="0.1" stroke="#7A8A9A" stroke-width="0.8"/>
+  <text x="535" y="250" text-anchor="middle" font-size="14" font-weight="700" fill="#556672">Mechanical</text>
+  <text x="535" y="268" text-anchor="middle" font-size="14" font-weight="700" fill="#556672">engineering</text>
+  <text x="535" y="286" text-anchor="middle" font-size="10" font-weight="500" fill="#7A8A9A">IPC Section F</text>
+  <text x="535" y="300" text-anchor="middle" font-size="9.5" fill="#7A8A9A">Heating, lighting, tools</text>
+
+  <rect x="620" y="210" width="140" height="105" rx="6" fill="#D48A20" fill-opacity="0.08" stroke="#D48A20" stroke-width="0.8"/>
+  <text x="690" y="254" text-anchor="middle" font-size="14" font-weight="700" fill="#A86A12">Chemistry</text>
+  <text x="690" y="272" text-anchor="middle" font-size="10" font-weight="500" fill="#D48A20">IPC Section C</text>
+  <text x="690" y="288" text-anchor="middle" font-size="9.5" fill="#7A8A9A">Metallurgy, water</text>
+  <text x="690" y="300" text-anchor="middle" font-size="9.5" fill="#7A8A9A">treatment</text>
+
+  <text x="400" y="352" text-anchor="middle" font-size="10.5" fill="#7A8A9A">Box area proportional to share of regional patent filings. Data: PATSTAT + Bureau van Dijk Orbis IP.</text>
+  <text x="400" y="368" text-anchor="middle" font-size="10.5" fill="#7A8A9A">IPC (International Patent Classification) at the 4-digit main-class level; Revealed Technological Advantage</text>
+  <text x="400" y="384" text-anchor="middle" font-size="10.5" fill="#7A8A9A">(RTA) computed relative to the Swiss national patent portfolio to identify above-average specialisations.</text>
+</svg>
