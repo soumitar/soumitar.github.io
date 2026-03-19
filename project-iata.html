@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaxInsight: Measuring Airline Passenger Experience &mdash; Soumita Roy</title>
+    <link rel="icon" href="favicon33.png" type="image/png">
+
+    <!-- Open Graph / LinkedIn sharing -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="PaxInsight: Airline Passenger Satisfaction at Scale">
+    <meta property="og:description" content="A 12-month case study of IATA's passenger experience benchmarking platform. Survey methodology, data pipelines, and strategic impact.">
+    <meta property="og:url" content="https://soumitaroy.com/project-iata.html">
+    <meta property="og:image" content="https://soumitaroy.com/og-paxinsight.png">
+    <meta name="description" content="Case study: IATA PaxInsight passenger satisfaction benchmarking. Survey methodology, R data pipelines, Power BI dashboards, and strategic airline intelligence.">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+    <style>
+        .article-intro { font-size: 1.05rem; line-height: 1.85; color: var(--color-text-secondary); max-width: 760px; margin: 28px 0; }
+        .subheading { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--color-border-light); }
+        .demo-section { margin: 52px 0; }
+        .demo-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; margin: 32px 0 20px; }
+        .survey-container { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 28px; max-width: 640px; margin: 20px 0; }
+        [data-theme="dark"] .survey-container { background: #2E2428; }
+        .survey-header { margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--color-border-light); }
+        .flight-badge { display: inline-block; background: var(--color-accent-light); color: var(--color-accent); padding: 8px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-bottom: 8px; }
+        .flight-route { font-size: 1rem; font-weight: 700; margin: 6px 0; }
+        .flight-meta { font-size: 0.8rem; color: var(--color-text-secondary); }
+        .survey-question { margin-bottom: 24px; }
+        .question-num { font-size: 0.75rem; text-transform: uppercase; color: var(--color-accent); font-weight: 700; letter-spacing: 0.08em; }
+        .question-text { font-weight: 600; font-size: 0.95rem; margin: 8px 0 14px; }
+        .likert-scale { display: flex; gap: 8px; justify-content: space-between; margin-bottom: 8px; }
+        .likert-btn { width: 36px; height: 36px; border: 1px solid var(--color-border); border-radius: 4px; background: var(--color-bg-alt); color: var(--color-text); cursor: pointer; font-size: 0.75rem; font-weight: 600; transition: all 0.2s; }
+        .likert-btn:hover { background: var(--color-accent-light); border-color: var(--color-accent); color: var(--color-accent); }
+        .likert-btn.selected { background: var(--color-accent); border-color: var(--color-accent); color: #fff; }
+        .likert-label { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--color-text-light); }
+        .dropdown-q { width: 100%; padding: 10px; border: 1px solid var(--color-border); border-radius: 4px; background: var(--color-bg-alt); color: var(--color-text); font-size: 0.9rem; }
+        [data-theme="dark"] .dropdown-q { background: #2E2428; }
+        .question-hint { font-size: 0.8rem; color: var(--color-text-light); margin-top: 8px; font-style: italic; }
+        .nps-grid { display: grid; grid-template-columns: repeat(11, 1fr); gap: 3px; background: var(--color-bg-alt); padding: 12px; border-radius: 4px; }
+        .nps-btn { padding: 8px 4px; border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); cursor: pointer; font-size: 0.7rem; font-weight: 600; transition: all 0.2s; }
+        .nps-btn:hover { background: var(--color-accent-light); color: var(--color-accent); }
+        .nps-btn.selected { background: var(--color-accent); border-color: var(--color-accent); color: #fff; }
+        .survey-progress { width: 100%; height: 4px; background: var(--color-border); border-radius: 2px; margin-bottom: 20px; overflow: hidden; }
+        .survey-progress-bar { height: 100%; background: var(--color-accent); border-radius: 2px; transition: width 0.4s ease; }
+        .survey-complete { text-align: center; padding: 32px 16px; }
+        .survey-complete h3 { font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 8px; color: var(--color-accent); }
+        .survey-complete p { font-size: 0.9rem; color: var(--color-text-secondary); }
+        .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+        .metric-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 20px; text-align: center; }
+        [data-theme="dark"] .metric-card { background: #2E2428; }
+        .metric-label { font-size: 0.75rem; color: var(--color-text-light); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; font-weight: 700; }
+        .metric-value { font-size: 2.2rem; font-weight: 800; color: var(--color-accent); margin-bottom: 6px; }
+        .metric-subtext { font-size: 0.8rem; color: var(--color-text-secondary); }
+        .chart-container { position: relative; margin: 32px 0; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 24px; }
+        [data-theme="dark"] .chart-container { background: #2E2428; }
+        .chart-title { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; }
+        .chart-subtitle { font-size: 0.8rem; color: var(--color-text-light); margin-bottom: 16px; }
+        .chart-source { font-size: 0.72rem; color: var(--color-text-light); margin-top: 12px; font-style: italic; }
+        .chart-wrapper { position: relative; width: 100%; }
+        .chart-legend { display: flex; flex-wrap: wrap; gap: 18px; font-size: 0.85rem; margin-bottom: 18px; justify-content: center; }
+        .legend-item { display: flex; align-items: center; gap: 7px; }
+        .legend-color { width: 14px; height: 14px; border-radius: 2px; }
+        .insight-box { background: var(--color-warm-glow); border-left: 3px solid var(--color-accent); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 18px 22px; margin: 24px 0; font-size: 0.95rem; line-height: 1.75; }
+        .disclaimer-box { background: rgba(212, 132, 90, 0.08); border: 1px solid rgba(212, 132, 90, 0.25); border-left: 3px solid #8B6F4E; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 20px 24px; margin: 32px 0; font-size: 0.9rem; line-height: 1.8; }
+        .controls-group { display: flex; gap: 14px; margin: 20px 0; flex-wrap: wrap; align-items: center; }
+        .control-label { font-size: 0.85rem; font-weight: 700; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+        select { padding: 10px 14px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-surface); color: var(--color-text); font-size: 0.9rem; cursor: pointer; }
+        [data-theme="dark"] select { background: #2E2428; }
+        .role-callout { display: grid; grid-template-columns: auto 1fr; gap: 18px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 24px; margin: 28px 0; align-items: start; }
+        [data-theme="dark"] .role-callout { background: #2E2428; }
+        .role-icon { width: 44px; height: 44px; border-radius: 50%; background: var(--color-accent-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .role-icon svg { width: 20px; height: 20px; color: var(--color-accent); }
+        .role-callout h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; margin-bottom: 10px; }
+        .role-list { list-style: none; padding: 0; margin: 0; }
+        .role-list li { font-size: 0.92rem; color: var(--color-text-secondary); line-height: 1.7; padding: 3px 0 3px 18px; position: relative; }
+        .role-list li::before { content: '\2192'; position: absolute; left: 0; color: var(--color-accent); font-weight: 700; }
+        .page-toc { display: flex; gap: 6px; flex-wrap: wrap; padding: 12px 0; margin-bottom: 8px; border-bottom: 1px solid var(--color-border-light); position: sticky; top: var(--nav-height); z-index: 50; background: var(--color-bg); transition: background var(--transition); }
+        .toc-link { font-size: 0.78rem; font-weight: 600; color: var(--color-text-light); padding: 6px 14px; border-radius: 20px; border: 1px solid var(--color-border); transition: all 0.2s; text-decoration: none; white-space: nowrap; }
+        .toc-link:hover, .toc-link.active { color: var(--color-accent); border-color: var(--color-accent); background: var(--color-accent-light); }
+        .outcome-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+        .outcome-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 20px; border-top: 3px solid var(--color-accent); }
+        [data-theme="dark"] .outcome-card { background: #2E2428; }
+        .outcome-card h4 { font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
+        .outcome-card p { font-size: 0.88rem; color: var(--color-text-secondary); line-height: 1.7; margin: 0; }
+        .subpage-body section { padding: 0; border: none; }
+        .subpage-body section + section { border: none; }
+        .nav-section { display: flex; justify-content: space-between; align-items: center; margin-top: 52px; padding-top: 24px; border-top: 1px solid var(--color-border-light); }
+        .nav-section a { font-size: 0.9rem; font-weight: 700; }
+        @media (max-width: 768px) {
+            .dashboard-grid { grid-template-columns: 1fr; }
+            .outcome-grid { grid-template-columns: 1fr; }
+            .nps-grid { grid-template-columns: repeat(11, 1fr); gap: 2px; padding: 8px; }
+            .nps-btn { padding: 6px 2px; font-size: 0.6rem; }
+            .role-callout { grid-template-columns: 1fr; }
+            .role-icon { margin-bottom: -8px; }
+            .page-toc { gap: 4px; }
+            .toc-link { font-size: 0.72rem; padding: 5px 10px; }
+        }
+        @media (max-width: 380px) { .nps-grid { grid-template-columns: repeat(6, 1fr); } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-name">SR</a>
+            <div class="nav-right">
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#research">Research</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#cv">CV</a></li>
+                    <li><a href="index.html#interests">Interests</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                    <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="subpage-header">
+            <div class="breadcrumb">
+                <a href="index.html">home</a> &rarr; <a href="projects.html">projects</a> &rarr; iata paxinsight
+            </div>
+            <h1>PaxInsight: Airline Passenger Satisfaction at Scale</h1>
+            <p class="subpage-quote">Inside the system that gives airlines their first honest look at what passengers actually think</p>
+            <p style="font-size: 0.92rem; color: var(--color-text-secondary); margin-top: 8px;">
+                April 2024 to March 2025 &middot; Soumita Roy &middot; 9 min read<br>
+                International Air Transport Association (IATA), Geneva
+            </p>
+        </div>
+
+        <div class="page-toc" id="pageToc">
+            <a href="#overview" class="toc-link active">Overview</a>
+            <a href="#methodology" class="toc-link">Methodology</a>
+            <a href="#survey-demo" class="toc-link">Survey Demo</a>
+            <a href="#dashboards" class="toc-link">Dashboards</a>
+            <a href="#impact" class="toc-link">Impact</a>
+        </div>
+
+        <div class="subpage-body">
+
+            <!-- ═══ OVERVIEW + MY ROLE ═══ -->
+            <section id="overview">
+
+            <div style="background: var(--color-warm-glow); border-left: 3px solid var(--color-accent); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 20px 24px; margin-bottom: 28px;">
+                <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.75; margin: 0;">
+                    <strong>Project Overview:</strong> PaxInsight is IATA's proprietary passenger satisfaction benchmarking platform, built to give airlines comparable, representative data on customer experience. Over 12 months in the Survey Solutions unit, I designed the sampling methodology, built data pipelines in R, and delivered monthly analytics to three major carriers. This page walks through the methodology, includes an interactive survey demo, and presents the kind of dashboards and strategic outputs the work produced.
+                </p>
+            </div>
+
+            <div class="role-callout">
+                <div class="role-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <div>
+                    <h3>My Contribution</h3>
+                    <ul class="role-list">
+                        <li>Designed survey methodology: stratified sampling plans, question branching logic, and monthly sampling frames for 47 routes across three cabin classes (Economy, Premium Economy, Business)</li>
+                        <li>Built end-to-end data pipelines in R, from raw survey ingestion and cleaning through to automated monthly reporting scripts</li>
+                        <li>Created and maintained Power BI dashboards (87 visualisations per client), with drill-down by route, cabin, touchpoint, and time period</li>
+                        <li>Delivered ad-hoc analysis on client requests within 48 hours: route comparisons, cohort deep-dives, competitive benchmarking</li>
+                    </ul>
+                </div>
+            </div>
+
+            </section>
+
+            <!-- ═══ METHODOLOGY ═══ -->
+            <section id="methodology">
+
+            <h2 class="subheading">The problem with airline surveys</h2>
+
+            <p class="article-intro">
+                The airline industry measures everything. Fuel burn per seat-mile, on-time departure rates, load factors, ancillary revenue per passenger. Operations centres track engine degradation in real time and can pinpoint the cargo hold temperature to a tenth of a degree. Yet for all this precision, most airlines cannot reliably answer a simpler question: are our passengers satisfied?
+            </p>
+
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.85; margin: 20px 0;">
+                The reason is methodological. In-flight surveys reach only the motivated minority, the very satisfied and the very angry. Business-class passengers respond at different rates from economy travellers. Responses arrive weeks after the flight, by which time operational context has been lost. A carrier might conclude that a mechanical delay caused a satisfaction collapse, when the real problem was that its sample over-represented disgruntled passengers. The survey measured complaint propensity, not experience.
+            </p>
+
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.85; margin: 20px 0;">
+                PaxInsight was built to fix this. Developed by IATA and operated across a global network of carriers, the platform tackles a basic asymmetry: airlines spend billions on seats, catering and lounges, yet invest almost nothing in understanding whether those investments actually shift passenger perception in any measurable, comparable way.
+            </p>
+
+            <div class="insight-box">
+                <strong>The core innovation:</strong> IATA selects passengers via stratified random sampling from flight manifests, eliminating self-selection bias. Surveys arrive 24 to 48 hours post-flight, while the experience is still fresh but the passenger is calm. Because IATA is a neutral third party, the same instrument is applied identically across competing airlines, making benchmarking meaningful for the first time.
+            </div>
+
+            <h2 class="subheading">How the sampling works</h2>
+
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.85; margin: 20px 0;">
+                Each month, IATA generates a sampling plan using airline schedule data. The plan ensures that all origin-and-destination (O&amp;D) pairs within a given region are represented proportionally. For airlines affiliated with IATA's Direct Data Solutions (DDS), ticket numbers are selected directly through the DDS system. For non-DDS airlines, IATA draws a random sample from passenger data provided by the carrier. Either way, the passenger receives the same standardised survey invitation, delivered by email 24 to 48 hours after landing.
+            </p>
+
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.85; margin: 20px 0;">
+                The minimum target is 150 responses per airline, per region, per cabin class, per month. Response rates average 8 to 12 percent, comfortably above industry norms. Because the sampling is proportional to actual passenger volumes on each route, a large hub like London Heathrow to New York JFK will contribute more responses than a thinner route, but both are represented at their correct weight. The result is a dataset that genuinely reflects the airline's passenger base rather than the subset of travellers who felt strongly enough to volunteer feedback.
+            </p>
+
+            <h2 class="subheading">Survey architecture: 60+ attributes across the full journey</h2>
+
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.85; margin: 20px 0;">
+                Rather than a single satisfaction question, PaxInsight captures feedback across more than 60 travel attributes, organised into three phases. Pre-flight covers booking, check-in, the departure lounge, boarding, and any transfer experience at the origin airport. In-flight covers cabin environment, seat comfort, cabin crew, cleanliness, Wi-Fi and connectivity, entertainment, and food and beverage. Post-flight covers arrival experience and transfer at the destination. Each attribute is scored on a 1-to-5 scale, and the overall Net Promoter Score is collected separately.
+            </p>
+
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.85; margin: 20px 0;">
+                Branching logic keeps the survey manageable. Economy passengers on short-haul flights skip lounge questions entirely. Long-haul business travellers receive additional items on sleep quality and lie-flat seat comfort. Connecting passengers see a dedicated transfer segment. The result is a survey tailored to each journey type, with completion rates exceeding 94 percent and average completion times of 9 to 12 minutes.
+            </p>
+
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.85; margin: 20px 0;">
+                One client found that business-class satisfaction was driven almost entirely by service consistency (crew attentiveness, meal timing) rather than by the seat product or champagne selection. Another discovered that economy passengers on short-haul flights prioritised boarding speed over in-flight entertainment. These are the kinds of insight that a generic "how was your flight?" survey cannot produce. They require deliberately designed questions targeting specific moments in the journey.
+            </p>
+
+            </section>
+
+            <!-- ═══ INTERACTIVE SURVEY ═══ -->
+            <section id="survey-demo">
+
+            <h2 class="subheading">Interactive survey demo</h2>
+
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.85; margin: 20px 0;">
+                Below is a condensed 12-question version of a PaxInsight survey. The actual surveys run to 25 to 35 questions depending on cabin class and route, covering 60+ attributes with extensive branching logic. This demo captures the core question types and flow. Click through to experience the methodology firsthand. <em>All airline names (AirlnX, SkyBridge, EuroAir) are hypothetical.</em>
+            </p>
+
+            <div class="demo-section">
+                <div class="demo-title">Sample survey: long-haul business class (condensed demo)</div>
+
+                <div class="survey-container" id="surveyContainer">
+                    <div class="survey-progress"><div class="survey-progress-bar" id="surveyProgress" style="width: 0%"></div></div>
+
+                    <div class="survey-header">
+                        <div class="flight-badge">FLIGHT DETAILS</div>
+                        <div class="flight-route">AirlnX 006: Singapore (SIN) &rarr; London Heathrow (LHR)</div>
+                        <div class="flight-meta">Boeing 777-300ER &middot; 13h 45m &middot; Business Class &middot; 15 March 2025</div>
+                    </div>
+
+                    <div class="survey-question" data-q="1">
+                        <div class="question-num">Question 1 of 12</div>
+                        <div class="question-text">How satisfied were you with the online booking experience?</div>
+                        <div class="likert-scale"><button class="likert-btn" data-val="1">1</button><button class="likert-btn" data-val="2">2</button><button class="likert-btn" data-val="3">3</button><button class="likert-btn" data-val="4">4</button><button class="likert-btn" data-val="5">5</button></div>
+                        <div class="likert-label"><span>Very dissatisfied</span><span>Very satisfied</span></div>
+                    </div>
+                    <div class="survey-question" data-q="2">
+                        <div class="question-num">Question 2 of 12</div>
+                        <div class="question-text">How satisfied were you with the check-in process?</div>
+                        <div class="likert-scale"><button class="likert-btn" data-val="1">1</button><button class="likert-btn" data-val="2">2</button><button class="likert-btn" data-val="3">3</button><button class="likert-btn" data-val="4">4</button><button class="likert-btn" data-val="5">5</button></div>
+                        <div class="likert-label"><span>Very dissatisfied</span><span>Very satisfied</span></div>
+                        <div class="question-hint">Queue time, staff courtesy, baggage processing.</div>
+                    </div>
+                    <div class="survey-question" data-q="3">
+                        <div class="question-num">Question 3 of 12</div>
+                        <div class="question-text">How satisfied were you with the business lounge?</div>
+                        <div class="likert-scale"><button class="likert-btn" data-val="1">1</button><button class="likert-btn" data-val="2">2</button><button class="likert-btn" data-val="3">3</button><button class="likert-btn" data-val="4">4</button><button class="likert-btn" data-val="5">5</button></div>
+                        <div class="likert-label"><span>Very dissatisfied</span><span>Very satisfied</span></div>
+                        <div class="question-hint">Cleanliness, food quality, seating, staff attentiveness.</div>
+                    </div>
+                    <div class="survey-question" data-q="4">
+                        <div class="question-num">Question 4 of 12</div>
+                        <div class="question-text">How satisfied were you with the boarding process?</div>
+                        <div class="likert-scale"><button class="likert-btn" data-val="1">1</button><button class="likert-btn" data-val="2">2</button><button class="likert-btn" data-val="3">3</button><button class="likert-btn" data-val="4">4</button><button class="likert-btn" data-val="5">5</button></div>
+                        <div class="likert-label"><span>Very dissatisfied</span><span>Very satisfied</span></div>
+                    </div>
+                    <div class="survey-question" data-q="5">
+                        <div class="question-num">Question 5 of 12</div>
+                        <div class="question-text">For a 13+ hour flight, how satisfied were you with the seat?</div>
+                        <div class="likert-scale"><button class="likert-btn" data-val="1">1</button><button class="likert-btn" data-val="2">2</button><button class="likert-btn" data-val="3">3</button><button class="likert-btn" data-val="4">4</button><button class="likert-btn" data-val="5">5</button></div>
+                        <div class="likert-label"><span>Very dissatisfied</span><span>Very satisfied</span></div>
+                        <div class="question-hint">Width, recline, mattress quality, privacy.</div>
+                    </div>
+                    <div class="survey-question" data-q="6">
+                        <div class="question-num">Question 6 of 12</div>
+                        <div class="question-text">Were you able to sleep adequately on this flight?</div>
+                        <select class="dropdown-q">
+                            <option value="">Select</option>
+                            <option value="6+">Yes, slept well (6+ hours)</option>
+                            <option value="4-6">Adequate sleep (4 to 6 hours)</option>
+                            <option value="1-4">Limited sleep (1 to 4 hours)</option>
+                            <option value="0">No sleep</option>
+                        </select>
+                    </div>
+                    <div class="survey-question" data-q="7">
+                        <div class="question-num">Question 7 of 12</div>
+                        <div class="question-text">How satisfied were you with meal quality and variety?</div>
+                        <div class="likert-scale"><button class="likert-btn" data-val="1">1</button><button class="likert-btn" data-val="2">2</button><button class="likert-btn" data-val="3">3</button><button class="likert-btn" data-val="4">4</button><button class="likert-btn" data-val="5">5</button></div>
+                        <div class="likert-label"><span>Very dissatisfied</span><span>Very satisfied</span></div>
+                    </div>
+                    <div class="survey-question" data-q="8">
+                        <div class="question-num">Question 8 of 12</div>
+                        <div class="question-text">How satisfied were you with beverage service?</div>
+                        <div class="likert-scale"><button class="likert-btn" data-val="1">1</button><button class="likert-btn" data-val="2">2</button><button class="likert-btn" data-val="3">3</button><button class="likert-btn" data-val="4">4</button><button class="likert-btn" data-val="5">5</button></div>
+                        <div class="likert-label"><span>Very dissatisfied</span><span>Very satisfied</span></div>
+                    </div>
+                    <div class="survey-question" data-q="9">
+                        <div class="question-num">Question 9 of 12</div>
+                        <div class="question-text">How satisfied were you with in-flight entertainment?</div>
+                        <div class="likert-scale"><button class="likert-btn" data-val="1">1</button><button class="likert-btn" data-val="2">2</button><button class="likert-btn" data-val="3">3</button><button class="likert-btn" data-val="4">4</button><button class="likert-btn" data-val="5">5</button></div>
+                        <div class="likert-label"><span>Very dissatisfied</span><span>Very satisfied</span></div>
+                    </div>
+                    <div class="survey-question" data-q="10">
+                        <div class="question-num">Question 10 of 12</div>
+                        <div class="question-text">How satisfied were you with Wi-Fi speed and reliability?</div>
+                        <div class="likert-scale"><button class="likert-btn" data-val="1">1</button><button class="likert-btn" data-val="2">2</button><button class="likert-btn" data-val="3">3</button><button class="likert-btn" data-val="4">4</button><button class="likert-btn" data-val="5">5</button></div>
+                        <div class="likert-label"><span>Very dissatisfied</span><span>Very satisfied</span></div>
+                    </div>
+                    <div class="survey-question" data-q="11">
+                        <div class="question-num">Question 11 of 12</div>
+                        <div class="question-text">How satisfied were you with crew attentiveness?</div>
+                        <div class="likert-scale"><button class="likert-btn" data-val="1">1</button><button class="likert-btn" data-val="2">2</button><button class="likert-btn" data-val="3">3</button><button class="likert-btn" data-val="4">4</button><button class="likert-btn" data-val="5">5</button></div>
+                        <div class="likert-label"><span>Very dissatisfied</span><span>Very satisfied</span></div>
+                        <div class="question-hint">Response time, courtesy, problem-solving attitude.</div>
+                    </div>
+                    <div class="survey-question" data-q="12">
+                        <div class="question-num">Question 12 of 12</div>
+                        <div class="question-text">How likely are you to recommend AirlnX to a colleague?</div>
+                        <div class="nps-grid">
+                            <button class="nps-btn" data-val="0">0</button><button class="nps-btn" data-val="1">1</button><button class="nps-btn" data-val="2">2</button><button class="nps-btn" data-val="3">3</button><button class="nps-btn" data-val="4">4</button><button class="nps-btn" data-val="5">5</button>
+                            <button class="nps-btn" data-val="6">6</button><button class="nps-btn" data-val="7">7</button><button class="nps-btn" data-val="8">8</button><button class="nps-btn" data-val="9">9</button><button class="nps-btn" data-val="10">10</button>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--color-text-light); margin-top: 8px;">
+                            <span><strong>0</strong> Not at all likely</span><span><strong>10</strong> Extremely likely</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--color-border-light);">
+                        <button id="submitSurvey" style="width: 100%; padding: 12px; background: var(--color-accent); color: #fff; border: none; border-radius: var(--radius-sm); font-weight: 700; cursor: pointer; font-size: 0.95rem; opacity: 0.5; transition: opacity 0.3s;" disabled>Submit Survey</button>
+                        <p id="surveyStatus" style="font-size: 0.8rem; color: var(--color-text-light); margin-top: 12px; text-align: center;">Answer all questions to submit &middot; Typical completion: 4 min (actual surveys: 9 to 12 min)</p>
+                    </div>
+                </div>
+            </div>
+            </section>
+
+            <!-- ═══ DASHBOARDS ═══ -->
+            <section id="dashboards">
+
+            <h2 class="subheading">Dashboards: from responses to executive intelligence</h2>
+
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.85; margin: 20px 0;">
+                Survey responses feed into Power BI dashboards that update monthly. The actual client dashboards included an executive summary, touchpoint deep-dives, pre-flight and in-flight breakdowns, airport-level analysis, and a key-drivers screen. Below are four representative visualisations showing the type of competitive intelligence delivered to airlines.
+            </p>
+
+            <!-- Dashboard 1 -->
+            <div class="demo-section">
+                <div class="demo-title">Overall satisfaction by route geography</div>
+                <div class="controls-group">
+                    <span class="control-label">Filter:</span>
+                    <select id="routeFilter" onchange="updateChart1()">
+                        <option value="all">All routes</option>
+                        <option value="transpacific">Transpacific</option>
+                        <option value="transatlantic">Transatlantic North</option>
+                        <option value="intra-europe">Intra-Europe</option>
+                        <option value="mea">Europe-Middle East-Asia</option>
+                    </select>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">Passenger satisfaction scores by route, 1 to 5 scale</div>
+                    <div class="chart-subtitle">Hypothetical data, three airlines, April 2024 to March 2025</div>
+                    <div class="chart-legend">
+                        <div class="legend-item"><div class="legend-color" style="background: #1A476F;"></div><span>AirlnX</span></div>
+                        <div class="legend-item"><div class="legend-color" style="background: #90353B;"></div><span>SkyBridge</span></div>
+                        <div class="legend-item"><div class="legend-color" style="background: #55752F;"></div><span>EuroAir</span></div>
+                    </div>
+                    <div class="chart-wrapper" style="position: relative; height: 340px;"><canvas id="chart1"></canvas></div>
+                    <div class="chart-source">Source: Hypothetical PaxInsight data for demonstration</div>
+                </div>
+                <div class="insight-box">
+                    <strong>Reading:</strong> AirlnX leads on long-haul routes (Transpacific 4.15, Transatlantic 3.92) but converges with EuroAir on Intra-Europe (both 4.08). SkyBridge trails by a consistent 0.3 points across all geographies, pointing to systemic rather than route-specific issues.
+                </div>
+            </div>
+
+            <!-- Dashboard 2 -->
+            <div class="demo-section">
+                <div class="demo-title">Cabin class deep dive: AirlnX Transpacific</div>
+                <div class="chart-container">
+                    <div class="chart-title">Satisfaction by journey stage and cabin class</div>
+                    <div class="chart-subtitle">AirlnX, Transpacific routes, hypothetical data</div>
+                    <div class="chart-legend">
+                        <div class="legend-item"><div class="legend-color" style="background: #1A476F;"></div><span>Economy</span></div>
+                        <div class="legend-item"><div class="legend-color" style="background: #E8A064;"></div><span>Premium Economy</span></div>
+                        <div class="legend-item"><div class="legend-color" style="background: #90353B;"></div><span>Business</span></div>
+                    </div>
+                    <div class="chart-wrapper" style="position: relative; height: 360px;"><canvas id="chart2"></canvas></div>
+                    <div class="chart-source">Source: Hypothetical PaxInsight data for demonstration</div>
+                </div>
+                <div class="insight-box">
+                    <strong>Reading:</strong> Business-class passengers rate seat comfort highest (4.6) and lounge access at 4.4, but meals score only 4.1, lower than their ratings for most other touchpoints. Premium Economy shows the widest variance: strong on seat space (4.3) but weak on lounge perception (3.7), suggesting passengers are unclear on what their ticket includes.
+                </div>
+            </div>
+
+            <!-- Dashboard 3 -->
+            <div class="demo-section">
+                <div class="demo-title">12-month satisfaction trend</div>
+                <div class="chart-container">
+                    <div class="chart-title">AirlnX Transpacific, monthly overall satisfaction</div>
+                    <div class="chart-subtitle">January to December, hypothetical data</div>
+                    <div class="chart-wrapper" style="position: relative; height: 360px;"><canvas id="chart3"></canvas></div>
+                    <div class="chart-source">Source: Hypothetical PaxInsight data for demonstration</div>
+                </div>
+                <div class="insight-box">
+                    <strong>Reading:</strong> Satisfaction is stable at 4.10 to 4.18, with no statistically significant decline. The July dip to 4.11 coincides with peak load factors of 82 percent. When flights are that full, lounge crowding and tighter meal service begin to erode scores. If satisfaction drops below 4.05, the data suggests a need for capacity rebalancing.
+                </div>
+            </div>
+
+            <!-- Dashboard 4 -->
+            <div class="demo-section">
+                <div class="demo-title">Competitive positioning: satisfaction vs. loyalty</div>
+                <div class="chart-container">
+                    <div class="chart-title">Satisfaction score vs. Net Promoter Score, all routes</div>
+                    <div class="chart-subtitle">Bubble size proportional to survey response volume</div>
+                    <div class="chart-wrapper" style="position: relative; height: 360px;"><canvas id="chart4"></canvas></div>
+                    <div class="chart-source">Source: Hypothetical PaxInsight data for demonstration</div>
+                </div>
+                <div class="insight-box">
+                    <strong>Reading:</strong> AirlnX's NPS of 72 is materially higher than SkyBridge's 58, despite only 0.3 points of satisfaction difference. This gap suggests AirlnX is converting satisfaction into loyalty more efficiently, likely through frequent-flyer programme strength or brand perception. SkyBridge should investigate why satisfied passengers are not becoming promoters.
+                </div>
+            </div>
+
+            <!-- Data Metrics -->
+            <h2 class="subheading">Data scale and quality (typical month)</h2>
+            <div class="dashboard-grid">
+                <div class="metric-card"><div class="metric-label">Total responses</div><div class="metric-value">3,847</div><div class="metric-subtext">47 routes, 3 airlines, 6 regional groupings</div></div>
+                <div class="metric-card"><div class="metric-label">Response rate</div><div class="metric-value">9.2%</div><div class="metric-subtext">vs. 6 to 8% industry average</div></div>
+                <div class="metric-card"><div class="metric-label">Avg. completion</div><div class="metric-value">3m 24s</div><div class="metric-subtext">94% completion rate, well under 5-min target</div></div>
+                <div class="metric-card"><div class="metric-label">Confidence interval</div><div class="metric-value">&plusmn;0.18</div><div class="metric-subtext">95% CI on satisfaction (n=150+ per segment)</div></div>
+            </div>
+
+            </section>
+
+            <!-- ═══ DISCLAIMER ═══ -->
+            <div class="disclaimer-box">
+                <strong style="color: #8B6F4E;">&starf; Demonstration vs. enterprise scope</strong>
+                <p style="margin: 12px 0;">
+                    This page shows a condensed demonstration. The actual platform was substantially larger: surveys captured 60+ attributes with full branching logic (vs. 12 questions here); dashboards contained 87 visualisations per client explorable by 6+ dimensions (vs. 4 charts here); reporting included week-over-week analysis, cohort comparisons, and predictive NPS modelling; large carriers generated 12,000 to 15,000+ responses per month (vs. roughly 4,000 shown). Regional coverage spanned Transpacific, Transatlantic North, Transatlantic South, Intra-Europe, Intra-Asia, Europe-Middle East-Asia, Intra USA, and Intra China.
+                </p>
+            </div>
+
+            <!-- ═══ IMPACT ═══ -->
+            <section id="impact">
+
+            <h2 class="subheading">Impact: what the data changed</h2>
+
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.85; margin: 20px 0;">
+                Over 12 months, I delivered monthly intelligence packages to three carriers. Each included an 8- to 12-page executive report, live Power BI dashboards with full drill-down, and ad-hoc analysis turned around within 48 hours. Below are four representative examples of how the data influenced business decisions.
+            </p>
+
+            <div class="outcome-grid">
+                <div class="outcome-card">
+                    <h4>Premium Economy repositioning</h4>
+                    <p>Route-level data showed that Premium Economy satisfaction was driven by seat space, not lounge access, which scored lowest of all touchpoints. One carrier shifted its marketing emphasis from lounge benefits to legroom and privacy, aligning communications with what passengers actually valued.</p>
+                </div>
+                <div class="outcome-card">
+                    <h4>Crew scheduling</h4>
+                    <p>Cohort analysis revealed that crew attentiveness scores dropped systematically on routes with tight turnaround schedules. The data supported the case for adjusted rest policies on high-frequency long-haul pairings.</p>
+                </div>
+                <div class="outcome-card">
+                    <h4>Competitive route strategy</h4>
+                    <p>Benchmarking showed one client consistently outperforming competitors on Transpacific routes but underperforming on Intra-Europe. This informed a decision to protect long-haul market share while investing in short-haul service improvements.</p>
+                </div>
+                <div class="outcome-card">
+                    <h4>Capacity and satisfaction threshold</h4>
+                    <p>Trend analysis identified that satisfaction declined when load factors exceeded 80 percent, concentrated in lounge and meal service scores. This gave airline planners a data-backed threshold for capacity management.</p>
+                </div>
+            </div>
+
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.85; margin: 20px 0;">
+                The work showed that rigorously collected passenger experience data, stratified, timed and benchmarked, can inform decisions that airlines previously made on intuition. Each outcome above was supported by specific data points from the monthly reporting pipeline I built and maintained throughout the project.
+            </p>
+
+            </section>
+
+            <div class="nav-section">
+                <a href="projects.html">&larr; All projects</a>
+                <a href="index.html#projects">Back to home</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Soumita Roy &middot; PhD Researcher &middot; <a href="https://ethz.ch" target="_blank">ETH Z&uuml;rich</a></p>
+        <p style="margin-top: 4px;">All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // ═══ INTERACTIVE SURVEY ═══
+        const surveyState = {};
+        const totalQuestions = 12;
+
+        document.querySelectorAll('.likert-scale').forEach(scale => {
+            scale.querySelectorAll('.likert-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    scale.querySelectorAll('.likert-btn').forEach(b => b.classList.remove('selected'));
+                    this.classList.add('selected');
+                    surveyState[this.closest('.survey-question').dataset.q] = this.dataset.val;
+                    updateSurveyProgress();
+                });
+            });
+        });
+        document.querySelectorAll('.nps-grid').forEach(grid => {
+            grid.querySelectorAll('.nps-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    grid.querySelectorAll('.nps-btn').forEach(b => b.classList.remove('selected'));
+                    this.classList.add('selected');
+                    surveyState[this.closest('.survey-question').dataset.q] = this.dataset.val;
+                    updateSurveyProgress();
+                });
+            });
+        });
+        document.querySelectorAll('.dropdown-q').forEach(sel => {
+            sel.addEventListener('change', function() {
+                const q = this.closest('.survey-question').dataset.q;
+                if (this.value) { surveyState[q] = this.value; } else { delete surveyState[q]; }
+                updateSurveyProgress();
+            });
+        });
+        function updateSurveyProgress() {
+            const n = Object.keys(surveyState).length;
+            document.getElementById('surveyProgress').style.width = Math.round((n / totalQuestions) * 100) + '%';
+            const btn = document.getElementById('submitSurvey');
+            const st = document.getElementById('surveyStatus');
+            if (n === totalQuestions) { btn.disabled = false; btn.style.opacity = '1'; st.textContent = 'All questions answered. Ready to submit.'; }
+            else { btn.disabled = true; btn.style.opacity = '0.5'; const r = totalQuestions - n; st.textContent = r + ' question' + (r === 1 ? '' : 's') + ' remaining'; }
+        }
+        document.getElementById('submitSurvey').addEventListener('click', function() {
+            const c = document.getElementById('surveyContainer');
+            const h = c.querySelector('.survey-header').outerHTML;
+            c.innerHTML = h + '<div class="survey-complete"><h3>Survey submitted</h3><p>In the live system, these responses would be encrypted, validated against the sampling frame, and incorporated into the next monthly analytics cycle within 24 hours. This demo captured 12 attributes; the full survey captures 60+.</p></div>';
+        });
+
+        // ═══ STICKY TOC ═══
+        const tocLinks = document.querySelectorAll('.toc-link');
+        const tocSections = ['overview','methodology','survey-demo','dashboards','impact'].map(id => document.getElementById(id)).filter(Boolean);
+        function updateActiveToc() {
+            let current = '';
+            tocSections.forEach(s => { if (s.getBoundingClientRect().top <= 140) current = s.id; });
+            tocLinks.forEach(l => { l.classList.toggle('active', l.getAttribute('href') === '#' + current); });
+        }
+        window.addEventListener('scroll', updateActiveToc, { passive: true });
+
+        // ═══ THEME-AWARE CHARTS (Economist-style muted palette) ═══
+        function getChartColors() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            return { tick: isDark ? '#E8D5DC' : '#2A2028', grid: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)', point: isDark ? '#2E2428' : '#fff' };
+        }
+        let chart1, chart2Instance, chart3Instance, chart4Instance;
+
+        // Economist-style muted colours
+        const EC = { blue: '#1A476F', red: '#90353B', green: '#55752F', orange: '#E8A064', teal: '#2B6A6A', line: '#6B2D3E' };
+
+        const routesData = {
+            all:            { labels: ['Transpacific','Transatlantic N.','Intra-Europe','MEA'], sq: [4.15,3.92,4.08,4.12], ba: [3.82,3.78,3.88,3.85], lh: [3.88,3.85,4.08,3.90] },
+            transpacific:   { labels: ['Transpacific'], sq: [4.15], ba: [3.82], lh: [3.88] },
+            transatlantic:  { labels: ['Transatlantic N.'], sq: [3.92], ba: [3.78], lh: [3.85] },
+            'intra-europe': { labels: ['Intra-Europe'], sq: [4.08], ba: [3.88], lh: [4.08] },
+            mea:            { labels: ['MEA'], sq: [4.12], ba: [3.85], lh: [3.90] }
+        };
+        function makeScaleOpts(c, yMin, yMax, stepSize, yLabel, xLabel) {
+            return {
+                y: { min: yMin, max: yMax, title: { display: !!yLabel, text: yLabel||'', color: c.tick, font: { size: 11, weight: '600' } }, ticks: { color: c.tick, ...(stepSize && {stepSize}) }, grid: { color: c.grid } },
+                x: { title: { display: !!xLabel, text: xLabel||'', color: c.tick, font: { size: 11, weight: '600' } }, ticks: { color: c.tick }, grid: { color: c.grid } }
+            };
+        }
+        function tooltipDefaults() { return { backgroundColor: 'rgba(42,32,40,0.92)', titleFont: { weight: '700', size: 13 }, bodyFont: { size: 12 }, padding: 12, cornerRadius: 4, displayColors: true, boxPadding: 4 }; }
+
+        function initChart1() {
+            const c = getChartColors(), d = routesData.all;
+            chart1 = new Chart(document.getElementById('chart1').getContext('2d'), {
+                type: 'bar', data: { labels: d.labels, datasets: [
+                    { label: 'AirlnX', data: d.sq, backgroundColor: EC.blue, borderRadius: 2, barPercentage: 0.7 },
+                    { label: 'SkyBridge', data: d.ba, backgroundColor: EC.red, borderRadius: 2, barPercentage: 0.7 },
+                    { label: 'EuroAir', data: d.lh, backgroundColor: EC.green, borderRadius: 2, barPercentage: 0.7 }
+                ]}, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: tooltipDefaults() }, scales: makeScaleOpts(c, 3.5, 4.3, 0.1, 'Satisfaction (1\u20135)') }
+            });
+        }
+        function updateChart1() {
+            const d = routesData[document.getElementById('routeFilter').value];
+            chart1.data.labels = d.labels; chart1.data.datasets[0].data = d.sq; chart1.data.datasets[1].data = d.ba; chart1.data.datasets[2].data = d.lh; chart1.update();
+        }
+        function initChart2() {
+            const c = getChartColors();
+            chart2Instance = new Chart(document.getElementById('chart2').getContext('2d'), {
+                type: 'bar', data: { labels: ['Booking','Check-in','Lounge','Seat','Meal','Beverage','IFE','WiFi','Crew'], datasets: [
+                    { label: 'Economy', data: [4.1,4.0,3.8,4.0,3.9,4.0,3.95,4.1,4.1], backgroundColor: EC.blue, borderRadius: 2, barPercentage: 0.7 },
+                    { label: 'Premium Eco', data: [4.2,4.1,3.7,4.3,4.05,4.15,4.0,4.2,4.0], backgroundColor: EC.orange, borderRadius: 2, barPercentage: 0.7 },
+                    { label: 'Business', data: [4.3,4.2,4.4,4.6,4.1,4.2,4.25,4.3,4.4], backgroundColor: EC.red, borderRadius: 2, barPercentage: 0.7 }
+                ]}, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: tooltipDefaults() }, scales: makeScaleOpts(c, 3.5, 4.8, null, 'Satisfaction (1\u20135)', 'Journey stage') }
+            });
+        }
+        function initChart3() {
+            const c = getChartColors();
+            chart3Instance = new Chart(document.getElementById('chart3').getContext('2d'), {
+                type: 'line', data: { labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], datasets: [{
+                    label: 'Satisfaction', data: [4.14,4.12,4.15,4.18,4.17,4.16,4.11,4.13,4.15,4.16,4.14,4.12],
+                    borderColor: EC.line, backgroundColor: 'rgba(107,45,62,0.06)', borderWidth: 2.5, pointRadius: 4,
+                    pointBackgroundColor: EC.line, pointBorderColor: c.point, pointBorderWidth: 2, tension: 0.3, fill: true
+                }]}, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: tooltipDefaults() }, scales: makeScaleOpts(c, 4.0, 4.25, 0.05, 'Satisfaction (1\u20135)') }
+            });
+        }
+        function initChart4() {
+            const c = getChartColors();
+            chart4Instance = new Chart(document.getElementById('chart4').getContext('2d'), {
+                type: 'bubble', data: { datasets: [
+                    { label: 'AirlnX', data: [{x:4.12,y:72,r:22}], backgroundColor: 'rgba(26,71,111,0.55)', borderColor: EC.blue, borderWidth: 2 },
+                    { label: 'SkyBridge', data: [{x:3.84,y:58,r:19}], backgroundColor: 'rgba(144,53,59,0.55)', borderColor: EC.red, borderWidth: 2 },
+                    { label: 'EuroAir', data: [{x:3.94,y:62,r:20}], backgroundColor: 'rgba(85,117,47,0.55)', borderColor: EC.green, borderWidth: 2 }
+                ]}, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults(), callbacks: { label: ctx => ctx.dataset.label + ': Satisfaction ' + ctx.parsed.x.toFixed(2) + ', NPS ' + ctx.parsed.y } } },
+                    scales: makeScaleOpts(c, 50, 80, null, 'Net Promoter Score', 'Overall satisfaction (1\u20135)')
+                }
+            });
+            chart4Instance.options.scales.x.min = 3.7; chart4Instance.options.scales.x.max = 4.3; chart4Instance.update();
+        }
+        function updateAllChartColors() {
+            const c = getChartColors();
+            [chart1, chart2Instance, chart3Instance, chart4Instance].forEach(ch => {
+                if (!ch) return;
+                ['x','y'].forEach(a => { if (ch.options.scales[a]) { ch.options.scales[a].ticks.color = c.tick; ch.options.scales[a].grid.color = c.grid; if (ch.options.scales[a].title) ch.options.scales[a].title.color = c.tick; }});
+                if (ch === chart3Instance) ch.data.datasets[0].pointBorderColor = c.point;
+                ch.update();
+            });
+        }
+        new MutationObserver(ms => { ms.forEach(m => { if (m.attributeName === 'data-theme') updateAllChartColors(); }); }).observe(document.documentElement, { attributes: true });
+        window.addEventListener('load', () => { initChart1(); initChart2(); initChart3(); initChart4(); });
+    </script>
+</body>
+</html>
