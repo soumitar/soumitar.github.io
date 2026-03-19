@@ -432,9 +432,9 @@
             <h2 class="subheading">Illustrative data scale (typical monthly cycle)</h2>
             <p style="font-size: 0.88rem; color: var(--color-text-light); margin-bottom: 16px; font-style: italic;">The figures below are illustrative and represent the order of magnitude typical of the platform's monthly output. They do not disclose actual client data.</p>
             <div class="dashboard-grid">
-                <div class="metric-card"><div class="metric-label">Monthly responses</div><div class="metric-value">~4,000</div><div class="metric-subtext">across 47 routes, 3 airlines, 6 regional groupings</div></div>
+                <div class="metric-label">Monthly responses</div><div class="metric-value">12,000+</div><div class="metric-subtext">across 47 routes, 3 airlines, 6 regional groupings</div>
                 <div class="metric-card"><div class="metric-label">Response rate</div><div class="metric-value">8&ndash;12%</div><div class="metric-subtext">above the 6 to 8% industry average</div></div>
-                <div class="metric-card"><div class="metric-label">Avg. completion</div><div class="metric-value">&lt;5 min</div><div class="metric-subtext">94%+ completion rate across cabin classes</div></div>
+                <div class="metric-label">Avg. completion</div><div class="metric-value">9–12 min</div><div class="metric-subtext">94%+ completion rate across cabin classes</div>
                 <div class="metric-card"><div class="metric-label">Min. sample target</div><div class="metric-value">150</div><div class="metric-subtext">per airline, per region, per class, per month</div></div>
             </div>
 
@@ -567,6 +567,10 @@
                 borderBlue: isDark ? '#64A0DC' : EC.blue,
                 borderRed: isDark ? '#D2787E' : EC.red,
                 borderGreen: isDark ? '#8CBE64' : EC.green
+                barBlue: isDark ? '#4A90C4' : '#1A476F',
+                barRed: isDark ? '#C47078' : '#90353B',
+                barGreen: isDark ? '#8BB455' : '#55752F',
+                barOrange: isDark ? '#F0B87A' : '#E8A064',
             };
         }
         let chart1, chart2Instance, chart3Instance, chart4Instance;
@@ -593,9 +597,9 @@
             const c = getChartColors(), d = routesData.all;
             chart1 = new Chart(document.getElementById('chart1').getContext('2d'), {
                 type: 'bar', data: { labels: d.labels, datasets: [
-                    { label: 'AirlnX', data: d.sq, backgroundColor: EC.blue, borderRadius: 2, barPercentage: 0.7 },
-                    { label: 'SkyBridge', data: d.ba, backgroundColor: EC.red, borderRadius: 2, barPercentage: 0.7 },
-                    { label: 'EuroAir', data: d.lh, backgroundColor: EC.green, borderRadius: 2, barPercentage: 0.7 }
+                    { label: 'AirlnX', data: d.sq, backgroundColor: c.barBlue, borderRadius: 2, barPercentage: 0.7 },
+                    { label: 'SkyBridge', data: d.ba, backgroundColor: c.barRed, borderRadius: 2, barPercentage: 0.7 },
+                    { label: 'EuroAir', data: d.lh, backgroundColor: c.barGreen, borderRadius: 2, barPercentage: 0.7 }
                 ]}, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: tooltipDefaults() }, scales: makeScaleOpts(c, 3.5, 4.3, 0.1, 'Satisfaction (1\u20135)') }
             });
         }
@@ -607,9 +611,9 @@
             const c = getChartColors();
             chart2Instance = new Chart(document.getElementById('chart2').getContext('2d'), {
                 type: 'bar', data: { labels: ['Booking','Check-in','Lounge','Seat','Meal','Beverage','IFE','WiFi','Crew'], datasets: [
-                    { label: 'Economy', data: [4.1,4.0,3.8,4.0,3.9,4.0,3.95,4.1,4.1], backgroundColor: EC.blue, borderRadius: 2, barPercentage: 0.7 },
-                    { label: 'Premium Eco', data: [4.2,4.1,3.7,4.3,4.05,4.15,4.0,4.2,4.0], backgroundColor: EC.orange, borderRadius: 2, barPercentage: 0.7 },
-                    { label: 'Business', data: [4.3,4.2,4.4,4.6,4.1,4.2,4.25,4.3,4.4], backgroundColor: EC.red, borderRadius: 2, barPercentage: 0.7 }
+                    { label: 'Economy', data: [4.1,4.0,3.8,4.0,3.9,4.0,3.95,4.1,4.1], backgroundColor: c.barBlue, borderRadius: 2, barPercentage: 0.7 },
+                    { label: 'Premium Eco', data: [4.2,4.1,3.7,4.3,4.05,4.15,4.0,4.2,4.0], backgroundColor: c.barOrange, borderRadius: 2, barPercentage: 0.7 },
+                    { label: 'Business', data: [4.3,4.2,4.4,4.6,4.1,4.2,4.25,4.3,4.4], backgroundColor: c.barRed, borderRadius: 2, barPercentage: 0.7 }
                 ]}, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: tooltipDefaults() }, scales: makeScaleOpts(c, 3.5, 4.8, null, 'Satisfaction (1\u20135)', 'Journey stage') }
             });
         }
@@ -657,6 +661,17 @@
                     ch.data.datasets[2].backgroundColor = c.bubbleGreen;
                     ch.data.datasets[2].borderColor = c.borderGreen;
                 }
+                if (ch === chart1) {
+                    ch.data.datasets[0].backgroundColor = c.barBlue;
+                    ch.data.datasets[1].backgroundColor = c.barRed;
+                    ch.data.datasets[2].backgroundColor = c.barGreen;
+                }
+                if (ch === chart2Instance) {
+                    ch.data.datasets[0].backgroundColor = c.barBlue;
+                    ch.data.datasets[1].backgroundColor = c.barOrange;
+                    ch.data.datasets[2].backgroundColor = c.barRed;
+                }
+                
                 ch.update();
             });
         }
