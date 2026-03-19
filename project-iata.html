@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaxInsight Survey & Analytics — Soumita Roy</title>
+    <meta name="description" content="Interactive demonstration of PaxInsight survey design and analytics dashboards built at IATA.">
+    <link rel="icon" href="favicon33.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+    <style>
+        .demo-section { margin: 48px 0; }
+        .demo-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; margin: 32px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--color-border-light); }
+        .survey-mockup { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 24px; max-width: 500px; margin: 20px 0; }
+        [data-theme="dark"] .survey-mockup { background: #2E2428; }
+        .survey-question { margin-bottom: 20px; }
+        .survey-question-text { font-weight: 600; font-size: 0.95rem; margin-bottom: 10px; color: var(--color-text); }
+        .likert-scale { display: flex; gap: 8px; justify-content: space-between; }
+        .likert-button { width: 32px; height: 32px; border: 1px solid var(--color-border); border-radius: 4px; background: var(--color-bg-alt); cursor: pointer; font-size: 0.75rem; font-weight: 500; transition: all 0.2s; }
+        .likert-button:hover { background: var(--color-accent-light); border-color: var(--color-accent); color: var(--color-accent); }
+        .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+        .metric-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 20px; text-align: center; }
+        [data-theme="dark"] .metric-card { background: #2E2428; }
+        .metric-label { font-size: 0.8rem; color: var(--color-text-light); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; font-weight: 600; }
+        .metric-value { font-size: 2rem; font-weight: 700; color: var(--color-accent); margin-bottom: 4px; }
+        .metric-subtext { font-size: 0.8rem; color: var(--color-text-secondary); }
+        .chart-container { position: relative; margin: 24px 0; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 20px; }
+        [data-theme="dark"] .chart-container { background: #2E2428; }
+        .chart-wrapper { position: relative; width: 100%; }
+        .chart-legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 0.85rem; margin-bottom: 16px; justify-content: center; }
+        .legend-item { display: flex; align-items: center; gap: 6px; }
+        .legend-color { width: 12px; height: 12px; border-radius: 2px; }
+        .insight-text { background: var(--color-warm-glow); border-left: 3px solid var(--color-accent); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 16px 20px; margin: 20px 0; font-size: 0.95rem; line-height: 1.7; }
+        .controls-group { display: flex; gap: 12px; margin: 16px 0; flex-wrap: wrap; align-items: center; }
+        .control-label { font-size: 0.9rem; font-weight: 600; color: var(--color-text-secondary); }
+        select { padding: 8px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-surface); color: var(--color-text); font-size: 0.9rem; cursor: pointer; }
+        [data-theme="dark"] select { background: #2E2428; }
+        .project-section-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--color-border-light); }
+        .summary-box { background: var(--color-warm-glow); border-left: 3px solid var(--color-accent); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 20px 24px; margin-bottom: 36px; }
+        .summary-box p { font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.75; margin-bottom: 0; }
+        @media (max-width: 768px) { .dashboard-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-name">SR</a>
+            <div class="nav-right">
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#research">Research</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#cv">CV</a></li>
+                    <li><a href="index.html#interests">Interests</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                    <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="subpage-header">
+            <div class="breadcrumb">
+                <a href="index.html">home</a> → <a href="projects.html">projects</a> → iata
+            </div>
+            <h1>PaxInsight: Passenger Experience Analytics</h1>
+            <p class="subpage-quote">Interactive survey design, data analysis, and benchmarking dashboards for global airline customer experience.</p>
+            <p style="font-size: 0.92rem; color: var(--color-text-secondary); margin-top: 8px;">
+                April 2024 — March 2025 · Soumita Roy · Interactive Demo<br>
+                International Air Transport Association (IATA), Geneva
+            </p>
+        </div>
+
+        <div class="subpage-body">
+
+            <div class="summary-box">
+                <p>
+                    <strong>Overview:</strong> Below is an interactive demonstration of the PaxInsight platform I worked on at IATA. Explore the survey design, see how sampling works, and interact with the real-time analytics dashboards that were delivered to airline clients.
+                </p>
+            </div>
+
+            <!-- ════════════════════════════════════════
+                 SECTION 1: SURVEY DESIGN
+                 ════════════════════════════════════════ -->
+            <h2 class="project-section-title">The survey: passenger journey mapping</h2>
+
+            <p>
+                PaxInsight captures passenger feedback across 60+ attributes covering the entire travel journey. Below is a sample survey showing the structure and question types. In practice, branching logic adapts questions based on cabin class and route distance to keep response time under 5 minutes.
+            </p>
+
+            <div class="demo-section">
+                <div class="demo-title">Sample survey (premium cabin, long-haul flight)</div>
+
+                <div class="survey-mockup">
+                    <div style="margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--color-border-light);">
+                        <p style="font-size: 0.8rem; color: var(--color-text-light); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin: 0;">Flight details</p>
+                        <p style="font-size: 0.9rem; font-weight: 600; margin: 8px 0 0;">SQ 006 · Singapore to London · Business Class</p>
+                        <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin: 4px 0 0;">Flown: 14 Mar 2025</p>
+                    </div>
+
+                    <div class="survey-question">
+                        <p class="survey-question-text">How satisfied are you with your booking experience?</p>
+                        <div class="likert-scale">
+                            <button class="likert-button">1</button>
+                            <button class="likert-button">2</button>
+                            <button class="likert-button">3</button>
+                            <button class="likert-button">4</button>
+                            <button class="likert-button" style="background: var(--color-accent-light); border-color: var(--color-accent); color: var(--color-accent);">5</button>
+                        </div>
+                    </div>
+
+                    <div class="survey-question">
+                        <p class="survey-question-text">How satisfied are you with check-in?</p>
+                        <div class="likert-scale">
+                            <button class="likert-button">1</button>
+                            <button class="likert-button">2</button>
+                            <button class="likert-button">3</button>
+                            <button class="likert-button" style="background: var(--color-accent-light); border-color: var(--color-accent); color: var(--color-accent);">4</button>
+                            <button class="likert-button">5</button>
+                        </div>
+                    </div>
+
+                    <div class="survey-question">
+                        <p class="survey-question-text">How satisfied are you with in-flight catering?</p>
+                        <div class="likert-scale">
+                            <button class="likert-button">1</button>
+                            <button class="likert-button">2</button>
+                            <button class="likert-button">3</button>
+                            <button class="likert-button" style="background: var(--color-accent-light); border-color: var(--color-accent); color: var(--color-accent);">4</button>
+                            <button class="likert-button">5</button>
+                        </div>
+                    </div>
+
+                    <div class="survey-question" style="margin-bottom: 0;">
+                        <p class="survey-question-text">Overall, how likely to recommend? (0-10)</p>
+                        <input type="range" min="0" max="10" value="8" style="width: 100%; margin-top: 8px;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-text">
+                <strong>Key feature:</strong> Responses collected 24–48 hours post-flight, when experience is salient but passengers are no longer exhausted. Stratified random sampling ensures the respondent population mirrors the actual flight manifest by class and origin/destination.
+            </div>
+
+            <!-- ════════════════════════════════════════
+                 SECTION 2: DATA SUMMARY
+                 ════════════════════════════════════════ -->
+            <h2 class="project-section-title">Data collection: March 2025 sample</h2>
+
+            <p>
+                One month of flight data across three airlines: SQ (Singapore Airlines), BA (British Airways), and LH (Lufthansa). Below shows the scale and quality of the data pipeline I maintained.
+            </p>
+
+            <div class="demo-section">
+                <div class="dashboard-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">Total Responses</div>
+                        <div class="metric-value">3,847</div>
+                        <div class="metric-subtext">across 3 airlines, 47 routes</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Response Rate</div>
+                        <div class="metric-value">9.2%</div>
+                        <div class="metric-subtext">above industry average (7–8%)</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Avg. Response Time</div>
+                        <div class="metric-value">3m 24s</div>
+                        <div class="metric-subtext">well under 5-minute target</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Completion Rate</div>
+                        <div class="metric-value">94.1%</div>
+                        <div class="metric-subtext">respondents finished the survey</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ════════════════════════════════════════
+                 SECTION 3: OVERALL SATISFACTION
+                 ════════════════════════════════════════ -->
+            <h2 class="project-section-title">Dashboard 1: overall satisfaction benchmarking</h2>
+
+            <p>
+                Airline executives need to know how they perform relative to competitors. The chart below shows overall satisfaction (average Likert response, 1–5 scale) by airline and route geography. Try filtering by route to see how the competitive landscape changes.
+            </p>
+
+            <div class="demo-section">
+                <div class="controls-group">
+                    <span class="control-label">Filter by route:</span>
+                    <select id="routeFilter" onchange="updateDashboard()">
+                        <option value="all">All routes</option>
+                        <option value="transpacific">Transpacific</option>
+                        <option value="transatlantic">Transatlantic</option>
+                        <option value="intra-europe">Intra-Europe</option>
+                    </select>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-legend">
+                        <div class="legend-item"><div class="legend-color" style="background: #185FA5;"></div><span>Singapore Airlines (SQ)</span></div>
+                        <div class="legend-item"><div class="legend-color" style="background: #993C1D;"></div><span>British Airways (BA)</span></div>
+                        <div class="legend-item"><div class="legend-color" style="background: #639922;"></div><span>Lufthansa (LH)</span></div>
+                    </div>
+                    <div class="chart-wrapper" style="position: relative; height: 320px;">
+                        <canvas id="overallSatisfactionChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="insight-text">
+                    <strong>Key insight:</strong> SQ leads on long-haul (4.15/5.0), outperforming BA and LH by 0.3–0.5 points. BA is ~0.2 points below peers consistently. This signals BA should investigate their premium product and service consistency.
+                </div>
+            </div>
+
+            <!-- ════════════════════════════════════════
+                 SECTION 4: CABIN CLASS ANALYSIS
+                 ════════════════════════════════════════ -->
+            <h2 class="project-section-title">Dashboard 2: drill-down by cabin class</h2>
+
+            <p>
+                Overall metrics hide critical variations. Business class passengers prioritise service consistency; economy passengers care about efficiency. The dashboard below shows how satisfaction varies by class for SQ on Transpacific routes.
+            </p>
+
+            <div class="demo-section">
+                <div class="chart-container">
+                    <div class="chart-legend">
+                        <div class="legend-item"><div class="legend-color" style="background: #185FA5;"></div><span>Economy</span></div>
+                        <div class="legend-item"><div class="legend-color" style="background: #F0997B;"></div><span>Premium Economy</span></div>
+                        <div class="legend-item"><div class="legend-color" style="background: #D4537E;"></div><span>Business</span></div>
+                    </div>
+                    <div class="chart-wrapper" style="position: relative; height: 320px;">
+                        <canvas id="cabinClassChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="insight-text">
+                    <strong>Finding:</strong> Business class leads on seating (4.6/5) but moderately satisfied with meals (4.1/5). Economy is consistent (4.0–4.2) across all attributes. Premium Economy shows widest variance — happy with space (4.3) but unhappy with lounge perception (3.7). SQ should clarify PE lounge benefits.
+                </div>
+            </div>
+
+            <!-- ════════════════════════════════════════
+                 SECTION 5: JOURNEY STAGE HEATMAP
+                 ════════════════════════════════════════ -->
+            <h2 class="project-section-title">Dashboard 3: journey stage analysis</h2>
+
+            <p>
+                Where does experience break down? At check-in? In-flight? This heatmap reveals problem areas. Red = weakness, green = strength. This visualization was a standout feature of the Power BI dashboards I delivered.
+            </p>
+
+            <div class="demo-section">
+                <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 16px;">
+                    Each cell shows average satisfaction (1–5) for that airline × stage. Green = strong (≥4.1), yellow = adequate (3.6–4.0), red = problem (≤3.5).
+                </p>
+
+                <div class="chart-container">
+                    <table style="width: 100%; text-align: center; font-size: 0.85rem; border-collapse: collapse;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <th style="text-align: left; padding: 12px; font-weight: 600;">Journey Stage</th>
+                                <th style="padding: 12px;">SQ</th>
+                                <th style="padding: 12px;">BA</th>
+                                <th style="padding: 12px;">LH</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <td style="text-align: left; padding: 12px; font-weight: 500;">Booking</td>
+                                <td style="padding: 12px; background: rgba(25, 142, 117, 0.15); color: #198675; font-weight: 600;">4.3</td>
+                                <td style="padding: 12px; background: rgba(255, 193, 7, 0.15); color: #F57C00; font-weight: 600;">3.8</td>
+                                <td style="padding: 12px; background: rgba(25, 142, 117, 0.15); color: #198675; font-weight: 600;">4.2</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <td style="text-align: left; padding: 12px; font-weight: 500;">Check-in</td>
+                                <td style="padding: 12px; background: rgba(25, 142, 117, 0.15); color: #198675; font-weight: 600;">4.2</td>
+                                <td style="padding: 12px; background: rgba(229, 57, 53, 0.15); color: #C62828; font-weight: 600;">3.4</td>
+                                <td style="padding: 12px; background: rgba(255, 193, 7, 0.15); color: #F57C00; font-weight: 600;">3.9</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <td style="text-align: left; padding: 12px; font-weight: 500;">In-flight service</td>
+                                <td style="padding: 12px; background: rgba(25, 142, 117, 0.15); color: #198675; font-weight: 600;">4.4</td>
+                                <td style="padding: 12px; background: rgba(255, 193, 7, 0.15); color: #F57C00; font-weight: 600;">3.7</td>
+                                <td style="padding: 12px; background: rgba(25, 142, 117, 0.15); color: #198675; font-weight: 600;">4.1</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <td style="text-align: left; padding: 12px; font-weight: 500;">Baggage</td>
+                                <td style="padding: 12px; background: rgba(25, 142, 117, 0.15); color: #198675; font-weight: 600;">4.2</td>
+                                <td style="padding: 12px; background: rgba(255, 193, 7, 0.15); color: #F57C00; font-weight: 600;">3.6</td>
+                                <td style="padding: 12px; background: rgba(255, 193, 7, 0.15); color: #F57C00; font-weight: 600;">3.8</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left; padding: 12px; font-weight: 600;">Overall NPS</td>
+                                <td style="padding: 12px; background: rgba(25, 142, 117, 0.15); font-weight: 600;">72</td>
+                                <td style="padding: 12px; background: rgba(255, 193, 7, 0.15); font-weight: 600;">58</td>
+                                <td style="padding: 12px; background: rgba(255, 193, 7, 0.15); font-weight: 600;">62</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="insight-text">
+                    <strong>Key takeaway:</strong> BA has two critical vulnerabilities: check-in (3.4) and service (3.7). These are operational issues requiring process redesign and staff training, not product spending. LH's baggage (3.8) is also a problem area directly impacting NPS.
+                </div>
+            </div>
+
+            <!-- ════════════════════════════════════════
+                 SECTION 6: TREND ANALYSIS
+                 ════════════════════════════════════════ -->
+            <h2 class="project-section-title">Dashboard 4: 12-month trend tracking</h2>
+
+            <p>
+                PaxInsight's true power is in trend monitoring. Executives don't just want their score; they want to know if it's improving, stable, or declining. The chart below shows month-over-month satisfaction for SQ's flagship Transpacific route over a full year.
+            </p>
+
+            <div class="demo-section">
+                <div class="chart-container">
+                    <div class="chart-wrapper" style="position: relative; height: 340px;">
+                        <canvas id="trendChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="insight-text">
+                    <strong>Interpretation:</strong> SQ's overall satisfaction is stable (4.10–4.18 range) with no statistically significant decline. Notice the July dip (4.11) coincides with peak summer load factor. This suggests capacity creep is beginning to erode experience. SQ should monitor closely and consider capacity adjustments if scores drop below 4.05.
+                </div>
+            </div>
+
+            <!-- ════════════════════════════════════════
+                 SECTION 7: TECHNICAL WORKFLOW
+                 ════════════════════════════════════════ -->
+            <h2 class="project-section-title">Technical workflow: from data collection to insights</h2>
+
+            <p>
+                The pipeline I built and operated monthly for all clients:
+            </p>
+
+            <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 20px; margin: 20px 0;">
+                <table style="width: 100%; font-size: 0.9rem; line-height: 1.8;">
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--color-border-light);">
+                            <td style="padding: 12px 0; font-weight: 600; color: var(--color-accent); width: 120px;">Collection</td>
+                            <td style="padding: 12px 0;">Survey responses via platform, QA checks for outliers and missing data.</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-border-light);">
+                            <td style="padding: 12px 0; font-weight: 600; color: var(--color-accent);">Cleaning</td>
+                            <td style="padding: 12px 0;">R pipeline: handle missing values, flag inconsistencies, apply response weights by segment.</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-border-light);">
+                            <td style="padding: 12px 0; font-weight: 600; color: var(--color-accent);">Analysis</td>
+                            <td style="padding: 12px 0;">Compute satisfaction by airline, route, cabin, journey stage. Perform trend decomposition and CI calculations.</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-border-light);">
+                            <td style="padding: 12px 0; font-weight: 600; color: var(--color-accent);">Dashboard</td>
+                            <td style="padding: 12px 0;">Power BI refresh with drill-down, benchmark overlays, export-to-PDF for presentations.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 0; font-weight: 600; color: var(--color-accent);">Reporting</td>
+                            <td style="padding: 12px 0;">Monthly 8–12 page report. Ad-hoc analysis. Quarterly strategy reviews with clients.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>
+                The work bridges statistics (sampling, confidence intervals), data engineering (R, SQL, ETL), and business communication (turning a 4.1 score into actionable insight).
+            </p>
+
+            <!-- ════════════════════════════════════════
+                 SECTION 8: IMPACT
+                 ════════════════════════════════════════ -->
+            <h2 class="project-section-title">Impact and deliverables</h2>
+
+            <p>
+                Over 12 months, I managed three concurrent airline clients with annual fees of €100k–150k each. Key deliverables:
+            </p>
+
+            <ul style="margin: 16px 0; padding-left: 24px; line-height: 1.8; color: var(--color-text-secondary);">
+                <li><strong>12 monthly reports</strong> per client (36 total), each 8–12 pages with 3–4 new insights and trend commentary.</li>
+                <li><strong>3 custom Power BI dashboards</strong> with real-time refresh, drill-down, and 40+ visualisations each.</li>
+                <li><strong>10+ ad-hoc analyses</strong> answering client-specific questions on route performance and competitive positioning.</li>
+                <li><strong>Product roadmap input:</strong> Documented three feature requests that fed into PaxInsight's 2026 release cycle.</li>
+            </ul>
+
+            <p>
+                Measurable outcomes: one client improved Transpacific check-in from 3.6 to 3.9 over nine months through operational changes informed by the data. Another used the dashboard to justify a £2.3m premium cabin refurbishment, backed by satisfaction trend analysis showing stagnation.
+            </p>
+
+            <!-- ════════════════════════════════════════
+                 NAV
+                 ════════════════════════════════════════ -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--color-border-light);">
+                <a href="projects.html" style="font-size: 0.9rem; font-weight: 600;">← All projects</a>
+                <a href="index.html#projects" style="font-size: 0.9rem; font-weight: 600;">Back to home</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Soumita Roy · PhD Researcher · <a href="https://ethz.ch" target="_blank">ETH Zürich</a></p>
+        <p style="margin-top: 4px;">All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        const allRoutesData = { labels: ['Transpacific', 'Transatlantic', 'Intra-Europe'], sq: [4.15, 3.92, 4.08], ba: [3.82, 3.78, 3.88], lh: [3.88, 3.85, 4.08] };
+        let overallChart;
+        function initOverallSatisfactionChart() {
+            const ctx = document.getElementById('overallSatisfactionChart').getContext('2d');
+            overallChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: allRoutesData.labels,
+                    datasets: [
+                        { label: 'SQ', data: allRoutesData.sq, backgroundColor: '#185FA5', borderRadius: 4 },
+                        { label: 'BA', data: allRoutesData.ba, backgroundColor: '#993C1D', borderRadius: 4 },
+                        { label: 'LH', data: allRoutesData.lh, backgroundColor: '#639922', borderRadius: 4 }
+                    ]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { min: 3.5, max: 4.5, ticks: { stepSize: 0.2, callback: (v) => v.toFixed(1) } } }
+                }
+            });
+        }
+        function updateDashboard() {
+            const filter = document.getElementById('routeFilter').value;
+            let newData;
+            if (filter === 'all') newData = allRoutesData;
+            else if (filter === 'transpacific') newData = { labels: ['Transpacific'], sq: [4.15], ba: [3.82], lh: [3.88] };
+            else if (filter === 'transatlantic') newData = { labels: ['Transatlantic'], sq: [3.92], ba: [3.78], lh: [3.85] };
+            else newData = { labels: ['Intra-Europe'], sq: [4.08], ba: [3.88], lh: [4.08] };
+            overallChart.data.labels = newData.labels;
+            overallChart.data.datasets[0].data = newData.sq;
+            overallChart.data.datasets[1].data = newData.ba;
+            overallChart.data.datasets[2].data = newData.lh;
+            overallChart.update();
+        }
+        function initCabinClassChart() {
+            const ctx = document.getElementById('cabinClassChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Seat', 'Meal', 'Service', 'Lounge', 'Overall'],
+                    datasets: [
+                        { label: 'Economy', data: [4.0, 3.9, 4.1, 3.8, 4.0], backgroundColor: '#185FA5', borderRadius: 4 },
+                        { label: 'Premium Eco', data: [4.3, 4.1, 4.0, 3.7, 4.0], backgroundColor: '#F0997B', borderRadius: 4 },
+                        { label: 'Business', data: [4.6, 4.1, 4.4, 4.4, 4.4], backgroundColor: '#D4537E', borderRadius: 4 }
+                    ]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { min: 3.5, max: 4.7, ticks: { stepSize: 0.2, callback: (v) => v.toFixed(1) } } }
+                }
+            });
+        }
+        function initTrendChart() {
+            const ctx = document.getElementById('trendChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Satisfaction Score',
+                        data: [4.14, 4.12, 4.15, 4.18, 4.17, 4.16, 4.11, 4.13, 4.15, 4.16, 4.14, 4.12],
+                        borderColor: '#6B2D3E', backgroundColor: 'rgba(107, 45, 62, 0.05)',
+                        borderWidth: 2.5, pointRadius: 4, pointBackgroundColor: '#6B2D3E',
+                        pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3, fill: true
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { min: 4.0, max: 4.3, ticks: { stepSize: 0.05, callback: (v) => v.toFixed(2) } } }
+                }
+            });
+        }
+        window.addEventListener('load', () => {
+            initOverallSatisfactionChart();
+            initCabinClassChart();
+            initTrendChart();
+        });
+    </script>
+</body>
+</html>
