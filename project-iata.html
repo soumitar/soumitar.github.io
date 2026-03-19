@@ -575,9 +575,32 @@
                         borderWidth: 3, pointRadius: 5, pointBackgroundColor: '#6B2D3E', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.35, fill: true
                     }]
                 },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { min: 4.0, max: 4.25 } } }
-            });
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false, labels: {
+                color: 'var(--color-text)'  
+            }
+        },
+        tooltip: {
+            titleColor: 'var(--color-text)',  
+            bodyColor: 'var(--color-text)'  
         }
+    }, scales: { y: { min: 4.0, max: 4.25,  ticks: { 
+                stepSize: 0.1,
+                color: 'var(--color-text)' 
+            },
+            grid: {
+                color: 'rgba(255, 255, 255, 0.1)'  
+            }
+        },
+        x: {
+            ticks: {
+                color: 'var(--color-text)'  
+            },
+            grid: {
+                color: 'rgba(255, 255, 255, 0.1)' 
+            }
+        }
+    }
+}
 
         function initChart4() {
             const ctx = document.getElementById('chart4').getContext('2d');
