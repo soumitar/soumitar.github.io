@@ -541,5 +541,17 @@
     </footer>
 
     <script src="script.js"></script>
+
+<script>
+        const tocLinks = document.querySelectorAll('.toc-link');
+        const tocTargets = Array.from(tocLinks).map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+        function updateActiveToc() {
+            let current = '';
+            tocTargets.forEach(s => { if (s.getBoundingClientRect().top <= 140) current = s.id; });
+            tocLinks.forEach(l => { l.classList.toggle('active', l.getAttribute('href') === '#' + current); });
+        }
+        window.addEventListener('scroll', updateActiveToc, { passive: true });
+    </script>
+    
 </body>
 </html>
