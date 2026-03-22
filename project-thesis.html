@@ -169,6 +169,37 @@
             color: var(--color-accent);
             font-weight: 500;
         }
+
+.page-toc {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            padding: 12px 0;
+            margin-bottom: 8px;
+            border-bottom: 1px solid var(--color-border-light);
+            position: sticky;
+            top: var(--nav-height);
+            z-index: 50;
+            background: var(--color-bg);
+            transition: background var(--transition);
+        }
+        .toc-link {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--color-text-light);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--color-border);
+            transition: all 0.2s;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .toc-link:hover, .toc-link.active {
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+            background: var(--color-accent-light);
+        }
+        
         .project-nav {
             display: flex;
             justify-content: space-between;
@@ -221,6 +252,18 @@
             </p>
         </div>
 
+<div class="page-toc" id="pageToc">
+            <a href="#question" class="toc-link active">Question</a>
+            <a href="#framework" class="toc-link">Framework</a>
+            <a href="#data" class="toc-link">Data</a>
+            <a href="#strategy" class="toc-link">Strategy</a>
+            <a href="#fdi" class="toc-link">FDI Results</a>
+            <a href="#forest" class="toc-link">Forest Cover</a>
+            <a href="#sectors" class="toc-link">Sectors</a>
+            <a href="#synthesis" class="toc-link">Synthesis</a>
+            <a href="#tools" class="toc-link">Tools</a>
+        </div>
+        
         <div class="subpage-body">
 
             <!-- ════════ SUMMARY BOX ════════ -->
@@ -232,7 +275,7 @@
             </div>
 
             <!-- ════════ 1. THE QUESTION ════════ -->
-            <h2 class="project-section-title">The question</h2>
+            <h2 class="project-section-title" id="question">The question</h2>
 
             <p>
                 Under the Belt and Road Initiative, China pledged over one trillion dollars in infrastructure investments spanning more than 60 countries. In Southeast Asia alone, Chinese finance accounted for roughly 24% of total development finance needs between 2009 and 2015. Yet the academic literature has overwhelmingly concentrated on Africa, leaving Asia's experience surprisingly underexplored.
@@ -300,7 +343,7 @@
             </div>
 
             <!-- ════════ 2. CONCEPTUAL FRAMEWORK ════════ -->
-            <h2 class="project-section-title">Two channels, opposite directions</h2>
+            <h2 class="project-section-title" id="framework">Two channels, opposite directions</h2>
 
             <p>
                 The theoretical case is genuinely ambiguous, which is what makes the empirics interesting. On the FDI side, two competing mechanisms operate simultaneously. A catalytic channel works through improved infrastructure: better roads, ports and power grids lower operating costs, raise productivity and make a country more attractive to outside investors. Work by Clemens et al. (2012), Dreher and Langlotz (2020) and Dreher, Fuchs, Parks et al. (2021) documents versions of this effect across different settings.
@@ -373,7 +416,7 @@
             </div>
 
             <!-- ════════ 3. DATA ════════ -->
-            <h2 class="project-section-title">Assembling the evidence</h2>
+            <h2 class="project-section-title" id="data">Assembling the evidence</h2>
 
             <p>
                 The backbone of the analysis is AidData's Global Chinese Development Finance Dataset (Version 2), which tracks 794 individual financing commitments to 31 developing Asian countries between 2000 and 2015. The dataset was compiled using the Tracking Underreported Financial Flows (TUFF) methodology, drawing on Chinese government sources, recipient-country finance ministries, local-language news reports and NGO case studies, all of which help to overcome the opacity of China's official reporting.
@@ -426,7 +469,7 @@
             </div>
 
             <!-- ════════ 4. EMPIRICAL STRATEGY ════════ -->
-            <h2 class="project-section-title">Getting at causality (and the limits of doing so)</h2>
+            <h2 class="project-section-title" id="strategy">Getting at causality (and the limits of doing so)</h2>
 
             <p>
                 The starting point is an OLS panel regression with country and year fixed effects. The outcome variables include FDI per capita, FDI as a share of GDP, log FDI inflow, log forest cover loss (in hectares) and forest loss as a percentage of the 2000 baseline. The key explanatory variable is two-year lagged per capita Chinese official financing commitments, a lag chosen to capture the gestation period between financial commitment and observable impact. Lagged log population and log GDP serve as controls.
@@ -521,7 +564,7 @@
             </div>
 
             <!-- ════════ 5. RESULTS: FDI ════════ -->
-            <h2 class="project-section-title">What the numbers say: FDI</h2>
+            <h2 class="project-section-title" id="fdi">What the numbers say: FDI</h2>
 
             <p>
                 The OLS results paint a consistent picture. For every additional million dollars per capita of Chinese official financing committed two years earlier, FDI per capita rises by $0.057 million, statistically significant at the 1% level. FDI as a share of GDP increases by 0.001 percentage points (significant at 5%), and the log of FDI inflow also shows a positive, statistically significant coefficient. These magnitudes are in line with Dreher, Fuchs, Parks et al. (2021) and Clements and Milner-Gulland (2015), who document similar catalytic effects in other contexts.
@@ -599,7 +642,7 @@
             </div>
 
             <!-- ════════ 6. RESULTS: FOREST COVER ════════ -->
-            <h2 class="project-section-title">What the numbers say: forest cover</h2>
+            <h2 class="project-section-title" id="forest">What the numbers say: forest cover</h2>
 
             <p>
                 The environmental results are less dramatic but no less interesting for that. Neither OLS nor IV estimation produces a statistically significant effect of Chinese financing on forest cover loss, whether measured in absolute hectares or as a percentage of the 2000 baseline. The OLS point estimate is slightly negative (suggesting, if anything, a marginal reduction in forest loss), while the IV estimate is slightly positive. Both are comfortably within the bounds of statistical noise.
@@ -637,7 +680,7 @@
             </div>
 
             <!-- ════════ 7. SECTORAL RESULTS ════════ -->
-            <h2 class="project-section-title">Unpacking by sector</h2>
+            <h2 class="project-section-title" id="sectors">Unpacking by sector</h2>
 
             <p>
                 The sectoral decomposition adds useful texture. Physical infrastructure financing significantly raises FDI as a share of GDP (by 0.0044 percentage points for each additional million dollars per capita, significant at the 1% level), while production and services financing significantly boosts FDI per capita (by $0.053 million, also at the 1% level). Social infrastructure, despite a large point estimate, is not statistically significant.
@@ -692,7 +735,7 @@
             </div>
 
             <!-- ════════ 8. SYNTHESIS ════════ -->
-            <h2 class="project-section-title">What it all means</h2>
+            <h2 class="project-section-title" id="synthesis">What it all means</h2>
 
             <div class="finding-card">
                 <div class="finding-number">Finding 1</div>
@@ -728,7 +771,7 @@
             </p>
 
             <!-- ════════ TOOLS ════════ -->
-            <h2 class="project-section-title">Tools and methods</h2>
+            <h2 class="project-section-title" id="tools">Tools and methods</h2>
 
   <div class="method-groups">
                 <div class="method-group">
@@ -778,5 +821,17 @@
     </footer>
 
     <script src="script.js"></script>
+
+<script>
+        const tocLinks = document.querySelectorAll('.toc-link');
+        const tocTargets = Array.from(tocLinks).map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+        function updateActiveToc() {
+            let current = '';
+            tocTargets.forEach(s => { if (s.getBoundingClientRect().top <= 140) current = s.id; });
+            tocLinks.forEach(l => { l.classList.toggle('active', l.getAttribute('href') === '#' + current); });
+        }
+        window.addEventListener('scroll', updateActiveToc, { passive: true });
+    </script>
+    
 </body>
 </html>
