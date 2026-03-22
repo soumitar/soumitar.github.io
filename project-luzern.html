@@ -103,6 +103,35 @@
             color: var(--color-accent);
             font-weight: 500;
         }
+        .page-toc {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            padding: 12px 0;
+            margin-bottom: 8px;
+            border-bottom: 1px solid var(--color-border-light);
+            position: sticky;
+            top: var(--nav-height);
+            z-index: 50;
+            background: var(--color-bg);
+            transition: background var(--transition);
+        }
+        .toc-link {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--color-text-light);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--color-border);
+            transition: all 0.2s;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .toc-link:hover, .toc-link.active {
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+            background: var(--color-accent-light);
+        }
         .project-nav {
             display: flex;
             justify-content: space-between;
@@ -159,6 +188,16 @@
 </p>
         </div>
 
+     <div class="page-toc" id="pageToc">
+            <a href="#question" class="toc-link active">Question</a>
+            <a href="#approach" class="toc-link">Approach</a>
+            <a href="#data" class="toc-link">Data</a>
+            <a href="#products" class="toc-link">Products</a>
+            <a href="#patents" class="toc-link">Patents</a>
+            <a href="#synthesis" class="toc-link">Synthesis</a>
+            <a href="#policy" class="toc-link">Policy</a>
+            <a href="#tools" class="toc-link">Tools</a>
+        </div>   
         <div class="subpage-body">
 
             <!-- ══════ SUMMARY BOX ══════ -->
