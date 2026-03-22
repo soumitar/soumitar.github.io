@@ -148,11 +148,19 @@
             line-height: 1.7;
             margin-bottom: 0;
         }
+       .method-group-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            color: var(--color-text-light);
+            margin: 24px 0 10px;
+        }
         .method-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin: 20px 0;
+            margin: 0 0 8px;
         }
         .method-tag {
             font-size: 0.78rem;
@@ -728,16 +736,37 @@
             <!-- ════════ TOOLS ════════ -->
             <h2 class="project-section-title">Tools and methods</h2>
 
-            <div class="method-tags">
-                <span class="method-tag">Stata</span>
-                <span class="method-tag">Python</span>
-                <span class="method-tag">ArcGIS</span>
-                <span class="method-tag">Web Scraping</span>
-                <span class="method-tag">Panel Econometrics</span>
-                <span class="method-tag">Instrumental Variables</span>
-                <span class="method-tag">AidData TUFF</span>
-                <span class="method-tag">UNCTAD</span>
-                <span class="method-tag">Global Forest Watch</span>
+  <div class="method-groups">
+                <div class="method-group">
+                    <h3 class="method-group-title">Data sources</h3>
+                    <div class="method-tags">
+                        <span class="method-tag">AidData TUFF</span>
+                        <span class="method-tag">UNCTAD</span>
+                        <span class="method-tag">Global Forest Watch</span>
+                        <span class="method-tag">Harvard Dataverse</span>
+                        <span class="method-tag">World Bank WDI</span>
+                    </div>
+                </div>
+
+                <div class="method-group">
+                    <h3 class="method-group-title">Methods</h3>
+                    <div class="method-tags">
+                        <span class="method-tag">Panel Econometrics</span>
+                        <span class="method-tag">Instrumental Variables</span>
+                        <span class="method-tag">Sectoral Decomposition</span>
+                        <span class="method-tag">Fixed Effects (Country + Year)</span>
+                    </div>
+                </div>
+
+                <div class="method-group">
+                    <h3 class="method-group-title">Technical workflow</h3>
+                    <div class="method-tags">
+                        <span class="method-tag">Stata</span>
+                        <span class="method-tag">Python</span>
+                        <span class="method-tag">ArcGIS</span>
+                        <span class="method-tag">Web Scraping</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Navigation -->
