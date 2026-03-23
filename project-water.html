@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financing Water Infrastructure in Rural India &mdash; Soumita Roy</title>
+    <meta name="description" content="A financing model for sustainable water infrastructure in rural India, combining PPPs, Aadhar-linked Water Cards, and impact investment to achieve SDG 6. Course project at the Geneva Graduate Institute.">
+    <link rel="icon" href="favicon33.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .project-section-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 48px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+        .project-figure {
+            margin: 28px 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            background: #FFFFFF;
+        }
+        [data-theme="dark"] .project-figure {
+            background: #FAFAF7;
+            border-color: var(--color-border);
+        }
+        .project-figure img {
+            width: 100%;
+            display: block;
+        }
+        .project-figure svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .project-figure-title {
+            font-family: var(--font-display);
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: #1A1A2E;
+            padding: 16px 16px 2px;
+            line-height: 1.35;
+        }
+        .project-figure-subtitle {
+            font-size: 0.78rem;
+            color: #6B6560;
+            padding: 0 16px 8px;
+            line-height: 1.5;
+        }
+        .project-figure-caption {
+            font-size: 0.82rem;
+            color: var(--color-text-light);
+            padding: 10px 16px;
+            border-top: 1px solid var(--color-border-light);
+            line-height: 1.5;
+        }
+        [data-theme="dark"] .project-figure-caption {
+            color: #6A6060;
+        }
+        .project-figure-source {
+            font-size: 0.72rem;
+            color: #B0A89C;
+            padding: 0 16px 10px;
+            line-height: 1.4;
+        }
+        .summary-box {
+            background: var(--color-warm-glow);
+            border-left: 3px solid var(--color-accent);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            padding: 20px 24px;
+            margin-bottom: 36px;
+        }
+        .summary-box p {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            line-height: 1.75;
+            margin-bottom: 0;
+        }
+        .finding-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            padding: 20px 24px;
+            margin: 12px 0;
+            max-width: 720px;
+        }
+        .finding-card .finding-number {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: 6px;
+        }
+        .finding-card p {
+            font-size: 0.93rem;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+        .method-group-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            color: var(--color-text-light);
+        }
+        .method-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 0 0 8px;
+        }
+        .method-tag {
+            font-size: 0.78rem;
+            padding: 5px 14px;
+            border-radius: 20px;
+            background: var(--color-accent-light);
+            color: var(--color-accent);
+            font-weight: 500;
+        }
+        .project-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--color-border-light);
+        }
+        .project-nav a {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .page-toc {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            padding: 12px 0;
+            margin-bottom: 8px;
+            border-bottom: 1px solid var(--color-border-light);
+            position: sticky;
+            top: var(--nav-height);
+            z-index: 50;
+            background: var(--color-bg);
+            transition: background var(--transition);
+        }
+        .toc-link {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--color-text-light);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--color-border);
+            transition: all 0.2s;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .toc-link:hover, .toc-link.active {
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+            background: var(--color-accent-light);
+        }
+        @media (max-width: 768px) {
+            .page-toc { gap: 4px; }
+            .toc-link { font-size: 0.72rem; padding: 5px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-name">SR</a>
+            <div class="nav-right">
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#research">Research</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#cv">CV</a></li>
+                    <li><a href="index.html#interests">Interests</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                    <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="subpage-header">
+            <div class="breadcrumb">
+                <a href="index.html">home</a> &rarr; <a href="projects.html">projects</a> &rarr; water infrastructure
+            </div>
+            <h1>Financing Sustainable Water Infrastructure to Achieve SDG 6 in Rural India</h1>
+            <p class="subpage-quote">What if the solution to India's rural water crisis is not more public spending, but smarter plumbing of public and private money?</p>
+            <p style="font-size: 0.92rem; color: var(--color-text-secondary); margin-top: 8px;">
+                June 2023 &middot; Soumita Roy &middot; 8 min read<br>
+                Geneva Graduate Institute (IHEID)<br>
+                With Areen De
+            </p>
+        </div>
+
+        <div class="page-toc" id="pageToc">
+            <a href="#problem" class="toc-link active">The Problem</a>
+            <a href="#gap" class="toc-link">Funding Gap</a>
+            <a href="#failures" class="toc-link">Market Failures</a>
+            <a href="#model" class="toc-link">The Model</a>
+            <a href="#watercard" class="toc-link">Water Card</a>
+            <a href="#feasibility" class="toc-link">Feasibility</a>
+            <a href="#takeaways" class="toc-link">Takeaways</a>
+            <a href="#tools" class="toc-link">Tools</a>
+        </div>
+
+        <div class="subpage-body">
+
+            <!-- ════════ SUMMARY BOX ════════ -->
+            <div class="summary-box">
+                <p>
+                    <strong>In brief:</strong> Half of India's rural households lacked tap water connections as recently as 2022. The World Bank estimates that achieving universal safe water and sanitation by 2030 will cost $123 billion, yet the government's annual allocation for rural water supply sits around $8 billion. This project, developed for a graduate course in Finance, Development, and Inclusion at IHEID, proposes a financing model that combines public-private partnerships with an Aadhar-linked "Water Card" system. Private firms build and operate infrastructure, households pay usage fees, and the most vulnerable receive targeted digital subsidies. The design draws on lessons from India's Jal Jeevan Mission, Kenya's Water Services Trust Fund, and Water.org's WaterCredit Initiative, while addressing the market failures that have undermined previous efforts.
+                </p>
+            </div>
+
+            <!-- ════════ 1. THE PROBLEM ════════ -->
+            <h2 class="project-section-title" id="problem">A country running dry</h2>
+
+            <p>
+                Access to clean water in rural India is not merely a development aspiration. It is a daily emergency. As of 2022, roughly half of rural households still did not have a tap water connection within their homes. Water quality surveillance remains patchy. Groundwater levels have been falling across large parts of the country, a decline accelerated by climate change, and the existing infrastructure for water delivery is frequently inadequate or poorly maintained. The situation is worst in the states that can least afford to fix it.
+            </p>
+            <p>
+                The Indian government has not been idle. The National Rural Drinking Water Programme (NRDWP), launched in 2009, aimed to deliver safe drinking water to every rural person. By 2019, it had managed to connect just 17% of rural households to piped water. Its successor, the Jal Jeevan Mission (JJM), launched in 2019 with considerably more ambition and funding, pushed that number to roughly 46% by 2022. That is remarkable progress in three years. But it also means that more than half of rural India still waits.
+            </p>
+
+            <div class="project-figure">
+                <div class="project-figure-title">Before the mission: a patchwork of neglect</div>
+                <div class="project-figure-subtitle">Tap water connections to rural households by state, 2019 (% of households)</div>
+                <svg viewBox="0 0 660 380" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="660" height="380" fill="#FAFAF7"/>
+                    <line x1="160" y1="10" x2="160" y2="330" stroke="#E8E4DC" stroke-width="0.5"/>
+                    <line x1="280" y1="10" x2="280" y2="330" stroke="#E8E4DC" stroke-width="0.5"/>
+                    <line x1="400" y1="10" x2="400" y2="330" stroke="#E8E4DC" stroke-width="0.5"/>
+                    <line x1="520" y1="10" x2="520" y2="330" stroke="#E8E4DC" stroke-width="0.5"/>
+                    <line x1="640" y1="10" x2="640" y2="330" stroke="#E8E4DC" stroke-width="0.5"/>
+                    <text x="160" y="348" text-anchor="middle" font-size="8" fill="#9E9690" font-family="system-ui, sans-serif">0%</text>
+                    <text x="280" y="348" text-anchor="middle" font-size="8" fill="#9E9690" font-family="system-ui, sans-serif">25%</text>
+                    <text x="400" y="348" text-anchor="middle" font-size="8" fill="#9E9690" font-family="system-ui, sans-serif">50%</text>
+                    <text x="520" y="348" text-anchor="middle" font-size="8" fill="#9E9690" font-family="system-ui, sans-serif">75%</text>
+                    <text x="640" y="348" text-anchor="middle" font-size="8" fill="#9E9690" font-family="system-ui, sans-serif">100%</text>
+                    <text x="152" y="25" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Goa</text>
+                    <rect x="160" y="15" width="326" height="14" fill="#3D9B8F" rx="1"/><text x="492" y="25" font-size="8" fill="#3D9B8F" font-family="system-ui, sans-serif">68%</text>
+                    <text x="152" y="45" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Punjab</text>
+                    <rect x="160" y="35" width="288" height="14" fill="#3D9B8F" rx="1"/><text x="454" y="45" font-size="8" fill="#3D9B8F" font-family="system-ui, sans-serif">60%</text>
+                    <text x="152" y="65" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Haryana</text>
+                    <rect x="160" y="55" width="259" height="14" fill="#3D9B8F" rx="1"/><text x="425" y="65" font-size="8" fill="#3D9B8F" font-family="system-ui, sans-serif">54%</text>
+                    <text x="152" y="90" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Gujarat</text>
+                    <rect x="160" y="80" width="144" height="14" fill="#F28E2B" rx="1"/><text x="310" y="90" font-size="8" fill="#F28E2B" font-family="system-ui, sans-serif">30%</text>
+                    <text x="152" y="110" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Tamil Nadu</text>
+                    <rect x="160" y="100" width="134" height="14" fill="#F28E2B" rx="1"/><text x="300" y="110" font-size="8" fill="#F28E2B" font-family="system-ui, sans-serif">28%</text>
+                    <text x="152" y="130" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Karnataka</text>
+                    <rect x="160" y="120" width="115" height="14" fill="#F28E2B" rx="1"/><text x="281" y="130" font-size="8" fill="#F28E2B" font-family="system-ui, sans-serif">24%</text>
+                    <text x="152" y="150" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Maharashtra</text>
+                    <rect x="160" y="140" width="96" height="14" fill="#F28E2B" rx="1"/><text x="262" y="150" font-size="8" fill="#F28E2B" font-family="system-ui, sans-serif">20%</text>
+                    <text x="152" y="175" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Rajasthan</text>
+                    <rect x="160" y="165" width="58" height="14" fill="#E15759" rx="1"/><text x="224" y="175" font-size="8" fill="#E15759" font-family="system-ui, sans-serif">12%</text>
+                    <text x="152" y="195" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Madhya Pradesh</text>
+                    <rect x="160" y="185" width="48" height="14" fill="#E15759" rx="1"/><text x="214" y="195" font-size="8" fill="#E15759" font-family="system-ui, sans-serif">10%</text>
+                    <text x="152" y="215" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">West Bengal</text>
+                    <rect x="160" y="205" width="29" height="14" fill="#E15759" rx="1"/><text x="195" y="215" font-size="8" fill="#E15759" font-family="system-ui, sans-serif">6%</text>
+                    <text x="152" y="235" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Uttar Pradesh</text>
+                    <rect x="160" y="225" width="24" height="14" fill="#E15759" rx="1"/><text x="190" y="235" font-size="8" fill="#E15759" font-family="system-ui, sans-serif">5%</text>
+                    <text x="152" y="255" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Bihar</text>
+                    <rect x="160" y="245" width="14" height="14" fill="#E15759" rx="1"/><text x="180" y="255" font-size="8" fill="#E15759" font-family="system-ui, sans-serif">3%</text>
+                    <text x="152" y="275" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Jharkhand</text>
+                    <rect x="160" y="265" width="14" height="14" fill="#E15759" rx="1"/><text x="180" y="275" font-size="8" fill="#E15759" font-family="system-ui, sans-serif">3%</text>
+                    <text x="152" y="295" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Assam</text>
+                    <rect x="160" y="285" width="10" height="14" fill="#E15759" rx="1"/><text x="176" y="295" font-size="8" fill="#E15759" font-family="system-ui, sans-serif">2%</text>
+                    <line x1="242" y1="10" x2="242" y2="330" stroke="#1A1A2E" stroke-width="1.2" stroke-dasharray="4,3"/>
+                    <text x="244" y="325" font-size="8" fill="#1A1A2E" font-family="system-ui, sans-serif" font-weight="600">National avg: 17%</text>
+                    <rect x="160" y="360" width="10" height="10" fill="#3D9B8F" rx="1"/>
+                    <text x="174" y="369" font-size="8" fill="#6B6560" font-family="system-ui, sans-serif">&gt;50%</text>
+                    <rect x="220" y="360" width="10" height="10" fill="#F28E2B" rx="1"/>
+                    <text x="234" y="369" font-size="8" fill="#6B6560" font-family="system-ui, sans-serif">20-50%</text>
+                    <rect x="290" y="360" width="10" height="10" fill="#E15759" rx="1"/>
+                    <text x="304" y="369" font-size="8" fill="#6B6560" font-family="system-ui, sans-serif">&lt;20%</text>
+                </svg>
+                <div class="project-figure-caption">
+                    In 2019, only a handful of smaller states had meaningful piped water coverage. The large, populous states of the Hindi belt, Bihar, Jharkhand, UP and Assam, were in single digits. Total: 3.23 crore of 18.93 crore rural households connected.
+                </div>
+                <div class="project-figure-source">Source: Jal Shakti Ministry / JJM Dashboard. Selected states shown.</div>
+            </div>
+
+            <div class="project-figure">
+                <div class="project-figure-title">Three years of Jal Jeevan: the transformation</div>
+                <div class="project-figure-subtitle">Tap water connections to rural households by state, 2022 (% of households)</div>
+                <svg viewBox="0 0 660 380" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="660" height="380" fill="#FAFAF7"/>
+                    <line x1="160" y1="10" x2="160" y2="330" stroke="#E8E4DC" stroke-width="0.5"/>
+                    <line x1="280" y1="10" x2="280" y2="330" stroke="#E8E4DC" stroke-width="0.5"/>
+                    <line x1="400" y1="10" x2="400" y2="330" stroke="#E8E4DC" stroke-width="0.5"/>
+                    <line x1="520" y1="10" x2="520" y2="330" stroke="#E8E4DC" stroke-width="0.5"/>
+                    <line x1="640" y1="10" x2="640" y2="330" stroke="#E8E4DC" stroke-width="0.5"/>
+                    <text x="160" y="348" text-anchor="middle" font-size="8" fill="#9E9690" font-family="system-ui, sans-serif">0%</text>
+                    <text x="280" y="348" text-anchor="middle" font-size="8" fill="#9E9690" font-family="system-ui, sans-serif">25%</text>
+                    <text x="400" y="348" text-anchor="middle" font-size="8" fill="#9E9690" font-family="system-ui, sans-serif">50%</text>
+                    <text x="520" y="348" text-anchor="middle" font-size="8" fill="#9E9690" font-family="system-ui, sans-serif">75%</text>
+                    <text x="640" y="348" text-anchor="middle" font-size="8" fill="#9E9690" font-family="system-ui, sans-serif">100%</text>
+                    <text x="152" y="25" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Goa</text>
+                    <rect x="160" y="15" width="480" height="14" fill="#1A6B8A" rx="1"/><text x="646" y="25" font-size="8" fill="#1A6B8A" font-family="system-ui, sans-serif">100%</text>
+                    <text x="152" y="45" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Punjab</text>
+                    <rect x="160" y="35" width="470" height="14" fill="#1A6B8A" rx="1"/><text x="636" y="45" font-size="8" fill="#1A6B8A" font-family="system-ui, sans-serif">98%</text>
+                    <text x="152" y="65" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Haryana</text>
+                    <rect x="160" y="55" width="456" height="14" fill="#1A6B8A" rx="1"/><text x="622" y="65" font-size="8" fill="#1A6B8A" font-family="system-ui, sans-serif">95%</text>
+                    <text x="152" y="90" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Gujarat</text>
+                    <rect x="160" y="80" width="461" height="14" fill="#1A6B8A" rx="1"/><text x="627" y="90" font-size="8" fill="#1A6B8A" font-family="system-ui, sans-serif">96%</text>
+                    <text x="152" y="110" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Tamil Nadu</text>
+                    <rect x="160" y="100" width="374" height="14" fill="#3D9B8F" rx="1"/><text x="540" y="110" font-size="8" fill="#3D9B8F" font-family="system-ui, sans-serif">78%</text>
+                    <text x="152" y="130" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Karnataka</text>
+                    <rect x="160" y="120" width="346" height="14" fill="#3D9B8F" rx="1"/><text x="512" y="130" font-size="8" fill="#3D9B8F" font-family="system-ui, sans-serif">72%</text>
+                    <text x="152" y="150" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Maharashtra</text>
+                    <rect x="160" y="140" width="341" height="14" fill="#3D9B8F" rx="1"/><text x="507" y="150" font-size="8" fill="#3D9B8F" font-family="system-ui, sans-serif">71%</text>
+                    <text x="152" y="175" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Rajasthan</text>
+                    <rect x="160" y="165" width="288" height="14" fill="#3D9B8F" rx="1"/><text x="454" y="175" font-size="8" fill="#3D9B8F" font-family="system-ui, sans-serif">60%</text>
+                    <text x="152" y="195" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Madhya Pradesh</text>
+                    <rect x="160" y="185" width="240" height="14" fill="#F28E2B" rx="1"/><text x="406" y="195" font-size="8" fill="#F28E2B" font-family="system-ui, sans-serif">50%</text>
+                    <text x="152" y="215" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">West Bengal</text>
+                    <rect x="160" y="205" width="154" height="14" fill="#F28E2B" rx="1"/><text x="320" y="215" font-size="8" fill="#F28E2B" font-family="system-ui, sans-serif">32%</text>
+                    <text x="152" y="235" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Uttar Pradesh</text>
+                    <rect x="160" y="225" width="144" height="14" fill="#F28E2B" rx="1"/><text x="310" y="235" font-size="8" fill="#F28E2B" font-family="system-ui, sans-serif">30%</text>
+                    <text x="152" y="255" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Bihar</text>
+                    <rect x="160" y="245" width="134" height="14" fill="#F28E2B" rx="1"/><text x="300" y="255" font-size="8" fill="#F28E2B" font-family="system-ui, sans-serif">28%</text>
+                    <text x="152" y="275" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Jharkhand</text>
+                    <rect x="160" y="265" width="120" height="14" fill="#F28E2B" rx="1"/><text x="286" y="275" font-size="8" fill="#F28E2B" font-family="system-ui, sans-serif">25%</text>
+                    <text x="152" y="295" text-anchor="end" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif">Assam</text>
+                    <rect x="160" y="285" width="115" height="14" fill="#F28E2B" rx="1"/><text x="281" y="295" font-size="8" fill="#F28E2B" font-family="system-ui, sans-serif">24%</text>
+                    <line x1="380" y1="10" x2="380" y2="330" stroke="#1A1A2E" stroke-width="1.2" stroke-dasharray="4,3"/>
+                    <text x="382" y="325" font-size="8" fill="#1A1A2E" font-family="system-ui, sans-serif" font-weight="600">National avg: 46%</text>
+                    <rect x="160" y="360" width="10" height="10" fill="#1A6B8A" rx="1"/>
+                    <text x="174" y="369" font-size="8" fill="#6B6560" font-family="system-ui, sans-serif">&gt;90%</text>
+                    <rect x="220" y="360" width="10" height="10" fill="#3D9B8F" rx="1"/>
+                    <text x="234" y="369" font-size="8" fill="#6B6560" font-family="system-ui, sans-serif">50-90%</text>
+                    <rect x="300" y="360" width="10" height="10" fill="#F28E2B" rx="1"/>
+                    <text x="314" y="369" font-size="8" fill="#6B6560" font-family="system-ui, sans-serif">&lt;50%</text>
+                </svg>
+                <div class="project-figure-caption">
+                    By 2022, Goa reached 100% and several states were above 90%. But the most populous states, UP, Bihar, West Bengal and Jharkhand, remained below 35%. The national average tripled but the geographic inequality persisted.
+                </div>
+                <div class="project-figure-source">Source: Jal Shakti Ministry / JJM Dashboard. Selected states shown; figures approximate.</div>
+            </div>
+
+            <div class="project-figure">
+                <div class="project-figure-title">Rapid progress, but a long way still to go</div>
+                <div class="project-figure-subtitle">Rural households with tap water connections, % of total (18.93 crore households)</div>
+                <svg viewBox="0 0 660 210" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="660" height="210" fill="#FAFAF7"/>
+                    <!-- Grid -->
+                    <line x1="140" y1="20" x2="620" y2="20" stroke="#E8E4DC" stroke-width="0.5"/>
+                    <line x1="140" y1="56" x2="620" y2="56" stroke="#E8E4DC" stroke-width="0.5"/>
+                    <line x1="140" y1="92" x2="620" y2="92" stroke="#E8E4DC" stroke-width="0.5"/>
+                    <line x1="140" y1="128" x2="620" y2="128" stroke="#E8E4DC" stroke-width="0.5"/>
+                    <line x1="140" y1="164" x2="620" y2="164" stroke="#E8E4DC" stroke-width="0.5"/>
+                    <!-- Y labels -->
+                    <text x="132" y="24" text-anchor="end" font-size="9" fill="#9E9690" font-family="system-ui, sans-serif">100%</text>
+                    <text x="132" y="60" text-anchor="end" font-size="9" fill="#9E9690" font-family="system-ui, sans-serif">75%</text>
+                    <text x="132" y="96" text-anchor="end" font-size="9" fill="#9E9690" font-family="system-ui, sans-serif">50%</text>
+                    <text x="132" y="132" text-anchor="end" font-size="9" fill="#9E9690" font-family="system-ui, sans-serif">25%</text>
+                    <text x="132" y="168" text-anchor="end" font-size="9" fill="#9E9690" font-family="system-ui, sans-serif">0%</text>
+                    <!-- 2019 bar -->
+                    <rect x="230" y="139" width="70" height="25" fill="#E15759" rx="2"/>
+                    <text x="265" y="156" text-anchor="middle" font-size="11" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="700">17%</text>
+                    <text x="265" y="183" text-anchor="middle" font-size="10" fill="#6B6560" font-family="system-ui, sans-serif">2019</text>
+                    <text x="265" y="196" text-anchor="middle" font-size="8" fill="#9E9690" font-family="system-ui, sans-serif">3.23 Cr</text>
+                    <!-- 2022 bar -->
+                    <rect x="380" y="98" width="70" height="66" fill="#1A6B8A" rx="2"/>
+                    <text x="415" y="120" text-anchor="middle" font-size="11" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="700">46%</text>
+                    <text x="415" y="183" text-anchor="middle" font-size="10" fill="#6B6560" font-family="system-ui, sans-serif">2022</text>
+                    <text x="415" y="196" text-anchor="middle" font-size="8" fill="#9E9690" font-family="system-ui, sans-serif">8.75 Cr</text>
+                    <!-- 2030 target -->
+                    <rect x="530" y="20" width="70" height="144" fill="#3D9B8F" opacity="0.2" rx="2" stroke="#3D9B8F" stroke-width="1" stroke-dasharray="4,3"/>
+                    <text x="565" y="50" text-anchor="middle" font-size="11" fill="#3D9B8F" font-family="system-ui, sans-serif" font-weight="700">100%</text>
+                    <text x="565" y="65" text-anchor="middle" font-size="8" fill="#3D9B8F" font-family="system-ui, sans-serif">SDG 6 target</text>
+                    <text x="565" y="183" text-anchor="middle" font-size="10" fill="#6B6560" font-family="system-ui, sans-serif">2030</text>
+                    <!-- Growth arrow -->
+                    <text x="340" y="125" text-anchor="middle" font-size="9" fill="#1A6B8A" font-family="system-ui, sans-serif" font-weight="600">&times;2.7</text>
+                </svg>
+                <div class="project-figure-caption">
+                    The Jal Jeevan Mission nearly tripled tap water coverage in three years. But closing the remaining gap by 2030 requires both more money and smarter delivery.
+                </div>
+                <div class="project-figure-source">Source: Jal Shakti Ministry, Government of India.</div>
+            </div>
+
+            <!-- ════════ 2. FUNDING GAP ════════ -->
+            <h2 class="project-section-title" id="gap">The $123 billion question</h2>
+
+            <p>
+                Numbers tell the story bluntly. The World Bank estimates that India needs $123 billion to achieve universal access to safe water and sanitation by 2030. The government's budgetary allocation for rural drinking water supply and sanitation in 2021-22 was approximately INR 66,252 crore, or about $8 billion. Even accounting for year-on-year increases, the gap between what is needed and what the exchequer provides is enormous.
+            </p>
+            <p>
+                This is the fiscal reality that motivates the project. Government spending alone will not close the gap. The question is how to design a financing architecture that brings private capital to the table without sacrificing the principle that clean water is a right, not a luxury. Previous attempts at public-private partnerships in India's water sector have had mixed results. Lima et al. (2021), in a meta-study of 122 studies on PPPs in the water sector, concluded that partnerships are valuable but that risk-sharing arrangements need significant improvement. The financing model we propose tries to learn from those failures.
+            </p>
+
+            <div class="project-figure">
+                <div class="project-figure-title">A gulf between need and budget</div>
+                <div class="project-figure-subtitle">Estimated cost to achieve universal safe water vs. annual government allocation, USD billion</div>
+                <svg viewBox="0 0 660 180" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="660" height="180" fill="#FAFAF7"/>
+                    <!-- Total need bar -->
+                    <text x="40" y="55" font-size="10" fill="#1A1A2E" font-family="system-ui, sans-serif" font-weight="500">Total need (by 2030)</text>
+                    <rect x="200" y="38" width="420" height="28" fill="#E15759" rx="2"/>
+                    <text x="410" y="57" text-anchor="middle" font-size="13" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="700">$123 billion</text>
+                    <!-- Annual allocation bar -->
+                    <text x="40" y="105" font-size="10" fill="#1A1A2E" font-family="system-ui, sans-serif" font-weight="500">Annual allocation</text>
+                    <rect x="200" y="88" width="27" height="28" fill="#1A6B8A" rx="2"/>
+                    <text x="238" y="107" font-size="11" fill="#1A6B8A" font-family="system-ui, sans-serif" font-weight="700">~$8bn/yr</text>
+                    <!-- Gap annotation -->
+                    <line x1="227" y1="120" x2="620" y2="120" stroke="#F28E2B" stroke-width="1" stroke-dasharray="3,3"/>
+                    <rect x="350" y="130" width="270" height="30" rx="4" fill="#F28E2B" opacity="0.08"/>
+                    <text x="485" y="150" text-anchor="middle" font-size="9" fill="#F28E2B" font-family="system-ui, sans-serif" font-weight="600">At current pace, it would take ~15 years to close the gap</text>
+                </svg>
+                <div class="project-figure-caption">
+                    Annual government spending covers a fraction of what is needed. Private capital must fill the gap, but on terms that keep water affordable for the poorest households.
+                </div>
+                <div class="project-figure-source">Source: World Bank; PRS India Budget Analysis 2023-24.</div>
+            </div>
+
+            <!-- ════════ 3. MARKET FAILURES ════════ -->
+            <h2 class="project-section-title" id="failures">Why markets alone will not solve it</h2>
+
+            <p>
+                The water sector in rural India is plagued by textbook market failures, and understanding them is essential to designing a financing mechanism that actually works. We identified four that matter most.
+            </p>
+            <p>
+                The first is asymmetric information. Water service providers typically know far more about the quality and quantity of water than the households they serve. Users cannot easily verify whether the water coming through their tap meets safety standards, which makes it difficult for them to make informed decisions about usage and willingness to pay. Previous programmes like the NRDWP suffered precisely because beneficiaries had no way to hold providers accountable for quality.
+            </p>
+            <p>
+                The second is adverse selection. When water services require some form of payment, the households most in need, and least able to pay, are the ones most likely to be excluded. Water.org's WaterCredit Initiative, which provides small loans for water access, encountered this problem: the intended beneficiaries were often reluctant to take on debt they feared they could not repay, creating a selection bias that undermined the programme's reach.
+            </p>
+            <p>
+                The third is moral hazard. When water is provided free or at heavily subsidised rates through government programmes, users have little incentive to conserve. Infrastructure built under the Swachh Bharat Mission was in some cases degraded within months because the people using it bore none of the cost of overuse. The tragedy-of-the-commons dynamic is alive and well in rural water provision.
+            </p>
+            <p>
+                The fourth is governance failure. Water projects involve multiple stakeholders across multiple levels of government, and corruption siphons off resources at every stage. Initiatives like the Tata Water Mission and the 2030 Water Resources Group, however well designed on paper, depend on institutional capacity and political will that is unevenly distributed across Indian states.
+            </p>
+
+            <div class="project-figure">
+                <div class="project-figure-title">Four market failures, one sector</div>
+                <div class="project-figure-subtitle">The structural problems that undermine water service delivery in rural India</div>
+                <svg viewBox="0 0 660 240" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="660" height="240" fill="#FAFAF7"/>
+                    <!-- Four boxes in a 2x2 grid -->
+                    <rect x="20" y="10" width="300" height="95" rx="5" fill="#FFFFFF" stroke="#E15759" stroke-width="1.2"/>
+                    <text x="170" y="32" text-anchor="middle" font-size="11" fill="#E15759" font-family="system-ui, sans-serif" font-weight="600">Asymmetric Information</text>
+                    <text x="170" y="50" text-anchor="middle" font-size="8.5" fill="#6B6560" font-family="system-ui, sans-serif">Providers know more about water quality</text>
+                    <text x="170" y="63" text-anchor="middle" font-size="8.5" fill="#6B6560" font-family="system-ui, sans-serif">than users. Households cannot verify</text>
+                    <text x="170" y="76" text-anchor="middle" font-size="8.5" fill="#6B6560" font-family="system-ui, sans-serif">safety standards or hold providers</text>
+                    <text x="170" y="89" text-anchor="middle" font-size="8.5" fill="#6B6560" font-family="system-ui, sans-serif">accountable for service quality.</text>
+
+                    <rect x="340" y="10" width="300" height="95" rx="5" fill="#FFFFFF" stroke="#1A6B8A" stroke-width="1.2"/>
+                    <text x="490" y="32" text-anchor="middle" font-size="11" fill="#1A6B8A" font-family="system-ui, sans-serif" font-weight="600">Adverse Selection</text>
+                    <text x="490" y="50" text-anchor="middle" font-size="8.5" fill="#6B6560" font-family="system-ui, sans-serif">Those most in need are least able</text>
+                    <text x="490" y="63" text-anchor="middle" font-size="8.5" fill="#6B6560" font-family="system-ui, sans-serif">to pay. WaterCredit found that</text>
+                    <text x="490" y="76" text-anchor="middle" font-size="8.5" fill="#6B6560" font-family="system-ui, sans-serif">eligible households avoided loans</text>
+                    <text x="490" y="89" text-anchor="middle" font-size="8.5" fill="#6B6560" font-family="system-ui, sans-serif">they feared they could not repay.</text>
+
+                    <rect x="20" y="125" width="300" height="95" rx="5" fill="#FFFFFF" stroke="#F28E2B" stroke-width="1.2"/>
+                    <text x="170" y="147" text-anchor="middle" font-size="11" fill="#F28E2B" font-family="system-ui, sans-serif" font-weight="600">Moral Hazard</text>
+                    <text x="170" y="165" text-anchor="middle" font-size="8.5" fill="#6B6560" font-family="system-ui, sans-serif">Free provision removes incentive</text>
+                    <text x="170" y="178" text-anchor="middle" font-size="8.5" fill="#6B6560" font-family="system-ui, sans-serif">to conserve. Infrastructure degrades</text>
+                    <text x="170" y="191" text-anchor="middle" font-size="8.5" fill="#6B6560" font-family="system-ui, sans-serif">rapidly when users bear no cost</text>
+                    <text x="170" y="204" text-anchor="middle" font-size="8.5" fill="#6B6560" font-family="system-ui, sans-serif">of overuse or misuse.</text>
+
+                    <rect x="340" y="125" width="300" height="95" rx="5" fill="#FFFFFF" stroke="#B07AA1" stroke-width="1.2"/>
+                    <text x="490" y="147" text-anchor="middle" font-size="11" fill="#B07AA1" font-family="system-ui, sans-serif" font-weight="600">Governance Failure</text>
+                    <text x="490" y="165" text-anchor="middle" font-size="8.5" fill="#6B6560" font-family="system-ui, sans-serif">Corruption and weak institutions</text>
+                    <text x="490" y="178" text-anchor="middle" font-size="8.5" fill="#6B6560" font-family="system-ui, sans-serif">siphon resources. Multi-stakeholder</text>
+                    <text x="490" y="191" text-anchor="middle" font-size="8.5" fill="#6B6560" font-family="system-ui, sans-serif">projects depend on political will</text>
+                    <text x="490" y="204" text-anchor="middle" font-size="8.5" fill="#6B6560" font-family="system-ui, sans-serif">that varies widely across states.</text>
+                </svg>
+                <div class="project-figure-caption">
+                    Each failure undermines a different part of the delivery chain. An effective financing model must address all four simultaneously.
+                </div>
+            </div>
+
+            <!-- ════════ 4. THE MODEL ════════ -->
+            <h2 class="project-section-title" id="model">A hybrid financing architecture</h2>
+
+            <p>
+                The proposed model rests on a simple premise: private firms build and maintain water infrastructure (tap connections, wells, boreholes), and households pay usage fees that create both a revenue stream for the operator and an incentive for responsible consumption. The government's role shifts from provider to regulator and safety net. Rather than building infrastructure directly, it subsidises the most vulnerable households so that ability to pay never determines access to clean water.
+            </p>
+            <p>
+                This is not a pure privatisation model. It is a structured partnership where private entities are motivated by a combination of revenue from user fees, tax breaks on their investment, and the ability to count their upfront capital expenditure against mandatory Corporate Social Responsibility (CSR) obligations under Indian law. The CSR angle is not a feel-good add-on. Since the 2013 Companies Act, Indian firms above a certain size are legally required to spend 2% of net profits on CSR activities. Water infrastructure is a qualifying expenditure. For a firm evaluating where to direct its CSR budget, a project that also generates an operating revenue stream is considerably more attractive than a pure donation.
+            </p>
+
+            <div class="project-figure">
+                <div class="project-figure-title">How the money flows</div>
+                <div class="project-figure-subtitle">The proposed hybrid financing architecture for rural water infrastructure</div>
+                <svg viewBox="0 0 660 310" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="660" height="310" fill="#FAFAF7"/>
+                    <defs>
+                        <marker id="arrowD" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#6B6560"/></marker>
+                    </defs>
+                    <!-- Private Sector -->
+                    <rect x="20" y="15" width="180" height="50" rx="4" fill="#1A6B8A"/>
+                    <text x="110" y="37" text-anchor="middle" font-size="10.5" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="600">Private Sector</text>
+                    <text x="110" y="52" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.75)" font-family="system-ui, sans-serif">Build + Operate infra</text>
+                    <!-- Government -->
+                    <rect x="240" y="15" width="180" height="50" rx="4" fill="#3D9B8F"/>
+                    <text x="330" y="37" text-anchor="middle" font-size="10.5" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="600">Government</text>
+                    <text x="330" y="52" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.75)" font-family="system-ui, sans-serif">Regulate + Subsidise</text>
+                    <!-- Households -->
+                    <rect x="460" y="15" width="180" height="50" rx="4" fill="#E15759"/>
+                    <text x="550" y="37" text-anchor="middle" font-size="10.5" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="600">Rural Households</text>
+                    <text x="550" y="52" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.75)" font-family="system-ui, sans-serif">Use + Pay via Water Card</text>
+
+                    <!-- Infrastructure box -->
+                    <rect x="40" y="100" width="160" height="40" rx="4" fill="#FFFFFF" stroke="#1A6B8A" stroke-width="1"/>
+                    <text x="120" y="124" text-anchor="middle" font-size="9" fill="#1A6B8A" font-family="system-ui, sans-serif" font-weight="500">Water Infrastructure</text>
+                    <line x1="110" y1="65" x2="110" y2="95" stroke="#6B6560" stroke-width="1.2" marker-end="url(#arrowD)"/>
+                    <text x="78" y="83" font-size="7" fill="#1A6B8A" font-family="system-ui, sans-serif">Capital + CSR</text>
+
+                    <!-- Subsidy flow -->
+                    <rect x="260" y="100" width="160" height="40" rx="4" fill="#FFFFFF" stroke="#3D9B8F" stroke-width="1"/>
+                    <text x="340" y="118" text-anchor="middle" font-size="9" fill="#3D9B8F" font-family="system-ui, sans-serif" font-weight="500">Aadhar-linked</text>
+                    <text x="340" y="132" text-anchor="middle" font-size="9" fill="#3D9B8F" font-family="system-ui, sans-serif" font-weight="500">Water Card Subsidy</text>
+                    <line x1="330" y1="65" x2="330" y2="95" stroke="#6B6560" stroke-width="1.2" marker-end="url(#arrowD)"/>
+
+                    <!-- Usage fee flow -->
+                    <rect x="480" y="100" width="160" height="40" rx="4" fill="#FFFFFF" stroke="#E15759" stroke-width="1"/>
+                    <text x="560" y="124" text-anchor="middle" font-size="9" fill="#E15759" font-family="system-ui, sans-serif" font-weight="500">Usage Fees</text>
+                    <line x1="550" y1="65" x2="560" y2="95" stroke="#6B6560" stroke-width="1.2" marker-end="url(#arrowD)"/>
+
+                    <!-- Revenue flow back -->
+                    <line x1="480" y1="130" x2="205" y2="130" stroke="#F28E2B" stroke-width="1.2" marker-end="url(#arrowD)"/>
+                    <text x="340" y="148" text-anchor="middle" font-size="7.5" fill="#F28E2B" font-family="system-ui, sans-serif" font-weight="500">Revenue stream to operator</text>
+
+                    <!-- Subsidy to households -->
+                    <line x1="420" y1="115" x2="475" y2="115" stroke="#3D9B8F" stroke-width="1.2" marker-end="url(#arrowD)"/>
+                    <text x="448" y="108" text-anchor="middle" font-size="6.5" fill="#3D9B8F" font-family="system-ui, sans-serif">Subsidies offset fees</text>
+
+                    <!-- Incentives -->
+                    <rect x="20" y="180" width="620" height="55" rx="4" fill="#1A1A2E" opacity="0.03"/>
+                    <text x="330" y="198" text-anchor="middle" font-size="9.5" fill="#1A1A2E" font-family="system-ui, sans-serif" font-weight="600">Private sector incentives</text>
+                    <text x="130" y="218" text-anchor="middle" font-size="8.5" fill="#6B6560" font-family="system-ui, sans-serif">Tax breaks on investment</text>
+                    <text x="330" y="218" text-anchor="middle" font-size="8.5" fill="#6B6560" font-family="system-ui, sans-serif">CSR compliance (2% rule)</text>
+                    <text x="530" y="218" text-anchor="middle" font-size="8.5" fill="#6B6560" font-family="system-ui, sans-serif">Recurring revenue from fees</text>
+
+                    <!-- Addresses -->
+                    <rect x="20" y="250" width="620" height="45" rx="4" fill="#3D9B8F" opacity="0.06"/>
+                    <text x="330" y="268" text-anchor="middle" font-size="9.5" fill="#3D9B8F" font-family="system-ui, sans-serif" font-weight="600">Market failures addressed</text>
+                    <text x="110" y="285" text-anchor="middle" font-size="8" fill="#6B6560" font-family="system-ui, sans-serif">Competition &#8594; info transparency</text>
+                    <text x="290" y="285" text-anchor="middle" font-size="8" fill="#6B6560" font-family="system-ui, sans-serif">Subsidies &#8594; no adverse selection</text>
+                    <text x="465" y="285" text-anchor="middle" font-size="8" fill="#6B6560" font-family="system-ui, sans-serif">User fees &#8594; reduces moral hazard</text>
+                    <text x="610" y="285" text-anchor="middle" font-size="8" fill="#6B6560" font-family="system-ui, sans-serif">Aadhar &#8594; limits corruption</text>
+                </svg>
+                <div class="project-figure-caption">
+                    The model channels private capital into infrastructure, government subsidies into equity of access, and usage fees into conservation incentives and operator revenue.
+                </div>
+            </div>
+
+            <!-- ════════ 5. WATER CARD ════════ -->
+            <h2 class="project-section-title" id="watercard">The Water Card</h2>
+
+            <p>
+                The centrepiece of the equity mechanism is the Water Card, an innovation modelled on India's existing Public Distribution System (PDS) card. Each eligible household receives a digital card linked to its Aadhar (the biometric unique identification number now held by virtually every Indian resident). The government, drawing on socioeconomic data already collected for other welfare programmes, determines differential subsidy levels. Credits are loaded onto the card monthly, removing the need for physical voucher distribution. Non-eligible households simply recharge their cards and use them to access water at the standard usage fee.
+            </p>
+            <p>
+                The design exploits two pieces of digital infrastructure that already exist. First, the Aadhar system provides a reliable way to identify eligible households and ensure subsidies reach their intended recipients rather than being siphoned off by intermediaries. Second, the PDS card verification infrastructure, already operational for food distribution across the country, can be extended to water subsidies without building a parallel system from scratch. Community members participate in card verification and distribution, adding a layer of peer monitoring that discourages fraud while creating local employment.
+            </p>
+            <p>
+                The tiered approach is deliberate. Households below the poverty line receive the largest subsidies, covering most or all of the usage fee. Those above the poverty line but still economically constrained receive partial subsidies. Better-off households pay the full fee. The point is not to make water free for everyone, which would recreate the moral hazard problem, but to ensure that the price signal works for conservation while no one is excluded on grounds of poverty.
+            </p>
+
+            <!-- ════════ 6. FEASIBILITY ════════ -->
+            <h2 class="project-section-title" id="feasibility">Can it work financially?</h2>
+
+            <p>
+                We tested the model against a hypothetical village of 1,000 people requiring a new water facility costing INR 10 lakh (roughly CHF 11,000). Under the proposed structure, the government provides half the capital cost as a grant. The private investor contributes the remaining INR 5 lakh, which qualifies as CSR expenditure under the Companies Act and may also attract tax relief.
+            </p>
+            <p>
+                On the revenue side, suppose a monthly usage fee of INR 50 per household and an uptake rate of 50% (conservative for a village with no alternative piped supply). That generates INR 50,000 per month in recurring revenue, which flows to the operating firm. Variable costs for maintenance, salaries and consumables are covered by a small markup over the fee. The initial capital outlay is effectively a sunk investment that the private firm recovers not through direct repayment but through CSR credit, reputational value and the option to scale the model across multiple villages.
+            </p>
+            <p>
+                In practice, we expect larger corporations to provide the upfront capital while smaller local firms handle day-to-day operations on a management contract. This separation makes economic sense. A large firm's cost structure and profit expectations are ill-suited to running a rural water point. A smaller local operator, with lower overheads and stronger community ties, can maintain the system sustainably on thinner margins while creating local jobs.
+            </p>
+
+            <!-- ════════ 7. TAKEAWAYS ════════ -->
+            <h2 class="project-section-title" id="takeaways">What it all means</h2>
+
+            <div class="finding-card">
+                <div class="finding-number">Core Proposal</div>
+                <p>A hybrid financing model where private firms build and operate water infrastructure, households pay usage fees via an Aadhar-linked Water Card, and the government provides targeted digital subsidies to ensure no one is excluded on grounds of poverty.</p>
+            </div>
+
+            <div class="finding-card">
+                <div class="finding-number">Equity Mechanism</div>
+                <p>Tiered subsidies loaded onto the Water Card ensure that the poorest households receive near-full coverage of usage fees, while better-off households pay in full. The price signal preserves conservation incentives without sacrificing access.</p>
+            </div>
+
+            <div class="finding-card">
+                <div class="finding-number">Private Sector Incentives</div>
+                <p>Tax breaks, CSR compliance under the Companies Act 2013, and a recurring revenue stream from usage fees make the investment attractive to firms that might otherwise see rural water as a pure charity expenditure.</p>
+            </div>
+
+            <div class="finding-card">
+                <div class="finding-number">Addressing Market Failures</div>
+                <p>Competition among private operators improves information transparency. Subsidies eliminate adverse selection. Usage fees reduce moral hazard. Aadhar linkage limits corruption and leakage. The model addresses all four structural failures simultaneously.</p>
+            </div>
+
+            <!-- ════════ TOOLS ════════ -->
+            <h2 class="project-section-title" id="tools">Tools and methods</h2>
+
+            <div class="method-groups">
+                <div class="method-group">
+                    <h3 class="method-group-title">Data sources</h3>
+                    <div class="method-tags">
+                        <span class="method-tag">World Bank</span>
+                        <span class="method-tag">Jal Shakti Ministry</span>
+                        <span class="method-tag">CEEW India</span>
+                        <span class="method-tag">PRS India</span>
+                        <span class="method-tag">USAID</span>
+                    </div>
+                </div>
+
+                <div class="method-group">
+                    <h3 class="method-group-title">Methods</h3>
+                    <div class="method-tags">
+                        <span class="method-tag">Policy Design</span>
+                        <span class="method-tag">Institutional Analysis</span>
+                        <span class="method-tag">Financial Modelling</span>
+                        <span class="method-tag">Market Failure Analysis</span>
+                        <span class="method-tag">Comparative Case Study</span>
+                    </div>
+                </div>
+
+                <div class="method-group">
+                    <h3 class="method-group-title">Context</h3>
+                    <div class="method-tags">
+                        <span class="method-tag">SDG 6</span>
+                        <span class="method-tag">Public-Private Partnerships</span>
+                        <span class="method-tag">Impact Investment</span>
+                        <span class="method-tag">Digital Public Infrastructure</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="project-nav">
+                <a href="projects.html">&larr; All projects</a>
+                <a href="index.html#projects">Back to home</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Soumita Roy &middot; PhD Researcher &middot; <a href="https://ethz.ch" target="_blank">ETH Z&uuml;rich</a></p>
+        <p style="margin-top: 4px;">All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        const tocLinks = document.querySelectorAll('.toc-link');
+        const tocTargets = Array.from(tocLinks).map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+        function updateActiveToc() {
+            let current = '';
+            tocTargets.forEach(s => { if (s.getBoundingClientRect().top <= 140) current = s.id; });
+            tocLinks.forEach(l => { l.classList.toggle('active', l.getAttribute('href') === '#' + current); });
+        }
+        window.addEventListener('scroll', updateActiveToc, { passive: true });
+    </script>
+</body>
+</html>
