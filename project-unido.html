@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontier Technologies Readiness &mdash; Soumita Roy</title>
+    <meta name="description" content="Measuring countries' preparedness to adopt frontier technologies. Co-authored policy brief for UNCTAD's Technology and Innovation Report 2023, published on UNIDO's Industrial Analytics Platform.">
+    <link rel="icon" href="favicon33.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .project-section-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 48px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+        .project-figure {
+            margin: 28px 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            background: #FFFFFF;
+        }
+        [data-theme="dark"] .project-figure {
+            background: #FAFAF7;
+            border-color: var(--color-border);
+        }
+        .project-figure img {
+            width: 100%;
+            display: block;
+        }
+        .project-figure svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .project-figure-title {
+            font-family: var(--font-display);
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: #1A1A2E;
+            padding: 16px 16px 2px;
+            line-height: 1.35;
+        }
+        .project-figure-subtitle {
+            font-size: 0.78rem;
+            color: #6B6560;
+            padding: 0 16px 8px;
+            line-height: 1.5;
+        }
+        .project-figure-caption {
+            font-size: 0.82rem;
+            color: var(--color-text-light);
+            padding: 10px 16px;
+            border-top: 1px solid var(--color-border-light);
+            line-height: 1.5;
+        }
+        [data-theme="dark"] .project-figure-caption {
+            color: #6A6060;
+        }
+        .project-figure-source {
+            font-size: 0.72rem;
+            color: #B0A89C;
+            padding: 0 16px 10px;
+            line-height: 1.4;
+        }
+        .summary-box {
+            background: var(--color-warm-glow);
+            border-left: 3px solid var(--color-accent);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            padding: 20px 24px;
+            margin-bottom: 36px;
+        }
+        .summary-box p {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            line-height: 1.75;
+            margin-bottom: 0;
+        }
+        .summary-box p + p {
+            margin-top: 10px;
+        }
+        .finding-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            padding: 20px 24px;
+            margin: 12px 0;
+            max-width: 720px;
+        }
+        .finding-card .finding-number {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: 6px;
+        }
+        .finding-card p {
+            font-size: 0.93rem;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+        .method-group-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            color: var(--color-text-light);
+        }
+        .method-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 0 0 8px;
+        }
+        .method-tag {
+            font-size: 0.78rem;
+            padding: 5px 14px;
+            border-radius: 20px;
+            background: var(--color-accent-light);
+            color: var(--color-accent);
+            font-weight: 500;
+        }
+        .project-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--color-border-light);
+        }
+        .project-nav a {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .page-toc {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            padding: 12px 0;
+            margin-bottom: 8px;
+            border-bottom: 1px solid var(--color-border-light);
+            position: sticky;
+            top: var(--nav-height);
+            z-index: 50;
+            background: var(--color-bg);
+            transition: background var(--transition);
+        }
+        .toc-link {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--color-text-light);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--color-border);
+            transition: all 0.2s;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .toc-link:hover, .toc-link.active {
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+            background: var(--color-accent-light);
+        }
+        @media (max-width: 768px) {
+            .page-toc { gap: 4px; }
+            .toc-link { font-size: 0.72rem; padding: 5px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-name">SR</a>
+            <div class="nav-right">
+                <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#research">Research</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#cv">CV</a></li>
+                    <li><a href="index.html#interests">Interests</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                    <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="subpage-header">
+            <div class="breadcrumb">
+                <a href="index.html">home</a> &rarr; <a href="projects.html">projects</a> &rarr; frontier technologies
+            </div>
+            <h1>Moving Fast with Frontier Technologies</h1>
+            <p class="subpage-quote">A pioneering index to measure how ready countries are for the technologies reshaping the global economy.</p>
+            <p style="font-size: 0.92rem; color: var(--color-text-secondary); margin-top: 8px;">
+                January 2024 &middot; Soumita Roy &middot; 7 min read<br>
+                UNCTAD / UNIDO Industrial Analytics Platform<br>
+                With H. Pinto Coelho, F. Bacil, and C. Freire
+            </p>
+        </div>
+
+        <div class="page-toc" id="pageToc">
+            <a href="#context" class="toc-link active">Context</a>
+            <a href="#imbalance" class="toc-link">Imbalance</a>
+            <a href="#index" class="toc-link">The Index</a>
+            <a href="#gaps" class="toc-link">Gaps</a>
+            <a href="#policy" class="toc-link">Policy</a>
+            <a href="#takeaways" class="toc-link">Takeaways</a>
+            <a href="#tools" class="toc-link">Tools</a>
+        </div>
+
+        <div class="subpage-body">
+
+            <!-- ════════ SUMMARY BOX ════════ -->
+            <div class="summary-box">
+                <p>
+                    <strong>In brief:</strong> Frontier technologies, from artificial intelligence and the Internet of Things to green hydrogen and electric vehicles, represent a market projected to grow from $1.5 trillion in 2020 to $9.5 trillion by 2030. But the gains are not distributed evenly. The United States and China alone account for over 30% of publications and nearly 70% of patents across 17 frontier technology fields. This project, published as a policy brief for UNCTAD's Technology and Innovation Report 2023 and featured on UNIDO's Industrial Analytics Platform, introduces a readiness index that measures how prepared 166 countries are to use, adopt and adapt these technologies, and identifies the specific capability gaps that developing economies need to close.
+                </p>
+            </div>
+
+            <!-- ════════ 1. CONTEXT ════════ -->
+            <h2 class="project-section-title" id="context">The $9.5 trillion question</h2>
+
+            <p>
+                Frontier technologies is a capacious label. It covers everything from AI and blockchain to drones, gene editing and solar photovoltaics. What these technologies share is not a common engineering base but a common economic trajectory: rapid growth, high concentration among a handful of producers, and the potential to restructure entire industries in the countries that manage to adopt them early.
+            </p>
+            <p>
+                The UNCTAD Technology and Innovation Report 2023 groups 17 such technologies into three broad categories. The first cluster is digital and data-driven: artificial intelligence, the Internet of Things, big data, blockchain, 5G, 3D printing, robotics and drones. The second centres on physical and biological frontiers: gene editing, nanotechnology and electric vehicles. The third is green and energy-related: solar PV, wind energy, biofuels, green hydrogen, concentrated solar power and energy storage. Together, these markets were worth roughly $1.5 trillion in 2020. By 2030, on current growth trajectories, that figure is expected to surpass $9.5 trillion. The question is who will capture the value.
+            </p>
+
+            <div class="project-figure">
+                <div class="project-figure-title">A market in rapid expansion</div>
+                <div class="project-figure-subtitle">Frontier technology market value, USD trillion, 2020 vs 2030 projected</div>
+                <svg viewBox="0 0 660 220" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="660" height="220" fill="#FAFAF7"/>
+                    <!-- Grid -->
+                    <line x1="120" y1="20" x2="620" y2="20" stroke="#E8E4DC" stroke-width="0.5"/>
+                    <line x1="120" y1="60" x2="620" y2="60" stroke="#E8E4DC" stroke-width="0.5"/>
+                    <line x1="120" y1="100" x2="620" y2="100" stroke="#E8E4DC" stroke-width="0.5"/>
+                    <line x1="120" y1="140" x2="620" y2="140" stroke="#E8E4DC" stroke-width="0.5"/>
+                    <line x1="120" y1="180" x2="620" y2="180" stroke="#E8E4DC" stroke-width="0.5"/>
+                    <!-- Y labels -->
+                    <text x="112" y="24" text-anchor="end" font-size="10" fill="#9E9690" font-family="system-ui, sans-serif">10</text>
+                    <text x="112" y="64" text-anchor="end" font-size="10" fill="#9E9690" font-family="system-ui, sans-serif">8</text>
+                    <text x="112" y="104" text-anchor="end" font-size="10" fill="#9E9690" font-family="system-ui, sans-serif">6</text>
+                    <text x="112" y="144" text-anchor="end" font-size="10" fill="#9E9690" font-family="system-ui, sans-serif">4</text>
+                    <text x="112" y="184" text-anchor="end" font-size="10" fill="#9E9690" font-family="system-ui, sans-serif">2</text>
+                    <text x="80" y="104" text-anchor="middle" font-size="9" fill="#9E9690" font-family="system-ui, sans-serif" transform="rotate(-90 80 104)">USD trillion</text>
+                    <!-- 2020 bar -->
+                    <rect x="210" y="150" width="80" height="30" fill="#1A6B8A" rx="2"/>
+                    <text x="250" y="170" text-anchor="middle" font-size="11" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="600">$1.5T</text>
+                    <text x="250" y="198" text-anchor="middle" font-size="11" fill="#6B6560" font-family="system-ui, sans-serif" font-weight="500">2020</text>
+                    <!-- 2030 bar -->
+                    <rect x="380" y="22" width="80" height="158" fill="#E15759" rx="2"/>
+                    <text x="420" y="50" text-anchor="middle" font-size="13" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="700">$9.5T</text>
+                    <text x="420" y="198" text-anchor="middle" font-size="11" fill="#6B6560" font-family="system-ui, sans-serif" font-weight="500">2030 (proj.)</text>
+                    <!-- Growth annotation -->
+                    <line x1="295" y1="100" x2="375" y2="60" stroke="#3D9B8F" stroke-width="1.5" stroke-dasharray="4,3"/>
+                    <text x="345" y="72" text-anchor="middle" font-size="10" fill="#3D9B8F" font-family="system-ui, sans-serif" font-weight="600">&times;6.3</text>
+                </svg>
+                <div class="project-figure-caption">
+                    The combined market for 17 frontier technologies is projected to more than sextuply in a decade. The question is which countries will capture the growth.
+                </div>
+                <div class="project-figure-source">Source: UNCTAD Technology and Innovation Report 2023.</div>
+            </div>
+
+            <!-- ════════ 2. IMBALANCE ════════ -->
+            <h2 class="project-section-title" id="imbalance">A geography of concentration</h2>
+
+            <p>
+                The distribution of frontier technology capability is strikingly lopsided. The United States and China together produce more than 30% of all scientific publications and close to 70% of all patents across the 17 technology fields examined in the report. Among the top providers of these technologies globally, only two firms come from developing economies (and that count excludes China). The pattern is self-reinforcing: countries that lead in research attract the talent, the venture capital and the first-mover advantages that make it harder for latecomers to break in.
+            </p>
+            <p>
+                The imbalance extends to trade. Between 2018 and 2021, developed countries saw their green technology exports grow by a factor of 2.6, reaching $156 billion. Developing countries managed a factor of 1.3 over the same period, reaching $75 billion. The risk is that frontier technologies become yet another domain where a small number of advanced economies capture most of the value while the rest of the world remains a consumer rather than a producer.
+            </p>
+
+            <div class="project-figure">
+                <div class="project-figure-title">Knowledge generation is heavily concentrated</div>
+                <div class="project-figure-subtitle">Share of global frontier technology publications and patents, US and China combined</div>
+                <svg viewBox="0 0 660 200" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="660" height="200" fill="#FAFAF7"/>
+                    <!-- Publications bar -->
+                    <text x="40" y="55" font-size="10" fill="#1A1A2E" font-family="system-ui, sans-serif" font-weight="500">Publications</text>
+                    <rect x="160" y="38" width="198" height="28" fill="#1A6B8A" rx="2"/>
+                    <rect x="358" y="38" width="262" height="28" fill="#E8E4DC" rx="2"/>
+                    <text x="259" y="57" text-anchor="middle" font-size="12" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="700">&gt;30%</text>
+                    <text x="489" y="57" text-anchor="middle" font-size="10" fill="#9E9690" font-family="system-ui, sans-serif">Rest of world</text>
+                    <!-- Patents bar -->
+                    <text x="40" y="115" font-size="10" fill="#1A1A2E" font-family="system-ui, sans-serif" font-weight="500">Patents</text>
+                    <rect x="160" y="98" width="322" height="28" fill="#E15759" rx="2"/>
+                    <rect x="482" y="98" width="138" height="28" fill="#E8E4DC" rx="2"/>
+                    <text x="321" y="117" text-anchor="middle" font-size="12" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="700">~70%</text>
+                    <text x="551" y="117" text-anchor="middle" font-size="10" fill="#9E9690" font-family="system-ui, sans-serif">Rest of world</text>
+                    <!-- Legend -->
+                    <rect x="160" y="150" width="12" height="12" fill="#1A6B8A" rx="1"/>
+                    <text x="178" y="161" font-size="9" fill="#6B6560" font-family="system-ui, sans-serif">US + China (publications)</text>
+                    <rect x="350" y="150" width="12" height="12" fill="#E15759" rx="1"/>
+                    <text x="368" y="161" font-size="9" fill="#6B6560" font-family="system-ui, sans-serif">US + China (patents)</text>
+                    <!-- Note -->
+                    <text x="160" y="185" font-size="8" fill="#9E9690" font-family="system-ui, sans-serif">Across 17 frontier technology fields. Patent concentration is particularly pronounced.</text>
+                </svg>
+                <div class="project-figure-caption">
+                    Two countries dominate knowledge production. The patent gap is even wider than the publication gap, reflecting concentration in commercialisation as well as research.
+                </div>
+                <div class="project-figure-source">Source: UNCTAD Technology and Innovation Report 2023.</div>
+            </div>
+
+            <!-- ════════ 3. THE INDEX ════════ -->
+            <h2 class="project-section-title" id="index">Measuring readiness</h2>
+
+            <p>
+                If the problem is that developing countries risk being left behind, the first step is to measure exactly where they stand and what they lack. That is the purpose of the Frontier Technology Readiness Index, developed by UNCTAD and central to Chapter 2 of the Technology and Innovation Report 2023, the chapter on which this project is based.
+            </p>
+            <p>
+                The index assesses 166 economies across five dimensions: ICT deployment (broadband penetration, internet access, mobile connectivity), skills (tertiary enrolment, engineering graduates, digital literacy), research and development activity (R&amp;D spending, scientific output, patent filings), industry activity (manufacturing value added, high-tech exports, economic complexity) and access to finance (domestic credit, venture capital availability). Each dimension captures a different prerequisite for successfully adopting frontier technologies. A country might have excellent ICT infrastructure but lack the skilled workforce to deploy it, or might produce strong research but have no industrial base to commercialise it.
+            </p>
+            <p>
+                The results are predictable in their broad contours but revealing in their detail. High-income countries dominate the top of the ranking: the United States leads, followed by Sweden, Singapore, Switzerland and the Netherlands. Emerging economies, represented here by the BRICS, appear from the second quartile onwards. The bottom of the table is populated overwhelmingly by sub-Saharan African and small island developing states.
+            </p>
+
+            <div class="project-figure">
+                <div class="project-figure-title">The readiness ladder</div>
+                <div class="project-figure-subtitle">Frontier Technology Readiness Index scores, selected countries (0 to 1 scale)</div>
+                <svg viewBox="0 0 660 340" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="660" height="340" fill="#FAFAF7"/>
+                    <!-- Horizontal bars -->
+                    <text x="130" y="28" text-anchor="end" font-size="9.5" fill="#1A1A2E" font-family="system-ui, sans-serif" font-weight="500">United States</text>
+                    <rect x="140" y="16" width="460" height="18" fill="#1A6B8A" rx="2"/>
+                    <text x="608" y="29" font-size="9" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="600">0.96</text>
+
+                    <text x="130" y="53" text-anchor="end" font-size="9.5" fill="#1A1A2E" font-family="system-ui, sans-serif" font-weight="500">Sweden</text>
+                    <rect x="140" y="41" width="440" height="18" fill="#1A6B8A" rx="2"/>
+                    <text x="588" y="54" font-size="9" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="600">0.92</text>
+
+                    <text x="130" y="78" text-anchor="end" font-size="9.5" fill="#1A1A2E" font-family="system-ui, sans-serif" font-weight="500">Singapore</text>
+                    <rect x="140" y="66" width="432" height="18" fill="#1A6B8A" rx="2"/>
+                    <text x="580" y="79" font-size="9" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="600">0.90</text>
+
+                    <text x="130" y="103" text-anchor="end" font-size="9.5" fill="#1A1A2E" font-family="system-ui, sans-serif" font-weight="500">Switzerland</text>
+                    <rect x="140" y="91" width="424" height="18" fill="#1A6B8A" rx="2"/>
+                    <text x="572" y="104" font-size="9" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="600">0.88</text>
+
+                    <text x="130" y="128" text-anchor="end" font-size="9.5" fill="#1A1A2E" font-family="system-ui, sans-serif" font-weight="500">Netherlands</text>
+                    <rect x="140" y="116" width="416" height="18" fill="#1A6B8A" rx="2"/>
+                    <text x="564" y="129" font-size="9" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="600">0.87</text>
+
+                    <!-- Gap line -->
+                    <line x1="40" y1="148" x2="630" y2="148" stroke="#E8E4DC" stroke-width="1" stroke-dasharray="3,3"/>
+                    <text x="40" y="162" font-size="8" fill="#9E9690" font-family="system-ui, sans-serif" font-style="italic">Selected emerging and developing economies</text>
+
+                    <text x="130" y="183" text-anchor="end" font-size="9.5" fill="#6B6560" font-family="system-ui, sans-serif" font-weight="500">China</text>
+                    <rect x="140" y="171" width="320" height="18" fill="#3D9B8F" rx="2"/>
+                    <text x="468" y="184" font-size="9" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="600">0.67</text>
+
+                    <text x="130" y="208" text-anchor="end" font-size="9.5" fill="#6B6560" font-family="system-ui, sans-serif" font-weight="500">Brazil</text>
+                    <rect x="140" y="196" width="245" height="18" fill="#3D9B8F" rx="2"/>
+                    <text x="393" y="209" font-size="9" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="600">0.51</text>
+
+                    <text x="130" y="233" text-anchor="end" font-size="9.5" fill="#6B6560" font-family="system-ui, sans-serif" font-weight="500">India</text>
+                    <rect x="140" y="221" width="220" height="18" fill="#3D9B8F" rx="2"/>
+                    <text x="368" y="234" font-size="9" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="600">0.46</text>
+
+                    <text x="130" y="258" text-anchor="end" font-size="9.5" fill="#6B6560" font-family="system-ui, sans-serif" font-weight="500">South Africa</text>
+                    <rect x="140" y="246" width="196" height="18" fill="#F28E2B" rx="2"/>
+                    <text x="344" y="259" font-size="9" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="600">0.41</text>
+
+                    <text x="130" y="283" text-anchor="end" font-size="9.5" fill="#6B6560" font-family="system-ui, sans-serif" font-weight="500">Bangladesh</text>
+                    <rect x="140" y="271" width="115" height="18" fill="#E15759" rx="2"/>
+                    <text x="263" y="284" font-size="9" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="600">0.24</text>
+
+                    <text x="130" y="308" text-anchor="end" font-size="9.5" fill="#6B6560" font-family="system-ui, sans-serif" font-weight="500">Haiti</text>
+                    <rect x="140" y="296" width="58" height="18" fill="#E15759" rx="2"/>
+                    <text x="206" y="309" font-size="9" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="600">0.12</text>
+
+                    <!-- Quartile labels -->
+                    <text x="630" y="28" text-anchor="end" font-size="7.5" fill="#1A6B8A" font-family="system-ui, sans-serif">Q1</text>
+                    <text x="630" y="184" text-anchor="end" font-size="7.5" fill="#3D9B8F" font-family="system-ui, sans-serif">Q2</text>
+                    <text x="630" y="259" text-anchor="end" font-size="7.5" fill="#F28E2B" font-family="system-ui, sans-serif">Q3</text>
+                    <text x="630" y="309" text-anchor="end" font-size="7.5" fill="#E15759" font-family="system-ui, sans-serif">Q4</text>
+                </svg>
+                <div class="project-figure-caption">
+                    High-income economies dominate the top quartile. The gap between the most and least ready countries is nearly eightfold on a 0-to-1 scale.
+                </div>
+                <div class="project-figure-source">Source: UNCTAD Technology and Innovation Report 2023. Scores for 166 economies; selected countries shown.</div>
+            </div>
+
+            <!-- ════════ 4. GAPS ════════ -->
+            <h2 class="project-section-title" id="gaps">Where the gaps lie</h2>
+
+            <p>
+                The aggregate scores tell one story. The component-level data tell a more useful one. When you break the index down into its five building blocks, a clear pattern emerges: developing countries as a group score worst on ICT deployment and skills. Least developed countries, landlocked developing countries and small island developing states face particularly acute deficits in ICT infrastructure and R&amp;D capability. These are not abstract rankings. A country that lacks reliable broadband cannot train an AI model. A country without enough engineering graduates cannot maintain a solar grid. The index pinpoints where the binding constraints actually sit.
+            </p>
+            <p>
+                There is, however, a note of optimism in the time series. While the absolute gaps between country groups remain wide, they have begun to narrow. Developing economies have been improving their readiness scores faster than developed ones in recent years, driven largely by gains in ICT access and mobile connectivity. Whether this convergence is fast enough to allow countries to participate in the $9.5 trillion market before it matures is the open question.
+            </p>
+
+            <div class="project-figure">
+                <div class="project-figure-title">The five dimensions of readiness</div>
+                <div class="project-figure-subtitle">Index building blocks and what each captures</div>
+                <svg viewBox="0 0 660 260" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="660" height="260" fill="#FAFAF7"/>
+                    <!-- Five boxes -->
+                    <rect x="20" y="15" width="115" height="90" rx="4" fill="#FFFFFF" stroke="#1A6B8A" stroke-width="1.2"/>
+                    <text x="77" y="38" text-anchor="middle" font-size="10" fill="#1A6B8A" font-family="system-ui, sans-serif" font-weight="600">ICT</text>
+                    <text x="77" y="55" text-anchor="middle" font-size="8" fill="#6B6560" font-family="system-ui, sans-serif">Broadband, mobile,</text>
+                    <text x="77" y="67" text-anchor="middle" font-size="8" fill="#6B6560" font-family="system-ui, sans-serif">internet access</text>
+                    <rect x="20" y="82" width="115" height="8" fill="#E15759" rx="1"/>
+                    <text x="77" y="99" text-anchor="middle" font-size="7" fill="#E15759" font-family="system-ui, sans-serif" font-weight="600">Biggest gap</text>
+
+                    <rect x="148" y="15" width="115" height="90" rx="4" fill="#FFFFFF" stroke="#3D9B8F" stroke-width="1.2"/>
+                    <text x="205" y="38" text-anchor="middle" font-size="10" fill="#3D9B8F" font-family="system-ui, sans-serif" font-weight="600">Skills</text>
+                    <text x="205" y="55" text-anchor="middle" font-size="8" fill="#6B6560" font-family="system-ui, sans-serif">Tertiary enrolment,</text>
+                    <text x="205" y="67" text-anchor="middle" font-size="8" fill="#6B6560" font-family="system-ui, sans-serif">engineering, digital</text>
+                    <rect x="148" y="82" width="115" height="8" fill="#F28E2B" rx="1"/>
+                    <text x="205" y="99" text-anchor="middle" font-size="7" fill="#F28E2B" font-family="system-ui, sans-serif" font-weight="600">Large gap</text>
+
+                    <rect x="276" y="15" width="115" height="90" rx="4" fill="#FFFFFF" stroke="#E15759" stroke-width="1.2"/>
+                    <text x="333" y="38" text-anchor="middle" font-size="10" fill="#E15759" font-family="system-ui, sans-serif" font-weight="600">R&amp;D</text>
+                    <text x="333" y="55" text-anchor="middle" font-size="8" fill="#6B6560" font-family="system-ui, sans-serif">Spending, output,</text>
+                    <text x="333" y="67" text-anchor="middle" font-size="8" fill="#6B6560" font-family="system-ui, sans-serif">patents</text>
+                    <rect x="276" y="82" width="115" height="8" fill="#F28E2B" rx="1"/>
+                    <text x="333" y="99" text-anchor="middle" font-size="7" fill="#F28E2B" font-family="system-ui, sans-serif" font-weight="600">Large gap</text>
+
+                    <rect x="404" y="15" width="115" height="90" rx="4" fill="#FFFFFF" stroke="#F28E2B" stroke-width="1.2"/>
+                    <text x="461" y="38" text-anchor="middle" font-size="10" fill="#F28E2B" font-family="system-ui, sans-serif" font-weight="600">Industry</text>
+                    <text x="461" y="55" text-anchor="middle" font-size="8" fill="#6B6560" font-family="system-ui, sans-serif">MVA, high-tech</text>
+                    <text x="461" y="67" text-anchor="middle" font-size="8" fill="#6B6560" font-family="system-ui, sans-serif">exports, complexity</text>
+                    <rect x="404" y="82" width="115" height="6" fill="#3D9B8F" rx="1"/>
+                    <text x="461" y="99" text-anchor="middle" font-size="7" fill="#3D9B8F" font-family="system-ui, sans-serif" font-weight="500">Moderate gap</text>
+
+                    <rect x="532" y="15" width="115" height="90" rx="4" fill="#FFFFFF" stroke="#B07AA1" stroke-width="1.2"/>
+                    <text x="589" y="38" text-anchor="middle" font-size="10" fill="#B07AA1" font-family="system-ui, sans-serif" font-weight="600">Finance</text>
+                    <text x="589" y="55" text-anchor="middle" font-size="8" fill="#6B6560" font-family="system-ui, sans-serif">Domestic credit,</text>
+                    <text x="589" y="67" text-anchor="middle" font-size="8" fill="#6B6560" font-family="system-ui, sans-serif">venture capital</text>
+                    <rect x="532" y="82" width="115" height="6" fill="#3D9B8F" rx="1"/>
+                    <text x="589" y="99" text-anchor="middle" font-size="7" fill="#3D9B8F" font-family="system-ui, sans-serif" font-weight="500">Moderate gap</text>
+
+                    <!-- Bottom annotation -->
+                    <rect x="20" y="125" width="627" height="50" rx="4" fill="#1A1A2E" opacity="0.03"/>
+                    <text x="333" y="147" text-anchor="middle" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif" font-weight="500">Developing countries score worst on ICT and skills. LDCs, LLDCs and SIDS face</text>
+                    <text x="333" y="163" text-anchor="middle" font-size="9" fill="#1A1A2E" font-family="system-ui, sans-serif" font-weight="500">the steepest deficits in ICT infrastructure and R&amp;D capability.</text>
+
+                    <!-- Convergence note -->
+                    <text x="20" y="200" font-size="9" fill="#3D9B8F" font-family="system-ui, sans-serif" font-weight="600">Encouraging trend:</text>
+                    <text x="20" y="215" font-size="8.5" fill="#6B6560" font-family="system-ui, sans-serif">While absolute gaps remain wide, they have started to narrow. Developing economies are improving</text>
+                    <text x="20" y="230" font-size="8.5" fill="#6B6560" font-family="system-ui, sans-serif">their readiness scores faster than developed ones, driven by gains in ICT access and mobile connectivity.</text>
+                </svg>
+                <div class="project-figure-caption">
+                    The five building blocks of the index. ICT and skills are the binding constraints for most developing countries. The gap bars indicate where developing economies fall furthest behind.
+                </div>
+                <div class="project-figure-source">Source: UNCTAD Technology and Innovation Report 2023.</div>
+            </div>
+
+            <p>
+                Regional variation within groupings is also instructive. Latin America and the Caribbean, for instance, spans from 40th (Brazil) to 154th (Haiti) in the global ranking. This kind of spread means that blanket policy prescriptions are unlikely to work. A country ranked 40th has different bottlenecks from one ranked 154th, and the index is designed to help identify exactly which dimension requires the most urgent attention in each case.
+            </p>
+
+            <!-- ════════ 5. POLICY ════════ -->
+            <h2 class="project-section-title" id="policy">What governments can do</h2>
+
+            <p>
+                The index is diagnostic, not prescriptive, but the diagnostics point in clear directions. Countries scoring poorly on ICT can improve their position by investing in digital infrastructure and creating regulatory environments that encourage private-sector deployment of broadband and mobile networks. Skills gaps call for targeted education programmes, particularly in engineering, data science and digital literacy. The R&amp;D dimension can be supported through public funding, tax incentives for private research, and stronger links between universities and industry. Industrial capacity requires carefully designed industrial policies that create space for domestic firms to absorb and adapt new technologies. And financial constraints, particularly in the earliest stages of technology adoption, may need to be addressed through development banks, multilateral funds and incentive structures that lower the cost of experimentation.
+            </p>
+            <p>
+                None of this is one-size-fits-all. The point of the index is precisely that it allows each country to identify its own weakest dimension and allocate scarce policy bandwidth accordingly. A country with strong ICT but weak R&amp;D faces a fundamentally different challenge from one where both are absent. The readiness framework makes those distinctions visible and actionable.
+            </p>
+
+            <!-- ════════ 6. TAKEAWAYS ════════ -->
+            <h2 class="project-section-title" id="takeaways">What it all means</h2>
+
+            <div class="finding-card">
+                <div class="finding-number">Finding 1</div>
+                <p>The frontier technology market is projected to grow from $1.5 trillion to $9.5 trillion by 2030, but the value is overwhelmingly concentrated in a handful of advanced economies and in China.</p>
+            </div>
+
+            <div class="finding-card">
+                <div class="finding-number">Finding 2</div>
+                <p>The US and China dominate knowledge production, accounting for over 30% of publications and nearly 70% of patents. Only two firms from developing economies (excluding China) appear among the top global providers.</p>
+            </div>
+
+            <div class="finding-card">
+                <div class="finding-number">Finding 3</div>
+                <p>The Frontier Technology Readiness Index, covering 166 economies across five dimensions, reveals that ICT deployment and skills are the binding constraints for most developing countries. LDCs face particularly acute R&amp;D gaps.</p>
+            </div>
+
+            <div class="finding-card">
+                <div class="finding-number">Finding 4</div>
+                <p>The readiness gap between developed and developing economies, while wide, has begun to narrow. Whether convergence is fast enough to allow participation in the market before it matures remains an open question.</p>
+            </div>
+
+            <p>
+                This project contributed to Chapter 2 of UNCTAD's Technology and Innovation Report 2023 and was published as a policy brief on UNIDO's Industrial Analytics Platform. The full article is available at <a href="https://iap.unido.org/articles/moving-fast-frontier-technologies" target="_blank">iap.unido.org</a>.
+            </p>
+
+            <!-- ════════ TOOLS ════════ -->
+            <h2 class="project-section-title" id="tools">Tools and methods</h2>
+
+            <div class="method-groups">
+                <div class="method-group">
+                    <h3 class="method-group-title">Data sources</h3>
+                    <div class="method-tags">
+                        <span class="method-tag">UNCTADstat</span>
+                        <span class="method-tag">ITU</span>
+                        <span class="method-tag">World Bank WDI</span>
+                        <span class="method-tag">UNESCO</span>
+                        <span class="method-tag">WIPO</span>
+                    </div>
+                </div>
+
+                <div class="method-group">
+                    <h3 class="method-group-title">Methods</h3>
+                    <div class="method-tags">
+                        <span class="method-tag">Composite Index Construction</span>
+                        <span class="method-tag">Normalisation &amp; Aggregation</span>
+                        <span class="method-tag">Cross-Country Benchmarking</span>
+                        <span class="method-tag">Trend Analysis</span>
+                    </div>
+                </div>
+
+                <div class="method-group">
+                    <h3 class="method-group-title">Technical workflow</h3>
+                    <div class="method-tags">
+                        <span class="method-tag">Python</span>
+                        <span class="method-tag">Stata</span>
+                        <span class="method-tag">Datawrapper</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="project-nav">
+                <a href="projects.html">&larr; All projects</a>
+                <a href="index.html#projects">Back to home</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Soumita Roy &middot; PhD Researcher &middot; <a href="https://ethz.ch" target="_blank">ETH Z&uuml;rich</a></p>
+        <p style="margin-top: 4px;">All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        const tocLinks = document.querySelectorAll('.toc-link');
+        const tocTargets = Array.from(tocLinks).map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+        function updateActiveToc() {
+            let current = '';
+            tocTargets.forEach(s => { if (s.getBoundingClientRect().top <= 140) current = s.id; });
+            tocLinks.forEach(l => { l.classList.toggle('active', l.getAttribute('href') === '#' + current); });
+        }
+        window.addEventListener('scroll', updateActiveToc, { passive: true });
+    </script>
+</body>
+</html>
