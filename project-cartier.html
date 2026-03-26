@@ -32,6 +32,14 @@
         .role-list li { font-size: 0.92rem; color: var(--color-text-secondary); line-height: 1.7; padding: 3px 0 3px 18px; position: relative; }
         .role-list li::before { content: '\2192'; position: absolute; left: 0; color: var(--color-accent); font-weight: 700; }
         .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 28px 0 36px; }
+        .method-tag {
+    font-size: 0.78rem;
+    padding: 5px 14px;
+    border-radius: 20px;
+    background: var(--color-accent-light);
+    color: var(--color-accent);
+    font-weight: 500;
+}
         .stat-item { text-align: center; padding: 20px 12px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-sm); }
         [data-theme="dark"] .stat-item { background: #2E2428; }
         .stat-number { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--color-accent); line-height: 1.1; }
@@ -240,9 +248,38 @@
                 <div class="outcome-card"><h4>Global perspective</h4><p>Evaluating programmes in Haiti, India, Tanzania, Zambia, Mali, Senegal, Sierra Leone, and Cambodia gave me first-hand appreciation for how context shapes implementation. No model travels without adaptation.</p></div>
             </div>
 
-            <h2 class="subheading">Tools &amp; methods</h2>
-<div style="display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0;">
-    <span class="tag">R</span><span class="tag">Tableau</span><span class="tag">Excel</span><span class="tag">Mixed Methods</span><span class="tag">Logframe Analysis</span><span class="tag">Theory of Change</span><span class="tag">Impact Evaluation</span><span class="tag">Due Diligence</span><span class="tag">KPI Design</span><span class="tag">Financial Analysis</span><span class="tag">Donor Reporting</span><span class="tag">Stakeholder Management</span>
+<h2 class="subheading">Tools and methods</h2>
+
+<div class="method-groups">
+    <div class="method-group">
+        <h3 class="method-group-title">Analytical methods</h3>
+        <div class="method-tags">
+            <span class="method-tag">Due Diligence</span>
+            <span class="method-tag">Impact Evaluation</span>
+            <span class="method-tag">Theory of Change</span>
+            <span class="method-tag">Logframe Analysis</span>
+            <span class="method-tag">KPI Design</span>
+            <span class="method-tag">Financial Analysis</span>
+            <span class="method-tag">Mixed Methods</span>
+        </div>
+    </div>
+
+    <div class="method-group">
+        <h3 class="method-group-title">Technical tools</h3>
+        <div class="method-tags">
+            <span class="method-tag">R</span>
+            <span class="method-tag">Tableau</span>
+            <span class="method-tag">Excel</span>
+        </div>
+    </div>
+
+    <div class="method-group">
+        <h3 class="method-group-title">Professional skills</h3>
+        <div class="method-tags">
+            <span class="method-tag">Donor Reporting</span>
+            <span class="method-tag">Stakeholder Management</span>
+        </div>
+    </div>
 </div>
             </section>
 
