@@ -478,9 +478,9 @@ section + section { border-top: 1px solid var(--color-border-light); }
 .cv-logo-wrapper {
     width: 56px;
     height: 56px;
-    border-radius: var(--radius-sm);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
+    border-radius: 0;
+    background: transparent;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -488,7 +488,11 @@ section + section { border-top: 1px solid var(--color-border-light); }
     flex-shrink: 0;
 }
 
-.cv-logo-wrapper img { width: 40px; height: 40px; object-fit: contain; }
+.cv-logo-wrapper img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
 
 .cv-logo-placeholder {
     font-size: 1.2rem;
