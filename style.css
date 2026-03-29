@@ -500,6 +500,12 @@ section + section { border-top: 1px solid var(--color-border-light); }
     height: 75%;
     object-fit: contain;
 }
+
+/* Fine-tune vertical position for specific logos */
+.cv-logo-wrapper.logo-nudge-up img {
+    object-position: center 40%;
+}
+
 .cv-logo-placeholder {
     font-size: 1.2rem;
     font-weight: 700;
