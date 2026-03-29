@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Determinants of Ease of Living in Kolkata &mdash; Soumita Roy</title>
+    <link rel="icon" href="favicon33.png" type="image/png">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Determinants of Ease of Living in Kolkata">
+    <meta property="og:description" content="Perception-based study on socio-economic and cultural factors affecting urban liveability in Kolkata, using ordered probit regression on primary survey data.">
+    <meta name="description" content="BA final year project at Jadavpur University analysing the determinants of ease of living in Kolkata through a primary survey of 263 respondents and ordered probit regression in Stata.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+    <style>
+        .subheading{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin:48px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--color-border-light)}
+        .article-intro{font-size:1.05rem;line-height:1.85;color:var(--color-text-secondary);max-width:760px;margin:28px 0}
+        .insight-box{background:var(--color-warm-glow);border-left:3px solid var(--color-accent);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:18px 22px;margin:24px 0;font-size:.95rem;line-height:1.75}
+        .summary-box{background:var(--color-warm-glow);border-left:3px solid var(--color-accent);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:20px 24px;margin-bottom:28px}
+        .summary-box p{font-size:.95rem;color:var(--color-text-secondary);line-height:1.75;margin:0}
+        .role-callout{display:grid;grid-template-columns:auto 1fr;gap:18px;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius);padding:24px;margin:28px 0;align-items:start}
+        [data-theme=dark] .role-callout{background:#2E2428}
+        .role-icon{width:44px;height:44px;border-radius:50%;background:var(--color-accent-light);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .role-icon svg{width:20px;height:20px;color:var(--color-accent)}
+        .role-callout h3{font-family:var(--font-display);font-size:1.05rem;font-weight:600;margin-bottom:10px}
+        .role-list{list-style:none;padding:0;margin:0}
+        .role-list li{font-size:.92rem;color:var(--color-text-secondary);line-height:1.7;padding:3px 0 3px 18px;position:relative}
+        .role-list li::before{content:'\2192';position:absolute;left:0;color:var(--color-accent);font-weight:700}
+        .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:28px 0 36px}
+        .stat-item{text-align:center;padding:20px 12px;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-sm)}
+        [data-theme=dark] .stat-item{background:#2E2428}
+        .stat-number{font-family:var(--font-display);font-size:1.8rem;font-weight:700;color:var(--color-accent);line-height:1.1}
+        .stat-label{font-size:.78rem;color:var(--color-text-light);margin-top:6px;line-height:1.35}
+        .method-groups{margin:20px 0}
+        .method-group{margin-bottom:16px}
+        .method-group-title{font-family:var(--font-display);font-size:.9rem;font-weight:600;margin:0 0 8px 0}
+        .method-tags{display:flex;flex-wrap:wrap;gap:8px}
+        .method-tag{font-size:.78rem;padding:5px 14px;border-radius:20px;background:var(--color-accent-light);color:var(--color-accent);font-weight:500}
+        .chart-container{position:relative;margin:32px 0;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius);padding:24px}
+        [data-theme=dark] .chart-container{background:#2E2428}
+        .chart-title{font-family:var(--font-display);font-size:1.05rem;font-weight:600;margin-bottom:4px}
+        .chart-subtitle{font-size:.8rem;color:var(--color-text-light);margin-bottom:16px}
+        .chart-source{font-size:.72rem;color:var(--color-text-light);margin-top:12px;font-style:italic}
+        .chart-wrapper{position:relative;width:100%}
+        .finding-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+        .finding-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius);padding:20px;border-top:3px solid var(--color-accent)}
+        [data-theme=dark] .finding-card{background:#2E2428}
+        .finding-card h4{font-family:var(--font-display);font-size:.95rem;font-weight:600;margin-bottom:8px}
+        .finding-card p{font-size:.88rem;color:var(--color-text-secondary);line-height:1.7;margin:0}
+        .dimension-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0 32px}
+        .dimension-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:18px;border-top:3px solid var(--color-accent);transition:all .25s ease}
+        [data-theme=dark] .dimension-card{background:#2E2428}
+        .dimension-card:hover{border-color:var(--color-accent);box-shadow:0 4px 16px var(--color-card-shadow);transform:translateY(-2px)}
+        .dimension-card h4{font-family:var(--font-display);font-size:.95rem;font-weight:600;margin-bottom:4px}
+        .dimension-card .dimension-count{font-size:.78rem;color:var(--color-accent);font-weight:600;margin-bottom:8px}
+        .dimension-card p{font-size:.82rem;color:var(--color-text-secondary);line-height:1.55;margin:0}
+        .page-toc{display:flex;gap:6px;flex-wrap:wrap;padding:12px 0;margin-bottom:8px;border-bottom:1px solid var(--color-border-light);position:sticky;top:var(--nav-height);z-index:50;background:var(--color-bg);transition:background var(--transition)}
+        .toc-link{font-size:.78rem;font-weight:600;color:var(--color-text-light);padding:6px 14px;border-radius:20px;border:1px solid var(--color-border);transition:all .2s;text-decoration:none;white-space:nowrap}
+        .toc-link:hover,.toc-link.active{color:var(--color-accent);border-color:var(--color-accent);background:var(--color-accent-light)}
+        .nav-section{display:flex;justify-content:space-between;align-items:center;margin-top:52px;padding-top:24px;border-top:1px solid var(--color-border-light)}
+        .nav-section a{font-size:.9rem;font-weight:700}
+        .subpage-body section{padding:0;border:none}
+        .subpage-body section+section{border:none}
+        .equation-box{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:18px 22px;margin:20px 0;font-family:'Courier New',monospace;font-size:.9rem;line-height:1.8;overflow-x:auto}
+        [data-theme=dark] .equation-box{background:#2E2428}
+        @media(max-width:768px){.stat-row{grid-template-columns:repeat(2,1fr)}.dimension-grid{grid-template-columns:1fr}.finding-grid{grid-template-columns:1fr}.role-callout{grid-template-columns:1fr}.role-icon{margin-bottom:-8px}.page-toc{gap:4px}.toc-link{font-size:.72rem;padding:5px 10px}}
+        @media(max-width:480px){.stat-row{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <nav><div class="nav-inner"><a href="index.html" class="nav-name">SR</a><div class="nav-right"><button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Toggle menu"><span></span><span></span><span></span></button><ul class="nav-links"><li><a href="index.html#about">About</a></li><li><a href="index.html#research">Research</a></li><li><a href="index.html#projects">Projects</a></li><li><a href="index.html#cv">CV</a></li><li><a href="index.html#interests">Interests</a></li><li><a href="index.html#contact">Contact</a></li></ul><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"><svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></button></div></div></nav>
+
+    <main>
+        <div class="subpage-header">
+            <div class="breadcrumb"><a href="index.html">home</a> &rarr; <a href="projects.html">projects</a> &rarr; ease of living</div>
+            <h1>Determinants of Ease of Living in Kolkata</h1>
+            <p class="subpage-quote">What makes Kolkata the City of Joy, and for whom?</p>
+            <p style="font-size:.92rem;color:var(--color-text-secondary);margin-top:8px;">May 2019 &middot; Soumita Roy <em>et al.</em> &middot; 9 min read<br>BA Economics Final Year Project, Department of Economics, Jadavpur University<br>Supervised by Professor Ajitava RayChaudhuri</p>
+        </div>
+
+        <div class="page-toc" id="pageToc"><a href="#overview" class="toc-link active">Overview</a><a href="#motivation" class="toc-link">Motivation</a><a href="#design" class="toc-link">Survey Design</a><a href="#dimensions" class="toc-link">Dimensions</a><a href="#findings" class="toc-link">Findings</a><a href="#model" class="toc-link">Model</a><a href="#reflections" class="toc-link">Reflections</a></div>
+
+        <div class="subpage-body">
+
+            <!-- ═══════ OVERVIEW ═══════ -->
+            <section id="overview">
+            <div class="summary-box"><p><strong>Project overview:</strong> This was a year-long undergraduate research project in which a team of seven students, including myself, designed and conducted a primary survey of 263 residents across four regions of Kolkata to study the determinants of urban liveability. We collected perception-based responses on 25 dimensions of city life, from education and health to safety, infrastructure, and environment, and estimated ordered probit regressions in Stata to identify how socio-economic characteristics shape residents' evaluations. The study was motivated by West Bengal's non-participation in the national Ease of Living Index published by the Ministry of Housing and Urban Affairs in 2018.</p></div>
+
+            <div class="role-callout"><div class="role-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div><h3>My contribution</h3><ul class="role-list"><li>Co-designed the survey questionnaire covering 25 dependent variables across six thematic dimensions (education, health, safety, economy, culture, infrastructure and environment)</li><li>Conducted face-to-face and online field surveys across South and South-West Kolkata, collecting responses from over 50 individuals per region</li><li>Ran ordered probit regressions and post-estimation marginal effects analysis in Stata 13, interpreting coefficients and elasticities for all 25 dependent variables</li><li>Co-authored the 78-page final report, drafting sections on methodology, regression results, and policy recommendations</li></ul></div></div>
+
+            <div class="stat-row">
+                <div class="stat-item"><div class="stat-number">263</div><div class="stat-label">Survey respondents</div></div>
+                <div class="stat-item"><div class="stat-number">25</div><div class="stat-label">Dependent variables</div></div>
+                <div class="stat-item"><div class="stat-number">4</div><div class="stat-label">City regions surveyed</div></div>
+                <div class="stat-item"><div class="stat-number">13</div><div class="stat-label">Independent variables</div></div>
+            </div>
+            </section>
+
+            <!-- ═══════ MOTIVATION ═══════ -->
+            <section id="motivation">
+            <h2 class="subheading">Why Kolkata, and why then</h2>
+            <p class="article-intro">Kolkata is India's seventh most populous city, with a metropolitan population of 14.1 million, and the third most productive metropolitan economy in the country after Mumbai and Delhi. It is the principal commercial, cultural, and educational centre of eastern India. Yet when the Ministry of Housing and Urban Affairs published India's first Ease of Living Index in 2018, ranking 111 cities on institutional, economic, physical, and social parameters, the West Bengal government chose not to participate. Pune topped the list; Kolkata was absent. That gap was the project's starting point.</p>
+
+            <p style="font-size:.95rem;color:var(--color-text-secondary);line-height:1.85;margin:20px 0;">The national index relied on administrative data and top-down benchmarks. Our project took a different approach. Drawing on a growing body of urban liveability research, from the Mercer Quality of Living Index to the European Commission's Flash Eurobarometer surveys, we focused on subjective perceptions. What matters is not just whether a city has hospitals, but whether residents find those hospitals adequate. Not just whether crime statistics are declining, but whether women feel safe walking home. Balducci and Checchi (2009) had shown that New Yorkers could be proud of their city and simultaneously unhappy in it; Senlier (2009) demonstrated that liveability is closely connected to perceptions, feelings, and subjective values. Our study aimed to capture exactly that: the experienced quality of life, as reported by the people who actually inhabit Kolkata.</p>
+            </section>
+
+            <!-- ═══════ SURVEY DESIGN ═══════ -->
+            <section id="design">
+            <h2 class="subheading">Survey design and data collection</h2>
+            <p style="font-size:.95rem;color:var(--color-text-secondary);line-height:1.85;margin:20px 0;">We divided Kolkata into four geographic segments: North (Bagbazar, Manicktala, Dum Dum, Kumortuli, College Street), South (Ballygunge, Alipore, Jadavpur, Bhowanipore, Garia), East (Salt Lake, Rajarhat, Patuli, Tangra, Mukundapur), and South-West (Behala, Parnashree, Sarsuna, Joka, Kidderpore). Central Kolkata was excluded as it is primarily a commercial district rather than a residential one. We conducted a pilot survey of 70 respondents in October 2018 to test the questionnaire, revised it based on respondent feedback, and carried out the final survey in January 2019 with a target of at least 50 respondents per region.</p>
+
+            <p style="font-size:.95rem;color:var(--color-text-secondary);line-height:1.85;margin:20px 0;">The questionnaire comprised two parts. The first captured socio-demographic characteristics: age, gender, location, religion, caste, yearly household income, educational qualification (measured continuously as years of education completed), and occupation (employed versus unemployed, where the latter included students, retirees, and homemakers). These served as the 13 independent variables in the regressions. The second part consisted of 25 Likert-scale questions (1 = strongly disagree to 5 = strongly agree) covering six thematic dimensions of urban life.</p>
+
+            <!-- CHART 1: Sample composition — demographics -->
+            <div class="chart-container">
+                <div class="chart-title">Sample composition by demographics</div>
+                <div class="chart-subtitle">Distribution of 263 respondents across key socio-economic characteristics</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+                    <div class="chart-wrapper" style="position:relative;height:280px;"><canvas id="chartAge"></canvas></div>
+                    <div class="chart-wrapper" style="position:relative;height:280px;"><canvas id="chartIncome"></canvas></div>
+                </div>
+                <div class="chart-source">Source: Primary survey, January 2019. N = 263 (after cleaning).</div>
+            </div>
+
+            <div class="insight-box"><strong>Sample profile:</strong> The sample was roughly balanced by gender (52% male, 48% female), skewed towards the 20-40 age group (48%), and predominantly Hindu (78%) and general caste (70%), reflecting the demographic composition of Kolkata. South Kolkata was overrepresented (44% of the sample), a limitation the report acknowledged openly. 72% of respondents reported being overall satisfied with life in the city.</div>
+            </section>
+
+            <!-- ═══════ DIMENSIONS ═══════ -->
+            <section id="dimensions">
+            <h2 class="subheading">Six dimensions of urban life</h2>
+            <p style="font-size:.95rem;color:var(--color-text-secondary);line-height:1.85;margin:20px 0;">The 25 survey questions were grouped into six thematic categories, each capturing a distinct aspect of the lived experience in Kolkata. These dimensions were informed by the existing liveability literature, particularly the MoHUA framework (institutional, economic, physical, social), Mercer's Quality of Living Index, and the IMCL's liveability criteria.</p>
+
+            <div class="dimension-grid">
+                <div class="dimension-card"><h4>Education</h4><div class="dimension-count">3 questions</div><p>Overall satisfaction with educational facilities, affordability irrespective of income, and efficiency of schools and colleges in terms of quality and infrastructure.</p></div>
+                <div class="dimension-card"><h4>Health</h4><div class="dimension-count">3 questions</div><p>Satisfaction with medical facilities, affordability of healthcare, and efficiency of medical centres in terms of infrastructure, cleanliness, and treatment quality.</p></div>
+                <div class="dimension-card"><h4>Safety &amp; Security</h4><div class="dimension-count">4 questions</div><p>Overall safety, women's safety, children's safety, and perceived efficiency of Kolkata Police in ensuring security.</p></div>
+                <div class="dimension-card"><h4>Economy</h4><div class="dimension-count">3 questions</div><p>Cost of living, availability of employment opportunities, and efficiency of financial institutions (banks, post offices, mutual funds).</p></div>
+                <div class="dimension-card"><h4>Culture &amp; Identity</h4><div class="dimension-count">3 questions</div><p>Religious and cultural harmony, freedom of expression, and whether Kolkata provides a proper environment for art and culture.</p></div>
+                <div class="dimension-card"><h4>Infrastructure &amp; Environment</h4><div class="dimension-count">9 questions</div><p>Overall infrastructure (KMC), roads and flyovers, street lighting, electricity (CESC), public transport, water supply, cleanliness, global warming impact, air and noise pollution.</p></div>
+            </div>
+
+            <!-- CHART 2: Mean satisfaction scores -->
+            <div class="chart-container">
+                <div class="chart-title">Mean perception scores across 17 key dimensions</div>
+                <div class="chart-subtitle">Likert scale 1-5, where higher scores indicate more positive perceptions (agreement or satisfaction)</div>
+                <div class="chart-wrapper" style="position:relative;height:440px;"><canvas id="chartMeans"></canvas></div>
+                <div class="chart-source">Source: Primary survey, January 2019. Air pollution and global warming scores are reversed in interpretation: higher scores indicate respondents perceive greater pollution.</div>
+            </div>
+            <div class="insight-box"><strong>Two standout findings from descriptive statistics:</strong> Electricity supply by CESC received the highest satisfaction rating (mean 3.95), while employment opportunities scored the lowest (2.33). The city's residents were broadly positive about cultural harmony (3.68) and public transport (3.53) but deeply pessimistic about jobs. Air pollution (4.10) and global warming effects (3.90) registered strong agreement, suggesting widespread environmental concern.</div>
+            </section>
+
+            <!-- ═══════ FINDINGS ═══════ -->
+            <section id="findings">
+            <h2 class="subheading">Key findings</h2>
+            <p style="font-size:.95rem;color:var(--color-text-secondary);line-height:1.85;margin:20px 0;">The ordered probit regressions revealed that perceptions of urban liveability in Kolkata are far from uniform. They vary systematically with age, gender, location, income, education, and occupation. Location emerged as the single most important predictor: it was statistically significant for the largest number of dependent variables, affecting perceptions of almost every dimension from education to infrastructure to environment. Gender was the second most influential factor, with particularly strong effects on perceptions of safety, infrastructure, and cleanliness.</p>
+
+            <!-- CHART 3: Significant determinants heatmap-style -->
+            <div class="chart-container">
+                <div class="chart-title">Number of dimensions significantly influenced by each factor</div>
+                <div class="chart-subtitle">Count of dependent variables where the independent variable was statistically significant (p &lt; 0.10)</div>
+                <div class="chart-wrapper" style="position:relative;height:320px;"><canvas id="chartDeterminants"></canvas></div>
+                <div class="chart-source">Source: Ordered probit regression results. Significance assessed at 10%, 5%, and 1% levels.</div>
+            </div>
+
+            <div class="finding-grid">
+                <div class="finding-card"><h4>Gender gap in perceived safety</h4><p>Compared to women, men were 33% more likely to perceive Kolkata as safe overall, 40% more likely to say women are safe, and 79% more likely to say children are safe. Women's lived experience of harassment, crime risk, and personal vulnerability produced systematically lower safety evaluations, consistent with NCRB data on crimes against women in Kolkata.</p></div>
+                <div class="finding-card"><h4>Location as a fault line</h4><p>South and North Kolkata residents reported higher satisfaction with education, transport, lighting, and cultural life. East Kolkata, a newer development corridor along EM Bypass, scored higher on healthcare (proximity to private hospitals like Ruby, Fortis, Peerless) but lower on safety and cultural infrastructure. South-West Kolkata consistently ranked lowest.</p></div>
+                <div class="finding-card"><h4>Age and infrastructure dissatisfaction</h4><p>Older residents were significantly more dissatisfied with roads, infrastructure, and healthcare. For every 1% increase in age, respondents were 62% more likely to express dissatisfaction with road conditions and 35% more likely to report inadequate infrastructure, reflecting the heightened physical vulnerability of elderly residents.</p></div>
+                <div class="finding-card"><h4>Education amplifies environmental awareness</h4><p>More educated respondents were 244% more likely to identify global warming as affecting Kolkata's climate, 236% more likely to perceive severe air pollution, and 196% more likely to flag noise pollution as a serious problem. Education also correlated positively with perceiving greater freedom of expression (161% more likely).</p></div>
+                <div class="finding-card"><h4>Income and pollution perception</h4><p>Higher-income respondents were 116% more likely to deny severe air pollution and 60% more likely to dismiss noise pollution as a problem, likely reflecting their insulation in apartment complexes with air conditioning and distance from busy roads. Lower-income residents, often in bylanes or slums, experienced pollution more directly.</p></div>
+                <div class="finding-card"><h4>Employment pessimism is universal</h4><p>Across all four regions, respondents agreed that Kolkata lacks adequate employment opportunities. The mean score of 2.33 (between "disagree" and "neutral") was the lowest of all 25 dimensions. Location dummies were significant, but the direction was consistent: unemployment is perceived as a city-wide crisis, not a localised one.</p></div>
+            </div>
+
+            <!-- CHART 4: Satisfaction by region — grouped bar -->
+            <div class="chart-container">
+                <div class="chart-title">Regional variation in perception: selected dimensions</div>
+                <div class="chart-subtitle">Marginal effects showing percentage-point change in likelihood of agreement, relative to the rest of Kolkata</div>
+                <div class="chart-wrapper" style="position:relative;height:360px;"><canvas id="chartRegional"></canvas></div>
+                <div class="chart-source">Source: Post-estimation marginal effects from ordered probit model. Values represent elasticities significant at 5% or better. Positive values indicate greater agreement.</div>
+            </div>
+            </section>
+
+            <!-- ═══════ MODEL ═══════ -->
+            <section id="model">
+            <h2 class="subheading">Econometric approach</h2>
+            <p style="font-size:.95rem;color:var(--color-text-secondary);line-height:1.85;margin:20px 0;">Since responses were ordinal (1 to 5 on a Likert scale), OLS was inappropriate. We used the ordered probit model, which models a latent variable Y<sub>i</sub>* as a linear function of the 13 independent variables, with the observed ordinal response Y determined by where Y<sub>i</sub>* falls relative to four estimated threshold parameters. This allowed us to estimate both the direction (via regression coefficients) and the intensity (via post-estimation marginal effects, specifically the ey/ex elasticities) of each factor's influence on perceptions.</p>
+
+            <div class="equation-box">
+                Y<sub>i</sub>* = &beta;<sub>0</sub> + &beta;<sub>1</sub>Age + &beta;<sub>2</sub>Gender + &beta;<sub>3</sub>L1 + &beta;<sub>4</sub>L2 + &beta;<sub>5</sub>L3 + &beta;<sub>6</sub>L4 + &beta;<sub>7</sub>R1 + &beta;<sub>8</sub>R2 + &beta;<sub>9</sub>R3 + &beta;<sub>10</sub>Caste + &beta;<sub>11</sub>Income + &beta;<sub>12</sub>Education + &beta;<sub>13</sub>Occupation + &epsilon;<sub>i</sub><br><br>
+                Y = 1 if Y<sub>i</sub>* &lt; &mu;<sub>1</sub> &ensp;|&ensp; Y = 2 if &mu;<sub>1</sub> &lt; Y<sub>i</sub>* &lt; &mu;<sub>2</sub> &ensp;|&ensp; Y = 3 if &mu;<sub>2</sub> &lt; Y<sub>i</sub>* &lt; &mu;<sub>3</sub> &ensp;|&ensp; Y = 4 if &mu;<sub>3</sub> &lt; Y<sub>i</sub>* &lt; &mu;<sub>4</sub> &ensp;|&ensp; Y = 5 if Y<sub>i</sub>* &gt; &mu;<sub>4</sub>
+            </div>
+
+            <p style="font-size:.95rem;color:var(--color-text-secondary);line-height:1.85;margin:20px 0;">We ran this model separately for each of the 25 dependent variables, testing the null hypothesis that each coefficient equals zero. Location was encoded as four dummy variables (North, South, East, South-West), religion as three dummies (Hindu, Muslim, Other), and occupation as a binary variable (employed = 0, unemployed = 1). The marginal effects were evaluated at the ey/ex level: for a 1% change in the independent variable, how does the probability of selecting the lowest response category ("strongly disagree" or "very inefficient") shift? A positive elasticity means the respondent becomes more likely to disagree; a negative elasticity means they shift towards agreement.</p>
+
+            <div class="insight-box"><strong>Limitations acknowledged in the report:</strong> The sample of 263 was small for a city of 14.1 million. South Kolkata was overrepresented. Convenience sampling limited generalisability. Some results were counter-intuitive (for instance, caste effects on environmental perceptions), which the report flagged for further research rather than forcing an interpretation. Authentication of data was not guaranteed, as respondents may not have expressed their true opinions on all questions.</div>
+            </section>
+
+            <!-- ═══════ REFLECTIONS ═══════ -->
+            <section id="reflections">
+            <h2 class="subheading">Reflections</h2>
+            <p style="font-size:.95rem;color:var(--color-text-secondary);line-height:1.85;margin:20px 0;">This was the first research project I worked on, undertaken in my final year of undergraduate studies at Jadavpur University. It was formative in almost every sense. It introduced me to the full arc of empirical research: designing a questionnaire, conducting a pilot, going door-to-door in January heat to collect responses, cleaning messy survey data in Excel, and running regressions in Stata. It was also the first time I had to write for an audience, translating regression outputs into something a reader might actually care about.</p>
+
+            <p style="font-size:.95rem;color:var(--color-text-secondary);line-height:1.85;margin:20px 0;">The project shaped three convictions that have stayed with me. First, that perception matters as much as measurement: whether a city has five hospitals matters less than whether residents feel they can access quality care. Second, that the same city can be experienced very differently depending on who you are, where you live, and what you earn: Kolkata's liveability is not one number but a distribution. Third, that honest research means being comfortable with counter-intuitive results and saying "this requires further study" rather than forcing a narrative. These lessons carried into every project that followed, from the BCC&I trade analysis a year later to the econometric work in my Master's thesis at IHEID.</p>
+
+            <p style="font-size:.95rem;color:var(--color-text-secondary);line-height:1.85;margin:20px 0;">Looking back, the project had real limitations: the sample was too small, the geographic coverage was uneven, and some of the marginal effects were implausibly large (a 348% elasticity on art and culture should have prompted more scepticism). But as a first encounter with applied econometrics and primary data, supervised by Professor Ajitava RayChaudhuri, it taught me more about the craft of research than any coursework could have.</p>
+
+            <h2 class="subheading">Tools and methods</h2>
+            <div class="method-groups"><div class="method-group"><h3 class="method-group-title">Econometric methods</h3><div class="method-tags"><span class="method-tag">Ordered Probit Regression</span><span class="method-tag">Marginal Effects Analysis</span><span class="method-tag">Likert Scale Analysis</span><span class="method-tag">Post-Estimation Elasticities</span></div></div><div class="method-group"><h3 class="method-group-title">Data collection</h3><div class="method-tags"><span class="method-tag">Primary Survey</span><span class="method-tag">Questionnaire Design</span><span class="method-tag">Pilot Testing</span><span class="method-tag">Convenience Sampling</span><span class="method-tag">Face-to-Face Interviews</span></div></div><div class="method-group"><h3 class="method-group-title">Technical tools</h3><div class="method-tags"><span class="method-tag">Stata 13</span><span class="method-tag">Excel</span></div></div><div class="method-group"><h3 class="method-group-title">Frameworks referenced</h3><div class="method-tags"><span class="method-tag">MoHUA Ease of Living Index</span><span class="method-tag">Mercer Quality of Living Index</span><span class="method-tag">Flash Eurobarometer</span><span class="method-tag">IMCL Liveability Criteria</span></div></div></div>
+            </section>
+
+            <div class="nav-section"><a href="projects.html">&larr; All projects</a><a href="index.html#projects">Back to home</a></div>
+        </div>
+    </main>
+
+    <footer><p>&copy; 2026 Soumita Roy &middot; PhD Researcher &middot; <a href="https://ethz.ch" target="_blank">ETH Z&uuml;rich</a></p><p style="margin-top:4px;">All rights reserved.</p></footer>
+
+    <script src="script.js"></script>
+    <script>
+        var CP={burgundy:'#6B2D3E',gold:'#8B6F4E',teal:'#2D6A6A',green:'#55752F',plum:'#7B5D98',coral:'#C4795A',slate:'#5A6B7A',amber:'#B8860B'};
+        function getCC(){var dk=document.documentElement.getAttribute('data-theme')==='dark';return{tick:dk?'#E2D8D4':'#2A2028',grid:dk?'rgba(255,255,255,0.06)':'rgba(0,0,0,0.06)',burgundy:dk?'#D4909E':CP.burgundy,gold:dk?'#D4B87A':CP.gold,teal:dk?'#6ABFBF':CP.teal,green:dk?'#8CBE64':CP.green,plum:dk?'#B89CD8':CP.plum,coral:dk?'#E8A080':CP.coral,slate:dk?'#8AAABE':CP.slate,amber:dk?'#E8C860':CP.amber};}
+        function tt(){return{backgroundColor:'rgba(42,32,40,0.92)',titleFont:{weight:'700',size:13},bodyFont:{size:12},padding:12,cornerRadius:4,displayColors:true,boxPadding:4};}
+
+        var chartAge,chartIncome,chartMeans,chartDeterminants,chartRegional;
+
+        function initChartAge(){var c=getCC();chartAge=new Chart(document.getElementById('chartAge').getContext('2d'),{type:'doughnut',data:{labels:['Below 20','20-40','40-60','60-80','Above 80'],datasets:[{data:[6,48,33,10,3],backgroundColor:[c.burgundy,c.gold,c.teal,c.plum,c.slate],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:c.tick,font:{size:10},padding:10}},tooltip:{...tt(),callbacks:{label:function(ctx){return ctx.label+': '+ctx.parsed+'%';}}}},cutout:'55%'}});}
+
+        function initChartIncome(){var c=getCC();chartIncome=new Chart(document.getElementById('chartIncome').getContext('2d'),{type:'doughnut',data:{labels:['Below ₹1.5L','₹1.5L-3L','₹3L-5L','₹5L-10L','Above ₹10L'],datasets:[{data:[10,19,27,22,22],backgroundColor:[c.coral,c.amber,c.green,c.teal,c.burgundy],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:c.tick,font:{size:10},padding:10}},tooltip:{...tt(),callbacks:{label:function(ctx){return ctx.label+': '+ctx.parsed+'%';}}}},cutout:'55%'}});}
+
+        function initChartMeans(){var c=getCC();chartMeans=new Chart(document.getElementById('chartMeans').getContext('2d'),{type:'bar',data:{labels:['Air Pollution','Electricity (CESC)','Global Warming','Cultural Harmony','Public Transport','Free Expression','Water Supply','Education Quality','Ed. Affordability','Infrastructure (KMC)','Overall Safety','Women Safety','Health Facilities','Cleanliness','Roads & Flyovers','Health Efficiency','Cost of Living','Employment'],datasets:[{data:[4.10,3.95,3.90,3.68,3.53,3.49,3.34,3.26,3.25,3.23,3.19,3.21,3.19,3.05,3.01,2.94,2.47,2.33],backgroundColor:function(ctx){var v=ctx.parsed.x;if(v>=3.5)return c.teal;if(v>=3.0)return c.gold;return c.burgundy;},borderRadius:3,barPercentage:.7}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{...tt(),callbacks:{label:function(ctx){return 'Mean: '+ctx.parsed.x.toFixed(2)+' / 5.00';}}}},scales:{x:{min:1,max:5,ticks:{color:c.tick,callback:function(v){return v.toFixed(1);}},grid:{color:c.grid},title:{display:true,text:'Mean score (1-5)',color:c.tick,font:{size:11,weight:'600'}}},y:{ticks:{color:c.tick,font:{size:10}},grid:{display:false}}}}});}
+
+        function initChartDeterminants(){var c=getCC();chartDeterminants=new Chart(document.getElementById('chartDeterminants').getContext('2d'),{type:'bar',data:{labels:['Location (South)','Location (East)','Gender','Location (North)','Education','Age','Caste','Income','Occupation','Religion (Hindu)','Religion (Muslim)'],datasets:[{label:'Significant dimensions',data:[18,16,14,12,8,7,6,5,4,6,3],backgroundColor:[c.burgundy,c.teal,c.gold,c.coral,c.plum,c.slate,c.green,c.amber,c.burgundy,c.teal,c.gold],borderRadius:3,barPercentage:.65}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{...tt(),callbacks:{label:function(ctx){return ctx.parsed.x+' out of 25 dimensions';}}}},scales:{x:{min:0,max:25,ticks:{color:c.tick,stepSize:5},grid:{color:c.grid},title:{display:true,text:'Number of significant effects',color:c.tick,font:{size:11,weight:'600'}}},y:{ticks:{color:c.tick,font:{size:10}},grid:{display:false}}}}});}
+
+        function initChartRegional(){var c=getCC();chartRegional=new Chart(document.getElementById('chartRegional').getContext('2d'),{type:'bar',data:{labels:['Education Eff.','Cultural Harmony','Public Transport','Street Lighting','Electricity','Women Safety','Cleanliness'],datasets:[{label:'North',data:[-32.5,43.1,-34.3,-52.8,-54.9,-17.2,14.2],backgroundColor:c.burgundy,borderRadius:3},{label:'South',data:[-32.2,-115.7,-76.1,-84.8,-123.0,-31.5,0],backgroundColor:c.gold,borderRadius:3},{label:'East',data:[0,-40.7,-29.6,-30.5,-40.6,0,0],backgroundColor:c.teal,borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{color:c.tick,font:{size:11},padding:14}},tooltip:{...tt(),callbacks:{label:function(ctx){var v=ctx.parsed.y;if(v===0)return ctx.dataset.label+': not significant';return ctx.dataset.label+': '+v.toFixed(1)+'% more likely to agree';}}}},scales:{y:{ticks:{color:c.tick,callback:function(v){return v+'%';}},grid:{color:c.grid},title:{display:true,text:'Marginal effect (% change in agreement likelihood)',color:c.tick,font:{size:10,weight:'600'}}},x:{ticks:{color:c.tick,font:{size:9},maxRotation:45},grid:{display:false}}}}});}
+
+        function updateAllChartColors(){var c=getCC();
+            if(chartAge){chartAge.data.datasets[0].backgroundColor=[c.burgundy,c.gold,c.teal,c.plum,c.slate];chartAge.options.plugins.legend.labels.color=c.tick;chartAge.update();}
+            if(chartIncome){chartIncome.data.datasets[0].backgroundColor=[c.coral,c.amber,c.green,c.teal,c.burgundy];chartIncome.options.plugins.legend.labels.color=c.tick;chartIncome.update();}
+            if(chartMeans){chartMeans.options.scales.x.ticks.color=c.tick;chartMeans.options.scales.x.grid.color=c.grid;chartMeans.options.scales.x.title.color=c.tick;chartMeans.options.scales.y.ticks.color=c.tick;chartMeans.data.datasets[0].backgroundColor=function(ctx){var v=ctx.parsed.x;if(v>=3.5)return c.teal;if(v>=3.0)return c.gold;return c.burgundy;};chartMeans.update();}
+            if(chartDeterminants){chartDeterminants.data.datasets[0].backgroundColor=[c.burgundy,c.teal,c.gold,c.coral,c.plum,c.slate,c.green,c.amber,c.burgundy,c.teal,c.gold];chartDeterminants.options.scales.x.ticks.color=c.tick;chartDeterminants.options.scales.x.grid.color=c.grid;chartDeterminants.options.scales.x.title.color=c.tick;chartDeterminants.options.scales.y.ticks.color=c.tick;chartDeterminants.update();}
+            if(chartRegional){chartRegional.data.datasets[0].backgroundColor=c.burgundy;chartRegional.data.datasets[1].backgroundColor=c.gold;chartRegional.data.datasets[2].backgroundColor=c.teal;chartRegional.options.scales.y.ticks.color=c.tick;chartRegional.options.scales.y.grid.color=c.grid;chartRegional.options.scales.y.title.color=c.tick;chartRegional.options.scales.x.ticks.color=c.tick;chartRegional.options.plugins.legend.labels.color=c.tick;chartRegional.update();}
+        }
+
+        new MutationObserver(function(ms){ms.forEach(function(m){if(m.attributeName==='data-theme')updateAllChartColors();});}).observe(document.documentElement,{attributes:true});
+
+        var tocLinks=document.querySelectorAll('.toc-link');var tocSections=['overview','motivation','design','dimensions','findings','model','reflections'].map(function(id){return document.getElementById(id);}).filter(Boolean);
+        function updateActiveToc(){var current='';tocSections.forEach(function(s){if(s.getBoundingClientRect().top<=140)current=s.id;});tocLinks.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+current);});}
+        window.addEventListener('scroll',updateActiveToc,{passive:true});
+
+        window.addEventListener('load',function(){initChartAge();initChartIncome();initChartMeans();initChartDeterminants();initChartRegional();});
+    </script>
+</body>
+</html>
