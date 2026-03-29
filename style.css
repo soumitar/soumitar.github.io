@@ -503,7 +503,7 @@ section + section { border-top: 1px solid var(--color-border-light); }
 
 /* Fine-tune vertical position for specific logos */
 .cv-logo-wrapper.logo-nudge-up img {
-    object-position: center 40%;
+    object-position: center 35%;
 }
 
 .cv-logo-placeholder {
