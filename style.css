@@ -531,6 +531,96 @@ section + section { border-top: 1px solid var(--color-border-light); }
 
 .cv-download { margin-top: 36px; }
 
+/* Collapsible CV items */
+.cv-item.collapsible {
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    margin-bottom: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.cv-main {
+    min-width: 0;
+}
+
+.cv-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    cursor: pointer;
+}
+
+.cv-toggle {
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    background: var(--color-surface);
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+    margin-top: 2px;
+}
+
+.cv-toggle:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background: var(--color-accent-light);
+}
+
+.cv-toggle svg {
+    transition: transform 0.25s ease;
+}
+
+.cv-item.open .cv-toggle svg {
+    transform: rotate(180deg);
+}
+
+.cv-extra {
+    display: none;
+    margin-top: 12px;
+    padding-right: 48px;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.cv-item.open .cv-extra {
+    display: block;
+}
+
+.cv-extra p {
+    margin-bottom: 8px;
+}
+
+.cv-extra ul {
+    margin: 8px 0 0 18px;
+    padding: 0;
+}
+
+.cv-extra li {
+    margin-bottom: 6px;
+}
+
+@media (max-width: 768px) {
+    .cv-extra {
+        padding-right: 0;
+    }
+
+    .cv-toggle {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+
 /* ═══════════════════════════════════════
    INTERESTS 
 ═══════════════════════════════════════ */
