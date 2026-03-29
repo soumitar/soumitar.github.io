@@ -34,3 +34,26 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+// CV accordion
+document.addEventListener('DOMContentLoaded', function () {
+    const cvItems = document.querySelectorAll('.cv-item.collapsible');
+
+    cvItems.forEach(function (item) {
+        const summary = item.querySelector('.cv-summary');
+        const button = item.querySelector('.cv-toggle');
+
+        if (summary) {
+            summary.addEventListener('click', function (e) {
+                if (e.target.closest('.cv-toggle')) return;
+                item.classList.toggle('open');
+            });
+        }
+
+        if (button) {
+            button.addEventListener('click', function () {
+                item.classList.toggle('open');
+            });
+        }
+    });
+});
