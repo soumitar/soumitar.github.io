@@ -8,7 +8,7 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Determinants of Ease of Living in Kolkata">
     <meta property="og:description" content="Perception-based study on socio-economic and cultural factors affecting urban liveability in Kolkata, using ordered probit regression on primary survey data.">
-    <meta name="description" content="BA final year project at Jadavpur University analysing the determinants of ease of living in Kolkata through a primary survey of 263 respondents and ordered probit regression in Stata.">
+    <meta name="description" content="BA final year project at Jadavpur University analysing the determinants of ease of living in Kolkata through a primary survey of 350 respondents and ordered probit regression in Stata.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
@@ -87,12 +87,12 @@
 
             <!-- ═══════ OVERVIEW ═══════ -->
             <section id="overview">
-            <div class="summary-box"><p><strong>Project overview:</strong> This was a year-long undergraduate research project in which a team of seven students, including myself, designed and conducted a primary survey of 263 residents across four regions of Kolkata to study the determinants of urban liveability. We collected perception-based responses on 25 dimensions of city life, from education and health to safety, infrastructure, and environment, and estimated ordered probit regressions in Stata to identify how socio-economic characteristics shape residents' evaluations. The study was motivated by West Bengal's non-participation in the national Ease of Living Index published by the Ministry of Housing and Urban Affairs in 2018.</p></div>
+            <div class="summary-box"><p><strong>Project overview:</strong> This was a year-long undergraduate research project in which a team of seven students, including myself, designed and conducted a primary survey of 350 residents across four regions of Kolkata to study the determinants of urban liveability. We collected perception-based responses on 25 dimensions of city life, from education and health to safety, infrastructure, and environment, and estimated ordered probit regressions in Stata to identify how socio-economic characteristics shape residents' evaluations. The study was motivated by West Bengal's non-participation in the national Ease of Living Index published by the Ministry of Housing and Urban Affairs in 2018.</p></div>
 
             <div class="role-callout"><div class="role-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div><h3>My contribution</h3><ul class="role-list"><li>Co-designed the survey questionnaire covering 25 dependent variables across six thematic dimensions (education, health, safety, economy, culture, infrastructure and environment)</li><li>Conducted face-to-face and online field surveys across South and South-West Kolkata, collecting responses from over 50 individuals per region</li><li>Ran ordered probit regressions and post-estimation marginal effects analysis in Stata 13, interpreting coefficients and elasticities for all 25 dependent variables</li><li>Co-authored the 78-page final report, drafting sections on methodology, regression results, and policy recommendations</li></ul></div></div>
 
             <div class="stat-row">
-                <div class="stat-item"><div class="stat-number">263</div><div class="stat-label">Survey respondents</div></div>
+                <div class="stat-item"><div class="stat-number">350</div><div class="stat-label">Survey respondents</div></div>
                 <div class="stat-item"><div class="stat-number">25</div><div class="stat-label">Dependent variables</div></div>
                 <div class="stat-item"><div class="stat-number">4</div><div class="stat-label">City regions surveyed</div></div>
                 <div class="stat-item"><div class="stat-number">13</div><div class="stat-label">Independent variables</div></div>
@@ -117,12 +117,12 @@
             <!-- CHART 1: Sample composition — demographics -->
             <div class="chart-container">
                 <div class="chart-title">Sample composition by demographics</div>
-                <div class="chart-subtitle">Distribution of 263 respondents across key socio-economic characteristics</div>
+                <div class="chart-subtitle">Distribution of 350 respondents across key socio-economic characteristics</div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
                     <div class="chart-wrapper" style="position:relative;height:280px;"><canvas id="chartAge"></canvas></div>
                     <div class="chart-wrapper" style="position:relative;height:280px;"><canvas id="chartIncome"></canvas></div>
                 </div>
-                <div class="chart-source">Source: Primary survey, January 2019. N = 263 (after cleaning).</div>
+                <div class="chart-source">Source: Primary survey, January 2019. N = 350 (after cleaning).</div>
             </div>
 
             <div class="insight-box"><strong>Sample profile:</strong> The sample was roughly balanced by gender (52% male, 48% female), skewed towards the 20-40 age group (48%), and predominantly Hindu (78%) and general caste (70%), reflecting the demographic composition of Kolkata. South Kolkata was overrepresented (44% of the sample), a limitation the report acknowledged openly. 72% of respondents reported being overall satisfied with life in the city.</div>
@@ -195,7 +195,7 @@
 
             <p style="font-size:.95rem;color:var(--color-text-secondary);line-height:1.85;margin:20px 0;">We ran this model separately for each of the 25 dependent variables, testing the null hypothesis that each coefficient equals zero. Location was encoded as four dummy variables (North, South, East, South-West), religion as three dummies (Hindu, Muslim, Other), and occupation as a binary variable (employed = 0, unemployed = 1). The marginal effects were evaluated at the ey/ex level: for a 1% change in the independent variable, how does the probability of selecting the lowest response category ("strongly disagree" or "very inefficient") shift? A positive elasticity means the respondent becomes more likely to disagree; a negative elasticity means they shift towards agreement.</p>
 
-            <div class="insight-box"><strong>Limitations acknowledged in the report:</strong> The sample of 263 was small for a city of 14.1 million. South Kolkata was overrepresented. Convenience sampling limited generalisability. Some results were counter-intuitive (for instance, caste effects on environmental perceptions), which the report flagged for further research rather than forcing an interpretation. Authentication of data was not guaranteed, as respondents may not have expressed their true opinions on all questions.</div>
+            <div class="insight-box"><strong>Limitations acknowledged in the report:</strong> The sample of 350 was small for a city of 14.1 million. South Kolkata was overrepresented. Convenience sampling limited generalisability. Some results were counter-intuitive (for instance, caste effects on environmental perceptions), which the report flagged for further research rather than forcing an interpretation. Authentication of data was not guaranteed, as respondents may not have expressed their true opinions on all questions.</div>
             </section>
 
             <!-- ═══════ REFLECTIONS ═══════ -->
