@@ -166,7 +166,7 @@
             <div class="breadcrumb">
                 <a href="index.html">home</a> → <a href="index.html#interests">interests</a> → travel
             </div>
-            <h1>travel.</h1>
+            <h1>Travel.</h1>
             <p class="subpage-quote">"The world is a book, and those who do not travel read only one page." — Saint Augustine</p>
         </div>
 
@@ -323,8 +323,8 @@
 
             // Zoom into Europe + South Asia region
             const projection = d3.geoMercator()
-                .center([40, 45])
-                .scale(350)
+                .center([45, 40])
+                .scale(280)
                 .translate([width / 2, height / 2]);
 
             const path = d3.geoPath().projection(projection);
