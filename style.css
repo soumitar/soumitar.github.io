@@ -602,8 +602,7 @@ section + section { border-top: 1px solid var(--color-border-light); }
 
 .cv-download {
     margin-top: 36px;
-    padding-left: 120px;
-    text-align: center;
+    text-align: right;
 }
 
 /* Collapsible CV items */
@@ -1012,8 +1011,8 @@ footer a:hover { color: var(--color-accent); }
     grid-template-columns: 1fr;
 }
 
-   .cv-download {
-    padding-left: 0;
+.cv-download {
+    text-align: center;
 }
 
 .cv-category-label {
