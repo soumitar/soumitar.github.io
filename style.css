@@ -602,6 +602,7 @@ section + section { border-top: 1px solid var(--color-border-light); }
 
 .cv-download {
     margin-top: 36px;
+    padding-left: 120px;
     text-align: center;
 }
 
@@ -1009,6 +1010,10 @@ footer a:hover { color: var(--color-accent); }
 
 .cv-group {
     grid-template-columns: 1fr;
+}
+
+   .cv-download {
+    padding-left: 0;
 }
 
 .cv-category-label {
