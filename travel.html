@@ -325,7 +325,7 @@
             const projection = d3.geoMercator()
                 .center([45, 40])
                 .scale(280)
-                .translate([width / 2, height / 2]);
+                .translate([width / 2 + 60, height / 2]);
 
             const path = d3.geoPath().projection(projection);
 
