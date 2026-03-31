@@ -467,6 +467,57 @@ section + section { border-top: 1px solid var(--color-border-light); }
     background: var(--color-border);
 }
 
+/* Stacked CV layout */
+.cv-group {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 0;
+}
+
+.cv-category-label {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text-light);
+    padding-top: 6px;
+    padding-right: 24px;
+    text-align: right;
+    letter-spacing: -0.01em;
+}
+
+.cv-entries {
+    border-left: 1.5px solid var(--color-border);
+    padding-left: 0;
+    padding-bottom: 40px;
+}
+
+.cv-group:last-child .cv-entries {
+    padding-bottom: 8px;
+}
+
+.cv-item.collapsible {
+    position: relative;
+    padding-left: 28px;
+}
+
+.cv-item.collapsible::before {
+    content: '';
+    position: absolute;
+    left: -4.5px;
+    top: 14px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-bg);
+    border: 2px solid var(--color-border);
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.cv-item.collapsible:hover::before {
+    border-color: var(--color-accent);
+    background: var(--color-accent-light);
+}
+
 .cv-item {
     display: grid;
     grid-template-columns: 56px 1fr;
@@ -519,7 +570,11 @@ section + section { border-top: 1px solid var(--color-border-light); }
 .cv-details .cv-date { font-size: 0.82rem; color: var(--color-text-light); margin-top: 2px; }
 .cv-details .cv-description { font-size: 0.88rem; color: var(--color-text-secondary); margin-top: 6px; line-height: 1.6; }
 
-.cv-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.cv-columns {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
 
 .btn {
     display: inline-flex;
@@ -949,8 +1004,27 @@ footer a:hover { color: var(--color-accent); }
     .nav-links.active { display: flex; }
     .nav-toggle { display: block; }
 
+.cv-group {
+    grid-template-columns: 1fr;
+}
+
+.cv-category-label {
+    text-align: left;
+    padding: 0 0 12px 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+}
+
+.cv-entries {
+    margin-left: 8px;
+}
+
+.cv-item.collapsible {
+    padding-left: 20px;
+}
+   
     .projects-grid { grid-template-columns: 1fr; }
-    .cv-columns { grid-template-columns: 1fr; gap: 32px; }
     .interests-gateway { grid-template-columns: repeat(3, 1fr); }
     .contact-content { grid-template-columns: 1fr; gap: 28px; }
     .photo-gallery { grid-template-columns: repeat(2, 1fr); }
