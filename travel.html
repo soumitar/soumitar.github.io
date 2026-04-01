@@ -346,6 +346,25 @@
                 return colorDefault;
             }
 
+// Clip France to only show European territory (remove French Guiana etc.)
+            countries.features = countries.features.map(f => {
+                if (f.properties.name === 'France' && f.geometry.type === 'MultiPolygon') {
+                    const europeanPolygons = f.geometry.coordinates.filter(poly => {
+                        // Check if any point in the polygon is in Europe (longitude > -10, latitude > 40)
+                        const flat = poly.flat(2);
+                        for (let i = 0; i < flat.length; i += 2) {
+                            if (flat[i] > -10 && flat[i + 1] > 40) return true;
+                        }
+                        return false;
+                    });
+                    return {
+                        ...f,
+                        geometry: { ...f.geometry, coordinates: europeanPolygons }
+                    };
+                }
+                return f;
+            });
+
             svg.selectAll('path')
                 .data(countries.features)
                 .join('path')
