@@ -670,6 +670,19 @@ section + section { border-top: 1px solid var(--color-border-light); }
     display: block;
 }
 
+.cv-details .cv-location {
+    display: inline;
+}
+
+.cv-details .cv-location::after {
+    content: ' · ';
+}
+
+.cv-details .cv-date {
+    display: inline;
+    margin-top: 0;
+}
+
 .cv-extra p {
     margin-bottom: 8px;
 }
