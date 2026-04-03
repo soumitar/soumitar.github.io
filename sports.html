@@ -25,7 +25,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    height: 440px;
+    height: 340px;
 }
         .carousel-slide {
             position: absolute;
@@ -34,11 +34,12 @@
             cursor: pointer;
         }
         .carousel-slide img {
-            width: 100%;
-            aspect-ratio: 4 / 5;
-            object-fit: cover;
+            height: 340px;
+            width: auto;
+            object-fit: contain;
             display: block;
-            background: var(--color-border);
+            margin: 0 auto;
+            background: transparent;
             border-radius: 10px;
             box-shadow: 0 4px 20px var(--color-card-shadow);
         }
@@ -130,7 +131,8 @@
         .carousel-btn.next { right: 8px; }
 
         @media (max-width: 600px) {
-            .carousel-viewport { height: 340px; }
+            .carousel-viewport { height: 240px; }
+            .carousel-slide img { height: 240px; }
             .carousel-slide { width: 68%; }
             .carousel-slide[data-pos="-1"] { transform: translateX(-60%) scale(0.78); opacity: 0.4; }
             .carousel-slide[data-pos="1"] { transform: translateX(60%) scale(0.78); opacity: 0.4; }
