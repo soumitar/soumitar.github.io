@@ -131,8 +131,11 @@
         .carousel-btn.next { right: 8px; }
 
         @media (max-width: 600px) {
-            .carousel-viewport { height: 240px; }
-            .carousel-slide img { height: 240px; }
+            .carousel-viewport { height: 260px; }
+            .carousel-slide img { height: 260px; }
+            .carousel-caption {
+                margin-bottom: 8px;
+            }
             .carousel-slide { width: 68%; }
             .carousel-slide[data-pos="-1"] { transform: translateX(-50%) scale(0.82); opacity: 0.4; }
             .carousel-slide[data-pos="1"] { transform: translateX(50%) scale(0.82); opacity: 0.4; }
