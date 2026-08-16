@@ -941,25 +941,35 @@ section + section { border-top: 1px solid var(--color-border-light); }
     max-width: 500px;
 }
 
+/* Spinning Vinyl Record */
 .spinning-polaroid {
-    width: 280px;
+    width: 240px;
+    height: 240px;
     margin: 40px auto;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .spinning-polaroid img {
-    width: 100%;
-    aspect-ratio: 1;
-    border: 12px solid #f5f5f0;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.15);
-    animation: spin 8s linear infinite;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 
+        0 0 0 20px #3d2817,
+        0 0 0 24px #2a1810,
+        0 10px 30px rgba(0,0,0,0.3);
+    animation: spin 12s linear infinite;
 }
 
 .polaroid-label {
-    margin-top: 12px;
-    font-size: 14px;
-    color: var(--text-secondary);
+    position: absolute;
+    top: 245px;
+    font-size: 13px;
+    color: var(--color-text-secondary);
     font-style: italic;
+    white-space: nowrap;
 }
 
 @keyframes spin {
