@@ -944,21 +944,19 @@ section + section { border-top: 1px solid var(--color-border-light); }
 /* Spinning Vinyl in Polaroid Frame */
 .spinning-polaroid {
     width: 280px;
-    margin: 40px auto;
+    margin: 40px auto 50px;
     text-align: center;
-}
-
-.spinning-polaroid {
-    background: #f5f1e8;
-    border: 12px solid #f5f1e8;
-    border-bottom: 40px solid #f5f1e8;
+    background: #3d2817;
+    border: 12px solid #3d2817;
+    border-bottom: 40px solid #3d2817;
     box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     padding: 0;
+    position: relative;
 }
 
 .spinning-polaroid img {
     width: 100%;
-    aspect-ratio: 1;
+    aspect-ratio: auto;
     border-radius: 50%;
     object-fit: contain;
     display: block;
@@ -967,21 +965,20 @@ section + section { border-top: 1px solid var(--color-border-light); }
 }
 
 .polaroid-label {
-    font-family: var(--font-body);
-    font-size: 12px;
-    color: var(--color-text-secondary);
+    font-family: var(--font-display);
+    font-size: 13px;
+    color: #3d2817;
     font-style: italic;
     letter-spacing: 0.02em;
-    margin-top: -32px;
-    position: relative;
-    z-index: 1;
-    padding-bottom: 8px;
+    padding: 8px 0 0 0;
+    margin: 0;
 }
 
 @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
+
 /* ═══════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════ */
