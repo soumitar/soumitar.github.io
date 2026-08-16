@@ -946,8 +946,8 @@ section + section { border-top: 1px solid var(--color-border-light); }
 ═══════════════════════════════════════ */
 .vinyl-stage {
     max-width: 420px;
-    margin: 48px auto;
-    padding: 8px 0;
+    margin: 20px auto 28px;   /* was 48px auto — less gap above and below */
+    padding: 0;               /* was 8px 0 */
     text-align: center;
 }
 
