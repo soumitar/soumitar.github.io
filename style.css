@@ -979,11 +979,11 @@ section + section { border-top: 1px solid var(--color-border-light); }
 }
 
 .vinyl-cover {
-    width: 55%;
+    width: 70%;
     aspect-ratio: 1;
     border-radius: 50%;
-    object-fit: cover;   /* fills a circle — crops corners */
-    box-shadow: 0 0 0 4px rgba(243, 236, 221, 0.9), 0 2px 6px rgba(0, 0, 0, 0.5);
+    object-fit: cover;   /* fills the circle */
+    box-shadow: 0 0 0 3px rgba(243, 236, 221, 0.9), 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 .turntable::after {
