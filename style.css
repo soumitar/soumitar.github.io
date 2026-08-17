@@ -747,7 +747,6 @@ section + section { border-top: 1px solid var(--color-border-light); }
 
 .interests-gateway .interest-tile:nth-child(3) .interest-tile-img {
     object-position: center 30%;
-    transform: scale(0.9);
 }
 
 .interest-tile-label {
